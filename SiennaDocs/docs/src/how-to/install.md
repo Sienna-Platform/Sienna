@@ -54,7 +54,13 @@ If not, go back to check the Julia installation steps.
 ### Step 3: Install Sienna
 
 Sienna is a modular set of Julia packages, where each package can be installed with the
-[Julia package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/#Pkg).
+[Julia package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/#Pkg), such as:
+
+```julia
+using Pkg;
+Pkg.add("PowerSystems");
+```
+
 To install the core packages in one of the Sienna applications,
 Sienna\Data, Sienna\Ops, and/or Sienna\Dyn, run:
 
@@ -97,8 +103,14 @@ These commands may take a few minutes to download the packages and compile them.
 
 In addition to the core packages, there are auxilliary packages that extend the
 capabilities for particular use cases, such as storage or hydropower modeling.
-
 Check out the [Documentation Hub](@ref hub) to learn more.
+
+#### Install the Development Version of a Package
+To use the current development version instead, "checkout" the main branch of a package, such as:
+
+```julia
+] add PowerSystems#main
+```
 
 ## Troubleshooting on Windows
 
