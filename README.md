@@ -8,8 +8,11 @@ and need to view your draft edits; otherwise please refer to the
 It is a website built in 2 parts:
 1. Main landing pages, built using [Jekyll](https://jekyllrb.com/) in Ruby.
 1. Technical documentation pages written and compiled by 
-[`Documenter.jl`](https://documenter.juliadocs.org/stable/), which are then
+[`Documenter.jl`](https://documenter.juliadocs.org/stable/) and aggregated with 
+[`MultiDocumenter.jl`](https://github.com/JuliaComputing/MultiDocumenter.jl), which are then
 linked from the main website. These files are located in the `SiennaDocs/` subfolder.
+The documentation site is published at
+[https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/](https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/).
 
 ## Serving the main website with Jekyll
 

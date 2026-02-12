@@ -3,7 +3,8 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# Builds and deploys the two-part Sienna site: Jekyll (main pages) + SiennaDocs (Documenter.jl/MultiDocumenter).
+# Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
 name: Deploy Jekyll site to Pages
 
 on:
@@ -38,6 +39,8 @@ jobs:
           version: '1.11'
       - name: Install dependencies
         run: julia --project=SiennaDocs/docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=joinpath(pwd(),"SiennaDocs"))); Pkg.instantiate()'
+      - name: Patch MultiDocumenter (canonical_urls indexhtml_path fix)
+        run: julia --project=SiennaDocs/docs SiennaDocs/docs/patch_multidocumenter.jl
       - name: Build and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

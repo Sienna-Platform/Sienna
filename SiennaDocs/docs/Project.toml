@@ -2,6 +2,7 @@
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 DocumenterInterLinks = "d12716ef-a0f6-4df4-a9f1-a5a34e75c656"
+MultiDocumenter = "87ed4bf0-c935-4a67-83c3-2a03bee4197c"
 HiGHS = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
 PowerAnalytics = "56ce1300-00bc-47e4-ba8c-b166ccc19f51"
 PowerSimulations = "e690365d-45e2-57bb-ac84-44ba829e73c4"
