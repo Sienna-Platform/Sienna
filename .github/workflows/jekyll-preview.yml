@@ -1,6 +1,6 @@
 # Builds a draft version of the Jekyll site for pull requests and deploys it to
 # https://nrel-sienna.github.io/Sienna/pr-preview/pr-<number>/
-# Comments on the PR with the preview link. Requires Settings > Pages > Deploy from branch (gh-pages)
+# Preview URL is in the job summary (click the job in the Actions tab). Requires Settings > Pages > Deploy from branch (gh-pages)
 # and Settings > Actions > Workflow permissions: Read and write.
 name: Jekyll PR preview
 
@@ -53,12 +53,21 @@ jobs:
 
       - name: Deploy preview
         if: github.event.action != 'closed'
+        id: preview
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: _site
           preview-branch: gh-pages
-          qr-code: true
+          comment: false
+          qr-code: false
           action: deploy
+
+      - name: Preview URL
+        if: github.event.action != 'closed' && steps.preview.outputs.deployment-action == 'deploy'
+        run: |
+          echo "## PR preview deployed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Preview:** ${{ steps.preview.outputs.preview-url }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Remove preview
         if: github.event.action == 'closed'
