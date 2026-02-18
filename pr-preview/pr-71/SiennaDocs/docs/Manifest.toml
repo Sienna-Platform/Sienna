@@ -704,9 +704,9 @@ version = "0.1.3"
 
 [[deps.MathOptIIS]]
 deps = ["MathOptInterface"]
-git-tree-sha1 = "31d4a6353ea00603104f11384aa44dd8b7162b28"
+git-tree-sha1 = "12f262200198606174e28c59da634e9d9da839ed"
 uuid = "8c4f8055-bd93-4160-a86b-a0c04941dbff"
-version = "0.1.1"
+version = "0.1.2"
 
 [[deps.MathOptInterface]]
 deps = ["BenchmarkTools", "CodecBzip2", "CodecZlib", "ForwardDiff", "JSON", "LinearAlgebra", "MutableArithmetics", "NaNMath", "OrderedCollections", "PrecompileTools", "Printf", "SparseArrays", "SpecialFunctions", "Test"]

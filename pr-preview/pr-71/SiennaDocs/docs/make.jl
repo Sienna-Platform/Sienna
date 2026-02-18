@@ -60,6 +60,70 @@ Cloning package documentation into: $(clonedir)
 Building aggregate Sienna documentation site into: $(outpath)
 """
 
+# One MultiDocRef per package; same ref reused in multiple dropdowns.
+# Acronyms: PSY = Power Systems, PSI = Power Simulations, PSID = Power Simulation Dynamics.
+# MultiDocumenter clones each upstream once and writes one output dir per path, so this does not duplicate site size.
+psy = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSystems.jl"),
+    path = "PowerSystems",
+    name = "PowerSystems.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
+)
+pscb = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
+    path = "PowerSystemCaseBuilder",
+    name = "PowerSystemCaseBuilder.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl.git",
+)
+pg = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerGraphics.jl"),
+    path = "PowerGraphics",
+    name = "PowerGraphics.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
+)
+pnm = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerNetworkMatrices.jl"),
+    path = "PowerNetworkMatrices",
+    name = "PowerNetworkMatrices.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerNetworkMatrices.jl.git",
+)
+psi = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSimulations.jl"),
+    path = "PowerSimulations",
+    name = "PowerSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
+)
+sss = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
+    path = "StorageSystemsSimulations",
+    name = "StorageSystemsSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
+)
+hps = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
+    path = "HydroPowerSimulations",
+    name = "HydroPowerSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
+)
+pf = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerFlows.jl"),
+    path = "PowerFlows",
+    name = "PowerFlows.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
+)
+pa = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerAnalytics.jl"),
+    path = "PowerAnalytics",
+    name = "PowerAnalytics.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
+)
+psid = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
+    path = "PowerSimulationsDynamics",
+    name = "PowerSimulationsDynamics.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
+)
+
 docs = Any[
     # SiennaDocs hub as the root of the aggregate site
     MultiDocumenter.MultiDocRef(
@@ -68,110 +132,9 @@ docs = Any[
         name = "Sienna Documentation",
     ),
 
-    # Sienna\Data dropdown
-    MultiDocumenter.DropdownNav(
-        "Sienna\\Data",
-        [
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSystems.jl"),
-                path = "PowerSystems",
-                name = "PowerSystems.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
-                path = "PowerSystemCaseBuilder",
-                name = "PowerSystemCaseBuilder.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerGraphics.jl"),
-                path = "PowerGraphics",
-                name = "PowerGraphics.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerNetworkMatrices.jl"),
-                path = "PowerNetworkMatrices",
-                name = "PowerNetworkMatrices.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerNetworkMatrices.jl.git",
-            ),
-        ],
-    ),
-
-    # Sienna\Ops dropdown
-    MultiDocumenter.DropdownNav(
-        "Sienna\\Ops",
-        [
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSystems.jl"),
-                path = "PowerSystems",
-                name = "PowerSystems.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSimulations.jl"),
-                path = "PowerSimulations",
-                name = "PowerSimulations.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
-                path = "StorageSystemsSimulations",
-                name = "StorageSystemsSimulations.jl",
-                giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
-                path = "HydroPowerSimulations",
-                name = "HydroPowerSimulations.jl",
-                giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerFlows.jl"),
-                path = "PowerFlows",
-                name = "PowerFlows.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerAnalytics.jl"),
-                path = "PowerAnalytics",
-                name = "PowerAnalytics.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerGraphics.jl"),
-                path = "PowerGraphics",
-                name = "PowerGraphics.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
-            ),
-        ],
-    ),
-
-    # Sienna\Dyn dropdown
-    MultiDocumenter.DropdownNav(
-        "Sienna\\Dyn",
-        [
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSystems.jl"),
-                path = "PowerSystems",
-                name = "PowerSystems.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
-                path = "PowerSimulationsDynamics",
-                name = "PowerSimulationsDynamics.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
-            ),
-            MultiDocumenter.MultiDocRef(
-                upstream = joinpath(clonedir, "PowerGraphics.jl"),
-                path = "PowerGraphics",
-                name = "PowerGraphics.jl",
-                giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
-            ),
-        ],
-    ),
+    MultiDocumenter.DropdownNav("Sienna\\Data", [psy, pscb, pg, pnm]),
+    MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
+    MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
 ]
 
 # Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
