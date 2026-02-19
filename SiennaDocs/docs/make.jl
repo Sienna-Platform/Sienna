@@ -133,8 +133,8 @@ docs = Any[
     ),
 
     MultiDocumenter.DropdownNav("Sienna\\Data", [psy, pscb, pg, pnm]),
-    MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
-    MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
+    # MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
+    # MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
 ]
 
 # Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
