@@ -2,8 +2,8 @@
   <div class="container">
     <div class="header-content-v8">
       <div class="logo-v8">
-        <a href="#" title="">
-          <img src="{{site.data.settings.logo_home_businessconsulting}}" alt="">
+        <a href="{{ site.baseurl }}/" title="">
+          <img src="{{ site.baseurl }}{{ site.data.settings.logo_home_businessconsulting }}" alt="">
         </a>
       </div>
       <!--logo-v8 end-->
@@ -15,12 +15,18 @@
             <ul>
               {% for entry in item.subfolderitems %}
               <li>
+                {% if entry.url contains "http" %}
+                <a href="{{ entry.url }}" title="{{ entry.page }}" target="_blank" rel="noopener"
+                  class="{% if entry.url == page.url %}active{% endif %}"
+                  >{{ entry.page }}</a>
+                {% else %}
                 <a
-                  href="{{ entry.url }}"
+                  href="{{ site.baseurl }}{{ entry.url }}"
                   title="{{ entry.page }}"
-                  class="{% if item.url == page.url %}active{% endif %}"
+                  class="{% if entry.url == page.url %}active{% endif %}"
                   >{{ entry.page }}</a
                 >
+                {% endif %}
               </li>
               {% endfor %}
             </ul>

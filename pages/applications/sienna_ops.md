@@ -1,6 +1,6 @@
 ---
 layout: info_page
-img: "/Sienna/assets/Sienna-Ops-info-page.png"
+img: "/assets/Sienna-Ops-info-page.png"
 
 ############################ Banner ##################################
 banner:
@@ -43,49 +43,49 @@ why_us:
 tablist:
   # tab item1
   - name: "PowerSimulations.jl"
-    icon: "/Sienna/assets/img/icon_trajectory_org.svg"
+    icon: "/assets/img/icon_trajectory_org.svg"
     content: "Formulate and solve optimization problems to simulate system scheduling"
     link: "https://github.com/NREL-Sienna/PowerSimulations.jl"
     version: "v3"
 
   # tab item2
   - name: "StorageSystemsSimulations.jl"
-    icon: "/Sienna/assets/img/icon_battery_org.svg"
+    icon: "/assets/img/icon_battery_org.svg"
     content: "Extend capabilties to simulate energy storage systems"
     link: "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl"
     version: "v3"
 
   # tab item3
   - name: "HydroPowerSimulations.jl"
-    icon: "/Sienna/assets/img/icon_hydro_org.svg"
+    icon: "/assets/img/icon_hydro_org.svg"
     content: "Extend capabilties to simulate hydropower generators"
     link: "https://github.com/NREL-Sienna/HydroPowerSimulations.jl"
     version: "v3"
 
   # tab item4
   - name: "PowerSystems.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Consistently represent power system data, including time series"
     link: "https://github.com/NREL-Sienna/PowerSystems.jl"
     version: "v1"
 
   # tab item5
   - name: "PowerFlows.jl"
-    icon: "/Sienna/assets/img/icon_network_org.svg"
+    icon: "/assets/img/icon_network_org.svg"
     content: "Calculate DC and AC optimal power flows"
     link: "https://github.com/NREL-Sienna/PowerFlows.jl"
     version: "v5"
 
   # tab item6
   - name: "PowerAnalytics.jl"
-    icon: "/Sienna/assets/img/icon_comp_$_org.svg"
+    icon: "/assets/img/icon_comp_$_org.svg"
     content: "Analyze common metrics and compare results across scenarios"
     link: "https://github.com/NREL-Sienna/PowerAnalytics.jl"
     version: "v4"
 
   # tab item7
   - name: "PowerGraphics.jl"
-    icon: "/Sienna/assets/img/icon_graph_org.svg"
+    icon: "/assets/img/icon_graph_org.svg"
     content: "Visualize data inputs and results"
     link: "https://github.com/NREL-Sienna/PowerGraphics.jl"
     version: "v2"

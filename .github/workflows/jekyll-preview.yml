@@ -43,6 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+          SIENNA_DOCS_ROOTPATH: "/Sienna/pr-preview/pr-${{ github.event.number }}/SiennaDocs/docs/build"
         run: julia --project=SiennaDocs/docs --color=yes SiennaDocs/docs/make.jl
 
       - name: Build with Jekyll

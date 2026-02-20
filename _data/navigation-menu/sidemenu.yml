@@ -4,31 +4,31 @@ toc:
     subfolderitems:
 
       - page: Sienna\Data
-        url: /Sienna/pages/applications/sienna_data.html
+        url: /pages/applications/sienna_data.html
 
       - page: Sienna\Ops
-        url: /Sienna/pages/applications/sienna_ops.html
+        url: /pages/applications/sienna_ops.html
 
       - page: Sienna\Dyn
-        url: /Sienna/pages/applications/sienna_dyn.html
+        url: /pages/applications/sienna_dyn.html
       
   - title: DOCUMENTATION
     subfolderitems:
 
     - page: DOCUMENTATION
-      url: /Sienna/SiennaDocs/docs/build/index.html
+      url: /SiennaDocs/docs/build/index.html
 
   - title: RESOURCES
     subfolderitems:
 
       - page: LEARN AND CONTRIBUTE
-        url: /Sienna/pages/resources.html
+        url: /pages/resources.html
 
       - page: PUBLICATIONS
-        url: /Sienna/pages/publications.html
+        url: /pages/publications.html
 
       - page: CITATION
-        url: /Sienna/SiennaDocs/docs/build/reference/citing
+        url: /SiennaDocs/docs/build/reference/citing
 
   - title: ABOUT
     subfolderitems:

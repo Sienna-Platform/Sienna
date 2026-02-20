@@ -27,8 +27,10 @@ pages = OrderedDict(
 )
 
 # First, build the SiennaDocs hub itself with Documenter.jl into docs/build.
-# Hub is served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
-hub_canonical = "https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build"
+# When SIENNA_DOCS_ROOTPATH is set (e.g. PR preview), use it so redirects/canonicals point to the preview URL.
+const _docs_rootpath = get(ENV, "SIENNA_DOCS_ROOTPATH", "/Sienna/SiennaDocs/docs/build")
+const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath : _docs_rootpath * "/"
+hub_canonical = "https://nrel-sienna.github.io" * rstrip(_docs_rootpath, '/')
 makedocs(
     modules = [SiennaDocs],
     format = Documenter.HTML(
@@ -147,14 +149,14 @@ MultiDocumenter.make(
         index_versions = ["stable"],
         engine = MultiDocumenter.PageFind,
     ),
-    rootpath = "/Sienna/SiennaDocs/docs/build/",
+    rootpath = _docs_rootpath_normalized,
     canonical_domain = "https://nrel-sienna.github.io",
     sitemap = true,
 )
 
 # DocumenterInterLinks resolves @extref at build time into absolute URLs (e.g. nrel-sienna.github.io/PowerSystems.jl/...).
 # MultiDocumenter copies pre-built HTML, so those links would leave the aggregate. Rewrite them to point under the aggregate base.
-const _AGGREGATE_BASE = "/Sienna/SiennaDocs/docs/build"
+const _AGGREGATE_BASE = rstrip(_docs_rootpath, '/')
 const _EXTERNAL_TO_AGGREGATE = [
     "https://nrel-sienna.github.io/PowerSystems.jl/" => "$_AGGREGATE_BASE/PowerSystems/",
     "https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/" => "$_AGGREGATE_BASE/PowerSystemCaseBuilder/",
@@ -193,6 +195,18 @@ for (root, dirs, files) in walkdir(outpath)
             write(path, content)
         end
     end
+end
+
+# MultiDocumenter's root index.html redirects to the first doc; when that doc has path ""
+# (hub at root), it redirects to "./" which causes an infinite redirect loop (and can
+# produce build/ followed by many slashes). Patch it to redirect to a concrete page.
+root_index = joinpath(outpath, "index.html")
+if isfile(root_index)
+    content = read(root_index, String)
+    target = _docs_rootpath_normalized * "how-to/install/"
+    # Replace only the url=... value so we don't depend on exact meta tag formatting
+    content = replace(content, r"url=[^\"]+" => "url=" * target)
+    write(root_index, content)
 end
 
 @info "Copying aggregated documentation into docs/build for deployment"

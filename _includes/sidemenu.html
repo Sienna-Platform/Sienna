@@ -12,14 +12,20 @@
       <ul>
         {% for entry in item.subfolderitems %}
         <li>
+          {% if entry.url contains "http" %}
+          <a href="{{ entry.url }}" class="animsition-link" data-animsition-out-class="fade-out"
+            title="{{ entry.page }}" data-text="{{ entry.page }}" target="_blank" rel="noopener"
+            >{{ entry.page }}</a>
+          {% else %}
           <a
-            href="{{ entry.url }}"
+            href="{{ site.baseurl }}{{ entry.url }}"
             class="animsition-link {% if entry.url == page.url %}active{% endif %}"
             data-animsition-out-class="fade-out"
             title="{{ entry.page }}"
             data-text="{{ entry.page }}"
             >{{ entry.page }}</a
           >
+          {% endif %}
         </li>
         {% endfor %}
       </ul>

@@ -10,7 +10,7 @@ resources:
 
   - title: Read the Docs
     sub_title: Documentation
-    url: /Sienna/SiennaDocs/docs/build/index.html
+    url: /SiennaDocs/docs/build/index.html
     content: Access the Sienna Documentation Hub for installation, tutorials,
       and links to documentation for each core Sienna package. 
 

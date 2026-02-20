@@ -1161,7 +1161,7 @@
               <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="blog-post-v7">
                   <div class="blog-thumbnail">
-                    <img src="{{ post.layout_image}}" alt="" class="w-100" />
+                    <img src="{{ site.baseurl }}{{ post.layout_image }}" alt="" class="w-100" />
                   </div>
                   <div class="blog-info">
                     <ul class="meta">
@@ -1173,7 +1173,7 @@
                       </li>
                     </ul>
                     <h2>
-                      <a href="{{post.url}}" title="">{{ post.title}}</a>
+                      <a href="{{ site.baseurl }}{{ post.url }}" title="">{{ post.title}}</a>
                     </h2>
                   </div>
                 </div>

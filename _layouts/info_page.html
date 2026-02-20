@@ -24,7 +24,7 @@
           </div>
           <div class="col-lg-6">
             <div class="svss-img wow zoomIn" data-wow-duration="1000ms" data-wow-delay="0ms">
-              <img src={{page.img}} alt="" />
+              <img src="{{ site.baseurl }}{{ page.img }}" alt="" />
             </div>
             <!--svss-img end-->
           </div>
@@ -100,7 +100,7 @@
                 <div class="abt-content">
 
                   <h3>
-                    <img src={{tablist.icon}} alt="" />
+                    <img src="{{ site.baseurl }}{{ tablist.icon }}" alt="" />
                     <a href="{{ tablist.link }}", target="_blank" title="">{{tablist.name}}</a>
                   </h3>
                   <a href="{{ tablist.link }}", target="_blank" title="">{{tablist.content}}</a>
@@ -121,7 +121,7 @@
                 <h3>{{why_us.subtitle}}</h3>
                 <p>{{why_us.content}}</p>
                 <a
-                  href="/Sienna/SiennaDocs/docs/build/"
+                  href="{{ site.baseurl }}/SiennaDocs/docs/build/"
                   target="_blank"
                   title=""
                   class="btn-default"
