@@ -30,7 +30,8 @@ pages = OrderedDict(
 # When SIENNA_DOCS_ROOTPATH is set (e.g. PR preview), use it so redirects/canonicals point to the preview URL.
 const _docs_rootpath = get(ENV, "SIENNA_DOCS_ROOTPATH", "/Sienna/SiennaDocs/docs/build")
 const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath : _docs_rootpath * "/"
-hub_canonical = "https://nrel-sienna.github.io" * rstrip(_docs_rootpath, '/')
+# Hub is at path "index", so its canonical base is .../build/index
+hub_canonical = "https://nrel-sienna.github.io" * rstrip(_docs_rootpath, '/') * "/index"
 makedocs(
     modules = [SiennaDocs],
     format = Documenter.HTML(
@@ -46,8 +47,8 @@ makedocs(
     plugins = [links],
 )
 
-# Then, aggregate SiennaDocs with the ecosystem package docs using MultiDocumenter.
-
+# MultiDocumenter's canonical update expects versions.js + version dirs; the hub is single-version
+# and already has canonical set in makedocs, so we pass fix_canonical_url = false for the hub.
 # Where to clone upstream package documentation from gh-pages
 clonedir = joinpath(@__DIR__, "clones")
 isdir(clonedir) || mkpath(clonedir)
@@ -65,12 +66,12 @@ Building aggregate Sienna documentation site into: $(outpath)
 # One MultiDocRef per package; same ref reused in multiple dropdowns.
 # Acronyms: PSY = Power Systems, PSI = Power Simulations, PSID = Power Simulation Dynamics.
 # MultiDocumenter clones each upstream once and writes one output dir per path, so this does not duplicate site size.
-# psy = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "PowerSystems.jl"),
-#     path = "PowerSystems",
-#     name = "PowerSystems.jl",
-#     giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
-# )
+psy = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSystems.jl"),
+    path = "PowerSystems",
+    name = "PowerSystems.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
+)
 pscb = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
     path = "PowerSystemCaseBuilder",
@@ -89,54 +90,56 @@ pnm = MultiDocumenter.MultiDocRef(
     name = "PowerNetworkMatrices.jl",
     giturl = "https://github.com/NREL-Sienna/PowerNetworkMatrices.jl.git",
 )
-# psi = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "PowerSimulations.jl"),
-#     path = "PowerSimulations",
-#     name = "PowerSimulations.jl",
-#     giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
-# )
-# sss = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
-#     path = "StorageSystemsSimulations",
-#     name = "StorageSystemsSimulations.jl",
-#     giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
-# )
-# hps = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
-#     path = "HydroPowerSimulations",
-#     name = "HydroPowerSimulations.jl",
-#     giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
-# )
-# pf = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "PowerFlows.jl"),
-#     path = "PowerFlows",
-#     name = "PowerFlows.jl",
-#     giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
-# )
-# pa = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "PowerAnalytics.jl"),
-#     path = "PowerAnalytics",
-#     name = "PowerAnalytics.jl",
-#     giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
-# )
-# psid = MultiDocumenter.MultiDocRef(
-#     upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
-#     path = "PowerSimulationsDynamics",
-#     name = "PowerSimulationsDynamics.jl",
-#     giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
-# )
+psi = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSimulations.jl"),
+    path = "PowerSimulations",
+    name = "PowerSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
+)
+sss = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
+    path = "StorageSystemsSimulations",
+    name = "StorageSystemsSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
+)
+hps = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
+    path = "HydroPowerSimulations",
+    name = "HydroPowerSimulations.jl",
+    giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
+)
+pf = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerFlows.jl"),
+    path = "PowerFlows",
+    name = "PowerFlows.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
+)
+pa = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerAnalytics.jl"),
+    path = "PowerAnalytics",
+    name = "PowerAnalytics.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
+)
+psid = MultiDocumenter.MultiDocRef(
+    upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
+    path = "PowerSimulationsDynamics",
+    name = "PowerSimulationsDynamics.jl",
+    giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
+)
 
+# Hub at path "index" so root index.html redirects to ./index/ (one redirect, no loop)
+# and the hub page at .../build/index/ has the MultiDocumenter nav bar.
 docs = Any[
-    # SiennaDocs hub as the root of the aggregate site
     MultiDocumenter.MultiDocRef(
         upstream = joinpath(@__DIR__, "build"),
-        path = "",
+        path = "index",
         name = "Sienna Documentation",
+        fix_canonical_url = false,
     ),
 
-    MultiDocumenter.DropdownNav("Sienna\\Data", [pscb, pg, pnm]),# [psy, pscb, pg, pnm]),
-    # MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
-    # MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
+    MultiDocumenter.DropdownNav("Sienna\\Data", [psy, pscb, pg, pnm]),
+    MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
+    MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
 ]
 
 # Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
@@ -195,18 +198,6 @@ for (root, dirs, files) in walkdir(outpath)
             write(path, content)
         end
     end
-end
-
-# MultiDocumenter's root index.html redirects to the first doc; when that doc has path ""
-# (hub at root), it redirects to "./" which causes an infinite redirect loop (and can
-# produce build/ followed by many slashes). Patch it to redirect to a concrete page.
-root_index = joinpath(outpath, "index.html")
-if isfile(root_index)
-    content = read(root_index, String)
-    target = _docs_rootpath_normalized * "how-to/install/"
-    # Replace only the url=... value so we don't depend on exact meta tag formatting
-    content = replace(content, r"url=[^\"]+" => "url=" * target)
-    write(root_index, content)
 end
 
 @info "Copying aggregated documentation into docs/build for deployment"
