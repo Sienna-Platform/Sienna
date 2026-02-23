@@ -64,67 +64,77 @@ Building aggregate Sienna documentation site into: $(outpath)
 """
 
 # One MultiDocRef per package; same ref reused in multiple dropdowns.
-# Acronyms: PSY = Power Systems, PSI = Power Simulations, PSID = Power Simulation Dynamics.
-# MultiDocumenter clones each upstream once and writes one output dir per path, so this does not duplicate site size.
+# include_versions limits copied version dirs to reduce site size; "All versions" link points to package gh-pages.
+const _INCLUDE_VERSIONS = ["stable", "dev"]
 psy = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSystems.jl"),
     path = "PowerSystems",
     name = "PowerSystems.jl",
     giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 pscb = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
     path = "PowerSystemCaseBuilder",
     name = "PowerSystemCaseBuilder.jl",
     giturl = "https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 pg = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerGraphics.jl"),
     path = "PowerGraphics",
     name = "PowerGraphics.jl",
     giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 pnm = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerNetworkMatrices.jl"),
     path = "PowerNetworkMatrices",
     name = "PowerNetworkMatrices.jl",
     giturl = "https://github.com/NREL-Sienna/PowerNetworkMatrices.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 psi = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSimulations.jl"),
     path = "PowerSimulations",
     name = "PowerSimulations.jl",
     giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 sss = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
     path = "StorageSystemsSimulations",
     name = "StorageSystemsSimulations.jl",
     giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 hps = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
     path = "HydroPowerSimulations",
     name = "HydroPowerSimulations.jl",
     giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 pf = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerFlows.jl"),
     path = "PowerFlows",
     name = "PowerFlows.jl",
     giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 pa = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerAnalytics.jl"),
     path = "PowerAnalytics",
     name = "PowerAnalytics.jl",
     giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 psid = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
     path = "PowerSimulationsDynamics",
     name = "PowerSimulationsDynamics.jl",
     giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
+    include_versions = _INCLUDE_VERSIONS,
 )
 
 # Hub at path "index" so root index.html redirects to ./index/ (one redirect, no loop)
@@ -187,6 +197,17 @@ for (root, dirs, files) in walkdir(outpath)
             if occursin(from, content)
                 content = replace(content, from => to)
                 modified = true
+            end
+        end
+        # "See All Versions" script must link to package gh-pages; restore it after @extref rewrite
+        if occursin("documenter-see-all-versions-option", content)
+            for (pkg_url, agg_path) in _EXTERNAL_TO_AGGREGATE
+                needle = "var url=\"" * agg_path * "\""
+                if occursin(needle, content)
+                    content = replace(content, needle => "var url=\"" * pkg_url * "\""; count = 1)
+                    modified = true
+                    break
+                end
             end
         end
         # Inject "Homepage" as first item in the top bar (MultiDocumenter requires first doc to have path for redirect)
