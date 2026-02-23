@@ -170,6 +170,15 @@ MultiDocumenter.make(
 # DocumenterInterLinks resolves @extref at build time into absolute URLs (e.g. nrel-sienna.github.io/PowerSystems.jl/...).
 # MultiDocumenter copies pre-built HTML, so those links would leave the aggregate. Rewrite them to point under the aggregate base.
 const _AGGREGATE_BASE = rstrip(_docs_rootpath, '/')
+# Old org (nrel-siip) redirects in cloned package root index.html (psy, psi, psid) cause 404; rewrite to aggregate ./stable/
+const _OLD_ORG_TO_AGGREGATE = [
+    "http://nrel-siip.github.io/PowerSystems.jl/latest" => "./stable/",
+    "https://nrel-siip.github.io/PowerSystems.jl/latest" => "./stable/",
+    "http://nrel-siip.github.io/PowerSimulations.jl/latest" => "./stable/",
+    "https://nrel-siip.github.io/PowerSimulations.jl/latest" => "./stable/",
+    "http://nrel-siip.github.io/PowerSimulationsDynamics.jl/stable" => "./stable/",
+    "https://nrel-siip.github.io/PowerSimulationsDynamics.jl/stable" => "./stable/",
+]
 const _EXTERNAL_TO_AGGREGATE = [
     "https://nrel-sienna.github.io/PowerSystems.jl/" => "$_AGGREGATE_BASE/PowerSystems/",
     "https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/" => "$_AGGREGATE_BASE/PowerSystemCaseBuilder/",
@@ -193,6 +202,12 @@ for (root, dirs, files) in walkdir(outpath)
         isfile(path) || continue
         content = read(path, String)
         modified = false
+        for (from, to) in _OLD_ORG_TO_AGGREGATE
+            if occursin(from, content)
+                content = replace(content, from => to)
+                modified = true
+            end
+        end
         for (from, to) in _EXTERNAL_TO_AGGREGATE
             if occursin(from, content)
                 content = replace(content, from => to)
