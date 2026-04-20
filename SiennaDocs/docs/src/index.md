@@ -59,7 +59,6 @@ There are four main sections containing different information:
 
 ## Resources
 
-<!-- Check these links are correct still with lab name change -->
 | Resource                                                                                     | Description                                                                                                                     |
 |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------- |
 | **[Learn Julia](https://julialang.org/)** *— Prerequisite*                                   | Before diving into Sienna, get some familiarity with the Julia programming language through their extensive learning resources. |
