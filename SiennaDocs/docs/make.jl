@@ -5,11 +5,11 @@ using DocumenterInterLinks
 
 links = InterLinks(
     "Pkg" => "https://pkgdocs.julialang.org/v1/",
-    "PowerSystems" => "https://nrel-sienna.github.io/PowerSystems.jl/stable/",
-    "PowerSimulations" => "https://nrel-sienna.github.io/PowerSimulations.jl/stable/",
-    "PowerAnalytics" => "https://nrel-sienna.github.io/PowerAnalytics.jl/stable/",
-    "PowerGraphics" => "https://nrel-sienna.github.io/PowerGraphics.jl/stable/",
-    # "PowerSystemCaseBuilder" => "https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/stable/",
+    "PowerSystems" => "https://sienna-platform.github.io/PowerSystems.jl/stable/",
+    "PowerSimulations" => "https://sienna-platform.github.io/PowerSimulations.jl/stable/",
+    "PowerAnalytics" => "https://sienna-platform.github.io/PowerAnalytics.jl/stable/",
+    "PowerGraphics" => "https://sienna-platform.github.io/PowerGraphics.jl/stable/",
+    # "PowerSystemCaseBuilder" => "https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable/",
 )
 
 
@@ -38,7 +38,7 @@ makedocs(
         sidebar_sitename = false,
         prettyurls = haskey(ENV, "GITHUB_ACTIONS"),
         size_threshold = nothing,
-        footer = "Return to the [Sienna homepage](https://nrel-sienna.github.io/Sienna/). Docs powered by [Documenter.jl]       (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",),
+        footer = "Return to the [Sienna homepage](https://sienna-platform.github.io/Sienna/). Docs powered by [Documenter.jl]       (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",),
     sitename = "Sienna Documentation Hub",
     authors = "Kate Doubleday",
     pages = Any[p for p in pages],

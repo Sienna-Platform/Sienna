@@ -16,25 +16,25 @@ resources:
 
   - title: Watch Tutorials
     sub_title: YouTube
-    url: https://www.youtube.com/@nrel-sienna
+    url: https://www.youtube.com/@sienna-platform
     content: See our YouTube channel for quick tutorial videos, webinars, and
       presentations showcasing Sienna at work.
 
   - title: Ask Questions
     sub_title: Slack
-    url: https://nrel-sienna.slack.com
+    url: https://core-sienna.slack.com
     content: Join our active community on Slack to ask our developers questions and
       share your experience with other users.
 
   - title: Contribute Code
     sub_title: Sienna Codebase
-    url: https://github.com/NREL-Sienna
+    url: https://github.com/Sienna-Platform
     content: Visit the Sienna project on Github to access and contribute to
       all the open-source software packages in the Sienna ecosystem.
 
   - title: Propose Features
     sub_title: Discussion Board
-    url: https://github.com/orgs/NREL-Sienna/discussions
+    url: https://github.com/orgs/Sienna-Platform/discussions
     content: Have an idea of where you'd like Sienna to go? Propose and discuss new features
       on Sienna's Github Discussions page.
 

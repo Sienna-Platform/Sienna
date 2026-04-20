@@ -103,7 +103,7 @@ Check out the [Documentation Hub](@ref hub) to learn more.
 ## Troubleshooting on Windows
 
 Users regularly report challenges installing
-[`PowerGraphics.jl`](https://nrel-sienna.github.io/PowerGraphics.jl/stable/) on Windows due to
+[`PowerGraphics.jl`](https://sienna-platform.github.io/PowerGraphics.jl/stable/) on Windows due to
 its dependency on [`PlotlyJS.jl`](https://github.com/JuliaPlots/PlotlyJS.jl).
 
 We ask if users come across other issues and solutions to please submit a Git issue so we
