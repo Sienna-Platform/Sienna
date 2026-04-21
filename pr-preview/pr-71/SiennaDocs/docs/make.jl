@@ -7,11 +7,11 @@ using MultiDocumenter
 # These will all be post-processed to point to the aggregate MultiDocumenter site
 links = InterLinks(
     "Pkg" => "https://pkgdocs.julialang.org/v1/",
-    "PowerSystems" => "https://nrel-sienna.github.io/PowerSystems.jl/stable/",
-    "PowerSimulations" => "https://nrel-sienna.github.io/PowerSimulations.jl/stable/",
-    "PowerAnalytics" => "https://nrel-sienna.github.io/PowerAnalytics.jl/stable/",
-    "PowerGraphics" => "https://nrel-sienna.github.io/PowerGraphics.jl/stable/",
-    "PowerSystemCaseBuilder" => "https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/stable/",
+    "PowerSystems" => "https://Sienna-Platform.github.io/PowerSystems.jl/stable/",
+    "PowerSimulations" => "https://Sienna-Platform.github.io/PowerSimulations.jl/stable/",
+    "PowerAnalytics" => "https://Sienna-Platform.github.io/PowerAnalytics.jl/stable/",
+    "PowerGraphics" => "https://Sienna-Platform.github.io/PowerGraphics.jl/stable/",
+    "PowerSystemCaseBuilder" => "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/stable/",
 )
 
 pages = OrderedDict(
@@ -31,7 +31,7 @@ pages = OrderedDict(
 const _docs_rootpath = get(ENV, "SIENNA_DOCS_ROOTPATH", "/Sienna/SiennaDocs/docs/build")
 const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath : _docs_rootpath * "/"
 # Hub is at path "index", so its canonical base is .../build/index
-hub_canonical = "https://nrel-sienna.github.io" * rstrip(_docs_rootpath, '/') * "/index"
+hub_canonical = "https://Sienna-Platform.github.io" * rstrip(_docs_rootpath, '/') * "/index"
 makedocs(
     modules = [SiennaDocs],
     format = Documenter.HTML(
@@ -39,7 +39,7 @@ makedocs(
         prettyurls = haskey(ENV, "GITHUB_ACTIONS"),
         size_threshold = nothing,
         canonical = hub_canonical,
-        footer = "Return to the [Sienna homepage](https://nrel-sienna.github.io/Sienna/). Docs powered by [Documenter.jl] (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
+        footer = "Return to the [Sienna homepage](https://Sienna-Platform.github.io/Sienna/). Docs powered by [Documenter.jl] (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
     ),
     sitename = "Sienna Documentation",
     authors = "Kate Doubleday",
@@ -70,70 +70,70 @@ psy = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSystems.jl"),
     path = "PowerSystems",
     name = "PowerSystems.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerSystems.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerSystems.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 pscb = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
     path = "PowerSystemCaseBuilder",
     name = "PowerSystemCaseBuilder.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 pg = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerGraphics.jl"),
     path = "PowerGraphics",
     name = "PowerGraphics.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerGraphics.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerGraphics.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 pnm = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerNetworkMatrices.jl"),
     path = "PowerNetworkMatrices",
     name = "PowerNetworkMatrices.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerNetworkMatrices.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 psi = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSimulations.jl"),
     path = "PowerSimulations",
     name = "PowerSimulations.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerSimulations.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerSimulations.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 sss = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
     path = "StorageSystemsSimulations",
     name = "StorageSystemsSimulations.jl",
-    giturl = "https://github.com/NREL-Sienna/StorageSystemsSimulations.jl.git",
+    giturl = "https://github.com/Sienna-Platform/StorageSystemsSimulations.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 hps = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
     path = "HydroPowerSimulations",
     name = "HydroPowerSimulations.jl",
-    giturl = "https://github.com/NREL-Sienna/HydroPowerSimulations.jl.git",
+    giturl = "https://github.com/Sienna-Platform/HydroPowerSimulations.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 pf = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerFlows.jl"),
     path = "PowerFlows",
     name = "PowerFlows.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerFlows.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerFlows.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 pa = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerAnalytics.jl"),
     path = "PowerAnalytics",
     name = "PowerAnalytics.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerAnalytics.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerAnalytics.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 psid = MultiDocumenter.MultiDocRef(
     upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
     path = "PowerSimulationsDynamics",
     name = "PowerSimulationsDynamics.jl",
-    giturl = "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl.git",
+    giturl = "https://github.com/Sienna-Platform/PowerSimulationsDynamics.jl.git",
     include_versions = _INCLUDE_VERSIONS,
 )
 
@@ -152,7 +152,7 @@ docs = Any[
     MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
 ]
 
-# Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
+# Docs are served at https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/
 # (Sienna repo = Jekyll site at /Sienna/ with SiennaDocs in subfolder)
 # Run docs/patch_multidocumenter.jl once if you see UndefVarError: indexhtml_path or many "Canonical URL missing" warnings.
 MultiDocumenter.make(
@@ -163,27 +163,56 @@ MultiDocumenter.make(
         engine = MultiDocumenter.PageFind,
     ),
     rootpath = _docs_rootpath_normalized,
-    canonical_domain = "https://nrel-sienna.github.io",
+    canonical_domain = "https://Sienna-Platform.github.io",
     sitemap = true,
 )
 
-# DocumenterInterLinks resolves @extref at build time into absolute URLs (e.g. nrel-sienna.github.io/PowerSystems.jl/...).
+# DocumenterInterLinks resolves @extref at build time into absolute URLs (e.g. Sienna-Platform.github.io/PowerSystems.jl/...).
 # MultiDocumenter copies pre-built HTML, so those links would leave the aggregate. Rewrite them to point under the aggregate base.
 const _AGGREGATE_BASE = rstrip(_docs_rootpath, '/')
 const _EXTERNAL_TO_AGGREGATE = [
-    "https://nrel-sienna.github.io/PowerSystems.jl/" => "$_AGGREGATE_BASE/PowerSystems/",
-    "https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/" => "$_AGGREGATE_BASE/PowerSystemCaseBuilder/",
-    "https://nrel-sienna.github.io/PowerGraphics.jl/" => "$_AGGREGATE_BASE/PowerGraphics/",
-    "https://nrel-sienna.github.io/PowerNetworkMatrices.jl/" => "$_AGGREGATE_BASE/PowerNetworkMatrices/",
-    "https://nrel-sienna.github.io/PowerSimulations.jl/" => "$_AGGREGATE_BASE/PowerSimulations/",
-    "https://nrel-sienna.github.io/StorageSystemsSimulations.jl/" => "$_AGGREGATE_BASE/StorageSystemsSimulations/",
-    "https://nrel-sienna.github.io/HydroPowerSimulations.jl/" => "$_AGGREGATE_BASE/HydroPowerSimulations/",
-    "https://nrel-sienna.github.io/PowerFlows.jl/" => "$_AGGREGATE_BASE/PowerFlows/",
-    "https://nrel-sienna.github.io/PowerAnalytics.jl/" => "$_AGGREGATE_BASE/PowerAnalytics/",
-    "https://nrel-sienna.github.io/PowerSimulationsDynamics.jl/" => "$_AGGREGATE_BASE/PowerSimulationsDynamics/",
+    "https://Sienna-Platform.github.io/PowerSystems.jl/" => "$_AGGREGATE_BASE/PowerSystems/",
+    "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/" => "$_AGGREGATE_BASE/PowerSystemCaseBuilder/",
+    "https://Sienna-Platform.github.io/PowerGraphics.jl/" => "$_AGGREGATE_BASE/PowerGraphics/",
+    "https://Sienna-Platform.github.io/PowerNetworkMatrices.jl/" => "$_AGGREGATE_BASE/PowerNetworkMatrices/",
+    "https://Sienna-Platform.github.io/PowerSimulations.jl/" => "$_AGGREGATE_BASE/PowerSimulations/",
+    "https://Sienna-Platform.github.io/StorageSystemsSimulations.jl/" => "$_AGGREGATE_BASE/StorageSystemsSimulations/",
+    "https://Sienna-Platform.github.io/HydroPowerSimulations.jl/" => "$_AGGREGATE_BASE/HydroPowerSimulations/",
+    "https://Sienna-Platform.github.io/PowerFlows.jl/" => "$_AGGREGATE_BASE/PowerFlows/",
+    "https://Sienna-Platform.github.io/PowerAnalytics.jl/" => "$_AGGREGATE_BASE/PowerAnalytics/",
+    "https://Sienna-Platform.github.io/PowerSimulationsDynamics.jl/" => "$_AGGREGATE_BASE/PowerSimulationsDynamics/",
 ]
-const _HOMEPAGE_LINK = """<a href="https://nrel-sienna.github.io/Sienna/" class="nav-link nav-item">Homepage</a>"""
-const _NAV_ITEMS_OPEN = """<div id="nav-items" class="hidden-on-mobile">"""
+const _HOMEPAGE_LINK = """<a href="https://Sienna-Platform.github.io/Sienna/" class="nav-link nav-item">Homepage</a>"""
+# MultiDocumenter/Gumbo serializes with attribute order class then id; support both for robustness.
+const _NAV_ITEMS_OPEN_ID_FIRST = """<div id="nav-items" class="hidden-on-mobile">"""
+const _NAV_ITEMS_OPEN_CLASS_FIRST = """<div class="hidden-on-mobile" id="nav-items">"""
+# Restore MultiDocumenter nav when page is restored from bfcache (back/forward); headroom classes can leave nav at top:-100vh
+const _PAGESHOW_NAV_FIX = """
+<script>
+(function(){
+  window.addEventListener('pageshow', function(ev) {
+    if (!ev.persisted) return;
+    var nav = document.getElementById('multi-page-nav');
+    if (nav) {
+      nav.classList.remove('headroom--unpinned', 'headroom--not-top', 'headroom--not-bottom');
+      nav.style.top = '';
+      nav.style.display = 'flex';
+    }
+  });
+})();
+</script>
+</body>"""
+
+# Unique placeholder; must not appear in real HTML. MultiDocumenter's "See All Versions" script contains
+# package gh-pages URLs that must not be rewritten to aggregate paths (would break window.open and
+# desync option value vs Documenter). Shield the script block, run extref rewrites, then restore.
+const _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER = "__SIENNA_MD_SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER__"
+function _shield_see_all_versions_script(content::String)
+    rgx = r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>)"
+    m = match(rgx, content)
+    m === nothing && return content, nothing
+    return replace(content, m.match => _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER; count = 1), m.match
+end
 
 @info "Rewriting @extref links and injecting Homepage link in nav"
 for (root, dirs, files) in walkdir(outpath)
@@ -193,26 +222,29 @@ for (root, dirs, files) in walkdir(outpath)
         isfile(path) || continue
         content = read(path, String)
         modified = false
+        content, see_all_block = _shield_see_all_versions_script(content)
         for (from, to) in _EXTERNAL_TO_AGGREGATE
             if occursin(from, content)
                 content = replace(content, from => to)
                 modified = true
             end
         end
-        # "See All Versions" script must link to package gh-pages; restore it after rewriting package URLs to aggregate
-        if occursin("documenter-see-all-versions-option", content)
-            for (pkg_url, agg_path) in _EXTERNAL_TO_AGGREGATE
-                needle = "var url=\"" * agg_path * "\""
-                if occursin(needle, content)
-                    content = replace(content, needle => "var url=\"" * pkg_url * "\""; count = 1)
-                    modified = true
-                    break
-                end
-            end
+        if see_all_block !== nothing
+            content = replace(content, _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER => see_all_block; count = 1)
         end
         # Inject "Homepage" as first item in the top bar (MultiDocumenter requires first doc to have path for redirect)
-        if occursin(_NAV_ITEMS_OPEN, content) && !occursin(">Homepage</a>", content)
-            content = replace(content, _NAV_ITEMS_OPEN => _NAV_ITEMS_OPEN * _HOMEPAGE_LINK)
+        if !occursin(">Homepage</a>", content)
+            if occursin(_NAV_ITEMS_OPEN_CLASS_FIRST, content)
+                content = replace(content, _NAV_ITEMS_OPEN_CLASS_FIRST => _NAV_ITEMS_OPEN_CLASS_FIRST * _HOMEPAGE_LINK)
+                modified = true
+            elseif occursin(_NAV_ITEMS_OPEN_ID_FIRST, content)
+                content = replace(content, _NAV_ITEMS_OPEN_ID_FIRST => _NAV_ITEMS_OPEN_ID_FIRST * _HOMEPAGE_LINK)
+                modified = true
+            end
+        end
+        # Ensure nav is visible when page is restored from back-forward cache (headroom can leave it at top:-100vh)
+        if occursin("id=\"multi-page-nav\"", content) && !occursin("pageshow", content)
+            content = replace(content, "</body>" => _PAGESHOW_NAV_FIX; count = 1)
             modified = true
         end
         if modified
