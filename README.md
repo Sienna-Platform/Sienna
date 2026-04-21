@@ -1,9 +1,9 @@
 # Sienna Website
 
-This repo builds the main [Sienna website](https://nrel-sienna.github.io/Sienna/).
+This repo builds the main [Sienna website](https://sienna-platform.github.io/Sienna/).
 Refer to this repository and readme if you are making edits to the public website
 and need to view your draft edits; otherwise please refer to the
-[website itself](https://nrel-sienna.github.io/Sienna/).
+[website itself](https://sienna-platform.github.io/Sienna/).
 
 It is a website built in 2 parts:
 1. Main landing pages, built using [Jekyll](https://jekyllrb.com/) in Ruby.
@@ -40,7 +40,7 @@ using Jekyll. The updated technical documentation will also be viewable on its o
 `SiennaDocs\docs\build\index.html` file (double-click to open in a browser).
 
 For more information, see
-[How to Compile and View Documentation Locally](https://nrel-sienna.github.io/InfrastructureSystems.jl/stable/docs_best_practices/how-to/compile/)
+[How to Compile and View Documentation Locally](https://sienna-platform.github.io/InfrastructureSystems.jl/stable/docs_best_practices/how-to/compile/)
 in Sienna's `InfrastructureSystems.jl` package.
 
 

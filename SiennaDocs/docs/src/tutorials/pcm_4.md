@@ -112,7 +112,7 @@ set_device_model!(template, ThermalStandard, ThermalStandardUnitCommitment)
 ```
 
 You can see the formulations options in the documentation:
-https://nrel-sienna.github.io/PowerSimulations.jl/stable/formulation_library/ThermalGen/
+https://sienna-platform.github.io/PowerSimulations.jl/stable/formulation_library/ThermalGen/
 
 22. We've changed our template, so we need to re-build the DecisionModels within our simulation, which
     includes a copy of the template:
