@@ -35,7 +35,7 @@ documentation framework. There are four main sections containing different infor
 
 ## About Sienna
 
-The National Renewable Energy Laboratory's [Sienna platform](https://sienna-platform.github.io/Sienna/)
+The National Laboratory of the Rockies' [Sienna platform](https://sienna-platform.github.io/Sienna/)
 is a open source framework for scheduling problems and dynamic simulations for power systems.
 Sienna is a modular, extensible platform with three core applications enabled by multiple
 packages in the [`Julia`](http://www.julialang.org) programming language:
