@@ -4,11 +4,11 @@ In this tutorial, we will conduct a two stage production cost modeling (PCM) sim
 in Sienna\Ops, including customizing the inputs and analyzing and visualizing the results.
 
 This will take us on an introductory tour through each of the five core packages in
-Sienna\Ops: [`PowerSystems.jl`](https://nrel-sienna.github.io/PowerSystems.jl/stable/),
-[`PowerSystemCaseBuilder.jl`](https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl),
-[`PowerSimulations.jl`](https://nrel-sienna.github.io/PowerSimulations.jl/stable/),
-[`PowerAnalytics.jl`](https://nrel-sienna.github.io/PowerAnalytics.jl/stable/), and
-[`PowerGraphics.jl`](https://nrel-sienna.github.io/PowerGraphics.jl/stable/).
+Sienna\Ops: [`PowerSystems.jl`](https://sienna-platform.github.io/PowerSystems.jl/stable/),
+[`PowerSystemCaseBuilder.jl`](https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl),
+[`PowerSimulations.jl`](https://sienna-platform.github.io/PowerSimulations.jl/stable/),
+[`PowerAnalytics.jl`](https://sienna-platform.github.io/PowerAnalytics.jl/stable/), and
+[`PowerGraphics.jl`](https://sienna-platform.github.io/PowerGraphics.jl/stable/).
 
 ## Tutorial Overview
 

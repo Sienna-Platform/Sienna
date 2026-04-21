@@ -49,34 +49,34 @@ tablist:
   - name: "PowerSystemDynamics.jl"
     icon: "/Sienna/assets/img/icon_time_series_org.svg"
     content: "Simulate small signal stability and electromagnetic transients"
-    link: "https://github.com/NREL-Sienna/PowerSimulationsDynamics.jl"
+    link: "https://github.com/Sienna-Platform/PowerSimulationsDynamics.jl"
     version: "v2"
 
 # tab item2
   - name: "PowerSystems.jl"
     icon: "/Sienna/assets/img/icon_transmission_org.svg"
     content: "Consistently represent data for devices' dynamic behavior"
-    link: "https://github.com/NREL-Sienna/PowerSystems.jl"
+    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
 
 # tab item3
   - name: "PowerFlows.jl"
     icon: "/Sienna/assets/img/icon_network_org.svg"
     content: "Calculate AC power flows"
-    link: "https://github.com/NREL-Sienna/PowerFlows.jl"
+    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
     version: "v5"
 
 # tab item4
   - name: "PowerAnalytics.jl"
     icon: "/Sienna/assets/img/icon_comp_$_org.svg"
     content: "Analyze common metrics and compare results across scenarios"
-    link: "https://github.com/NREL-Sienna/PowerAnalytics.jl"
+    link: "https://github.com/Sienna-Platform/PowerAnalytics.jl"
     version: "v4"
 
 # tab item5
   - name: "PowerGraphics.jl"
     icon: "/Sienna/assets/img/icon_graph_org.svg"
     content: "Visualize data inputs and results"
-    link: "https://github.com/NREL-Sienna/PowerGraphics.jl"
+    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
     version: "v2"
 ---
