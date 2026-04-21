@@ -42,6 +42,8 @@ This step is necessary to make any changes to `SiennaDocs` visible when serving 
 using Jekyll. The updated technical documentation will also be viewable on its own by opening the
 `SiennaDocs\docs\build\index.html` file (double-click to open in a browser).
 
+**Debugging the aggregated docs (MultiDocumenter) in a browser:** Prefer serving over opening `file://` URLs, because Documenter’s version selector and `rootpath` assume a real HTTP path. After `julia --project=docs docs/make.jl`, run `bundle exec jekyll serve` from the repository root and open `http://localhost:4000/Sienna/SiennaDocs/docs/build/` (see above). To verify the “See All Versions” control, open a package page such as `…/PowerSystems/stable/…`, choose **See All Versions** in the version dropdown, and confirm only a new tab navigates to the package’s GitHub Pages site while the original tab stays on the aggregate docs and the dropdown still shows the current version (not blank).
+
 For more information, see
 [How to Compile and View Documentation Locally](https://nrel-sienna.github.io/InfrastructureSystems.jl/stable/docs_best_practices/how-to/compile/)
 in Sienna's `InfrastructureSystems.jl` package.
