@@ -208,7 +208,7 @@ const _PAGESHOW_NAV_FIX = """
 # desync option value vs Documenter). Shield the script block, run extref rewrites, then restore.
 const _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER = "__SIENNA_MD_SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER__"
 function _shield_see_all_versions_script(content::String)
-    rgx = r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>)"
+    rgx = r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>|<script id=\"multidoc-see-all-versions-config\" type=\"application/json\">\{[\s\S]*?\}</script>)"
     m = match(rgx, content)
     m === nothing && return content, nothing
     return replace(content, m.match => _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER; count = 1), m.match
