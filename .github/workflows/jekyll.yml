@@ -4,7 +4,7 @@
 # documentation.
 
 # Builds and deploys the two-part Sienna site: Jekyll (main pages) + SiennaDocs (Documenter.jl/MultiDocumenter).
-# Docs are served at https://nrel-sienna.github.io/Sienna/SiennaDocs/docs/build/
+# Docs are served at https://sienna-platform.github.io/Sienna/SiennaDocs/docs/build/
 # Deploys to gh-pages branch so PR previews (jekyll-preview.yml) can coexist.
 name: Deploy Jekyll site to Pages
 

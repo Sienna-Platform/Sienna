@@ -5,15 +5,15 @@ name: "Sienna"
 description: "Sienna Platform"
 
 # Logo
-logo_home_businessconsulting: /assets/Sienna-logo-dark.png
-logo_white: /assets/Sienna-logo-white.png
-logo_dark: /assets/Sienna-logo-dark.png
+logo_home_businessconsulting: /Sienna/assets/Sienna-logo-dark.png
+logo_white: /Sienna/assets/Sienna-logo-white.png
+logo_dark: /Sienna/assets/Sienna-logo-dark.png
 
 # Contact info
 contact_settings:
   phone_number: "(+1) 303-275-3000"
-  email: "sienna@nrel.gov"
-  mailto: "mailto:sienna@nrel.gov"
+  email: "sienna@nlr.gov"
+  mailto: "mailto:sienna@nlr.gov"
   address1: "15013 Denver West Parkway Golden, CO 80401"
 
 # Footer info
@@ -28,4 +28,4 @@ google_analytics:
 
 # Social urls
 social_settings:
-  github: https://github.com/nrel-sienna
+  github: https://github.com/Sienna-Platform
