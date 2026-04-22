@@ -3880,7 +3880,7 @@ header.v2 .header-content .nav-toggle-btn {
 
 .header-v6 {
     background-color: #282828;
-    padding: 60px 0;
+    padding: 24px 0;
 }
 
 .header-v6 .container {
@@ -6937,7 +6937,7 @@ body.dark-v .slide-container {
 }
 
 .header-v8 {
-    padding: 47px 0;
+    padding: 24px 0;
     position: relative;
 }
 
@@ -6948,7 +6948,7 @@ body.dark-v .slide-container {
     left: 0;
     width: 100%;
     z-index: 99;
-    padding: 40px 0;
+    padding: 24px 0;
 }
 
 .header-v8.v9 .header-content-v8 nav ul li a.active,
@@ -7001,6 +7001,8 @@ body.dark-v .slide-container {
 
 .header-v6 .header-content-v8 nav ul li a {
     color: #fff;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .header-v6 .header-content-v8 .menu-btn {
@@ -7089,7 +7091,7 @@ body.dark-v .slide-container {
 .header-content-v8 nav ul li a {
     display: inline-block;
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     /* text-transform: uppercase; */
 }
@@ -7143,6 +7145,11 @@ body.dark-v .slide-container {
 .header-content-v8 nav ul ul li a:after,
 .header-content-v8 nav ul ul li a:before {
     display: none;
+}
+
+.header-content-v8 nav ul ul li a {
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .header-content-v8 .chat-btn {
@@ -15050,7 +15057,7 @@ body.hp13 #pp-nav {
     width: 29px;
     height: 3px;
     margin-bottom: 5px;
-    background-color: #000;
+    background-color: #fff;
     display: inline-block;
     transition: all 0.4s ease-in-out;
 }
@@ -15069,7 +15076,7 @@ body.hp13 #pp-nav {
 }
 
 .body-menu-opened .nav-toggle-btn .stick {
-    background-color: #000;
+    background-color: #fff;
 }
 
 .stick:last-child {
@@ -15645,7 +15652,7 @@ header.sticky {
     background: #fff !important;
     background-color: #282828 !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    padding: 24px 0;
 }
 
 .dark-logo {
@@ -15653,7 +15660,7 @@ header.sticky {
 }
 
 header.v2.sticky {
-    padding: 15px 0;
+    padding: 24px 0;
 }
 
 header.v2.sticky .header-content nav > ul > li {
@@ -15705,7 +15712,7 @@ header.v2.sticky .header-content nav ul ul {
 .hp13.pp-viewing-contact .nav-toggle-btn.white .stick,
 .hp13.pp-viewing-services .nav-toggle-btn.white .stick,
 .hp13.pp-viewing-why-choose-us .nav-toggle-btn.white .stick {
-    background-color: #000;
+    background-color: #fff;
 }
 
 .hp13.pp-viewing-cases .nav-toggle-btn.white .stick:hover,
@@ -15718,7 +15725,7 @@ header.v2.sticky .header-content nav ul ul {
 
 header.sticky .nav-toggle-btn.stick,
 header.sticky .nav-toggle-btn.white .stick {
-    background-color: #000;
+    background-color: #fff;
 }
 
 header.sticky .nav-toggle-btn.white .nav-toggle-title {
@@ -19043,7 +19050,7 @@ header.header-v12.v13.pb .light-logo {
     }
 
     .nav-toggle-btn.white.black-on-mobile .stick {
-        background-color: #000 !important;
+        background-color: #fff !important;
     }
 
     .nav-toggle-btn.white.black-on-mobile .nav-toggle-title {
