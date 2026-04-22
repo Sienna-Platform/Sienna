@@ -6,12 +6,12 @@
 
 - name: "Clayton Barrows, Ph.D."
   position: "Sienna Principal Investigator"
-  company: "Researcher & Group Manager, NREL"
+  company: "Researcher & Group Manager, NLR"
   content: "We built Sienna to address emerging industry challenges with scalable new modeling methods."
   image: "assets/img/barrows_pic.jpg"
 
 - name: "José Daniel Lara"
   position: "Sienna Development Lead"
-  company: "Senior Researcher, NREL"
+  company: "Senior Researcher, NLR"
   content: "I started developing Sienna during my Ph.D. program to explore new methods at scale on real datasets."
   image: "assets/img/jose_pic.jpg"
