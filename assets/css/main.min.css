@@ -5707,6 +5707,26 @@ body.dark-v .slide-container {
     padding-left: 127px;
 }
 
+#testimonial .sec-head > span {
+    color: #b7bcc6;
+}
+
+#testimonial .testimonial-v4-sec .cl-slider-v4 .cl-slide:before {
+    color: #5f646d;
+}
+
+#testimonial .testimonial-v4-sec .cl-slider-v4 .cl-slide .rating li {
+    color: #EB932F;
+}
+
+#testimonial .testimonial-v4-sec .cl-slide-thumbs .cli-thumb:before {
+    background-color: #EB932F;
+}
+
+#testimonial .testimonial-v4-sec .cl-slide-thumbs .cli-thumb .col-info > span strong {
+    color: #EB932F;
+}
+
 .awards-v4-sec {
     padding: 84px 0;
 }
