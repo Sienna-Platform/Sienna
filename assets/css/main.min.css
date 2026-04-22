@@ -8120,7 +8120,7 @@ body.dark-v .slide-container {
 }
 
 .about-v9-content {
-    padding: 135px 0 0;
+    padding: 135px 0 60px;
     margin-bottom: 0px;
 }
 
@@ -8139,15 +8139,18 @@ body.dark-v .slide-container {
     flex-wrap: wrap;
     -ms-flex-align: center;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .about-v9-content .ban-img-v9 {
     position: relative;
     z-index: 1;
+    margin-top: -70px;
 }
 
 .about-v9-content .ban-img-v9:before {
-    content: "";
+    display: none;
+    /* content: "";
     position: absolute;
     top: 85px;
     left: 0;
@@ -8155,7 +8158,7 @@ body.dark-v .slide-container {
     height: 707px;
     background-image: url(../img/ban-shape.png);
     background-repeat: no-repeat;
-    z-index: -1;
+    z-index: -1; */
 }
 
 .about-v9-content .about-v9-txt {
@@ -15978,6 +15981,7 @@ header.header-v12.v13.pb .light-logo {
         max-width: 50%;
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
+        margin-top: 0;
     }
 
     .about-v9-content .about-v9-txt {
