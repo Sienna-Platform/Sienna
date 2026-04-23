@@ -755,7 +755,7 @@ version = "2023.12.12"
 
 [[deps.MultiDocumenter]]
 deps = ["AbstractTrees", "Git", "Gumbo", "HypertextLiteral", "JSON", "NodeJS_22_jll", "Pkg"]
-git-tree-sha1 = "0b8c290e0989c721039b7ea24c3df07676bf099d"
+git-tree-sha1 = "aef8581697b47742b122c1b8c520aaa2b0d124bb"
 repo-rev = "kd/version-reduction"
 repo-url = "https://github.com/kdayday/MultiDocumenter.jl"
 uuid = "87ed4bf0-c935-4a67-83c3-2a03bee4197c"
