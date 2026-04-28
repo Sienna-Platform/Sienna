@@ -11,14 +11,14 @@ logo_dark: /Sienna/assets/Sienna-logo-dark.png
 
 # Contact info
 contact_settings:
-  phone_number: "(+1) 303-275-3000"
-  email: "sienna@nrel.gov"
-  mailto: "mailto:sienna@nrel.gov"
+  phone_number: "+1 303-275-3921"
+  email: "sienna@nlr.gov"
+  mailto: "mailto:sienna@nlr.gov"
   address1: "15013 Denver West Parkway Golden, CO 80401"
 
 # Footer info
 footer_settings:
-  copyright_text: "© 2024. All Rights Reserved"
+  copyright_text: "© 2026 National Laboratory of the Rockies. All Rights Reserved"
 
 
 # Google analytics code

@@ -86,13 +86,13 @@ publist:
     applink: /Sienna/pages/applications/sienna_dyn.html
 
   - title: "Puerto Rico Grid Resilience and Transitions to 100% Renewable Energy Study (PR100) (Chapters 8 and 9)"
-    url: https://www.nrel.gov/docs/fy24osti/88384.pdf
+    url: https://www.nlr.gov/docs/fy24osti/88384.pdf
     year: 2024
     month: March
     descriptor: Technical Report
-    venue: National Renewable Energy Laboratory
+    venue: National Laboratory of the Rockies
     app: Sienna\Ops
-    applink: /Sienna/pages/applications/sienna_dyn.html
+    applink: /Sienna/pages/applications/sienna_ops.html
 
   - title: "Insights into methodologies and operational details of resource adequacy assessment: A case study with application to a broader flexibility framework"
     url: https://doi.org/10.1016/j.apenergy.2022.120191
