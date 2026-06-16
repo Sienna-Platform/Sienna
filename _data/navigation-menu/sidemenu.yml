@@ -4,36 +4,36 @@ toc:
     subfolderitems:
 
       - page: Sienna\Data
-        url: /pages/applications/sienna_data.html
+        url: /Sienna/pages/applications/sienna_data.html
 
       - page: Sienna\Ops
-        url: /pages/applications/sienna_ops.html
+        url: /Sienna/pages/applications/sienna_ops.html
 
       - page: Sienna\Dyn
-        url: /pages/applications/sienna_dyn.html
-
+        url: /Sienna/pages/applications/sienna_dyn.html
+      
       - page: Sienna\Network
-        url: /pages/applications/sienna_network.html
+        url: /Sienna/pages/applications/sienna_network.html
 
   - title: DOCUMENTATION
     subfolderitems:
 
     - page: DOCUMENTATION
-      url: /SiennaDocs/docs/build/index/
+      url: /Sienna/SiennaDocs/docs/build/index.html
 
   - title: RESOURCES
     subfolderitems:
 
       - page: LEARN AND CONTRIBUTE
-        url: /pages/resources.html
+        url: /Sienna/pages/resources.html
 
       - page: PUBLICATIONS
-        url: /pages/publications.html
+        url: /Sienna/pages/publications.html
 
       - page: CITATION
-        url: /SiennaDocs/docs/build/index/reference/citing
+        url: /Sienna/SiennaDocs/docs/build/reference/citing
 
   - title: ABOUT
     subfolderitems:
       - page: ABOUT US
-        url: https://www.nrel.gov/analysis/sienna.html
+        url: https://www.nlr.gov/analysis/sienna.html

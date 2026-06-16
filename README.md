@@ -28,6 +28,11 @@ The website can be then viewed in a browser by navigating to:
 
 [localhost:4000/Sienna/](http://localhost:4000/Sienna/)
 
+When developing locally, run
+```
+jekyll clean
+```
+and clear your browser cache regularly to ensure .css changes are visible. 
 
 ## Updating the `SiennaDocs` technical documentation
 

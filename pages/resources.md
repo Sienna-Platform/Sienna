@@ -40,7 +40,7 @@ resources:
 
   - title: Work with Us
     sub_title: Collaborate
-    url: mailto:sienna@nrel.gov
+    url: mailto:sienna@nlr.gov
     content: Email us if you're interested in working with the Sienna team to build a new
       capability or apply Sienna to your own use case.
 
