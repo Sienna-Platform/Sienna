@@ -5,8 +5,8 @@ img: ""
 ############################ Banner ##################################
 banner:
   title: Sienna\Network
-  sub_title: Efficiently input and use energy systems data
-  content: Exceptional performance for large data
+  sub_title: Ensure transmission network reliability
+  content: Power flow, network reductions, and reactive power planning
 
 ############################ Transition Badges ##################################
 badges:
