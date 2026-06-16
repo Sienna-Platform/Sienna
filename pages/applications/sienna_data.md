@@ -46,7 +46,7 @@ tablist:
   # tab item1
   - name: "PowerSystems.jl"
     icon: "/assets/img/icon_transmission_org.svg"
-    content: "Parse and format input data for consistent representation"
+    content: "Data models for consistent representation of power system devices"
     link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
 
@@ -56,25 +56,4 @@ tablist:
     content: "Load saved test systems and custom system data"
     link: "https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl"
     version: "v4"
-
-  # tab item3
-  - name: "PowerNetworkMatrices.jl"
-    icon: "/assets/img/icon_matrix_org.svg"
-    content: "Build common power system matrices (Y bus, PTDF, LODF)"
-    link: "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl"
-    version: "v3"
-
-  # tab item4
-  - name: "PowerFlows.jl"
-    icon: "/assets/img/icon_network_org.svg"
-    content: "Calculate simple power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
-  # tab item5
-  - name: "PowerGraphics.jl"
-    icon: "/assets/img/icon_graph_org.svg"
-    content: "Visualize data inputs and results"
-    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
-    version: "v2"
 ---

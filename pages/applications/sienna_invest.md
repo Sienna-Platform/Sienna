@@ -1,0 +1,61 @@
+---
+layout: info_page
+img: 
+
+############################ Banner ##################################
+banner:
+  title: Sienna\Invest
+  sub_title: Plan generation and transmission for the future
+  content: Exceptional performance for large data
+
+############################ Transition Badges ##################################
+badges:
+  content1: What makes Sienna\Invest different?
+  content2: Is Sienna\Invest right for your use case?
+  content3: How is Sienna\Invest structured?
+
+########################## Features #########################
+what_we_do:
+  title: Features and Capabilities
+
+  service_section1:
+    title: "Key Features"
+    service_list:
+      - service: Well-defined data structures for potential generation and transmission investments
+      - service: Model least-cost investment decisions at the nodal level
+
+  service_section2:
+    title: "Core Capabilities"
+    service_list:
+      - service: Generation and transmission investment planning
+      - service: Built-in interoperability with Sienna\\Ops and Sienna\\Network to assess operational and reliability impacts of investments
+
+########################## How it Works #########################
+why_us:
+  title: "How It Works"
+  subtitle: 
+  content: "Sienna\\Invest is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+
+tablist:
+
+  # tab item2
+  - name: "PowerSystemsInvestmentsPortfolios.jl"
+    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    content: "Define options for new investments"
+    link: "https://github.com/Sienna-Platform/PowerSystemsInvestmentsPortfolios.jl"
+    version: "v1"
+
+  # tab item3
+  - name: "PowerSystemsInvestments.jl"
+    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    content: "Model generation and transmission expansion"
+    link: "https://github.com/Sienna-Platform/PowerSystemsInvestments.jl"
+    version: "v1"
+
+  # tab item1
+  - name: "PowerSystems.jl"
+    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    content: "Consistently represent data for existing devices"
+    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    version: "v1"
+---

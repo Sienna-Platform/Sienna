@@ -69,13 +69,6 @@ tablist:
     link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
 
-  # tab item5
-  - name: "PowerFlows.jl"
-    icon: "/assets/img/icon_network_org.svg"
-    content: "Calculate DC and AC optimal power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
   # tab item6
   - name: "PowerAnalytics.jl"
     icon: "/assets/img/icon_comp_$_org.svg"

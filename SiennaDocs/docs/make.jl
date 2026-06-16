@@ -66,76 +66,31 @@ Building aggregate Sienna documentation site into: $(outpath)
 # One MultiDocRef per package; same ref reused in multiple dropdowns.
 # include_versions limits copied version dirs to reduce site size; "All versions" link points to package gh-pages.
 const _INCLUDE_VERSIONS = ["stable", "dev"]
-psy = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerSystems.jl"),
-    path = "PowerSystems",
-    name = "PowerSystems.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerSystems.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
+const _AGGREGATED_PACKAGES = [
+    (id = :psy, repo = "PowerSystems.jl", path = "PowerSystems"),
+    (id = :pscb, repo = "PowerSystemCaseBuilder.jl", path = "PowerSystemCaseBuilder"),
+    (id = :pg, repo = "PowerGraphics.jl", path = "PowerGraphics"),
+    (id = :pnm, repo = "PowerNetworkMatrices.jl", path = "PowerNetworkMatrices"),
+    (id = :psi, repo = "PowerSimulations.jl", path = "PowerSimulations"),
+    (id = :sss, repo = "StorageSystemsSimulations.jl", path = "StorageSystemsSimulations"),
+    (id = :hps, repo = "HydroPowerSimulations.jl", path = "HydroPowerSimulations"),
+    (id = :pf, repo = "PowerFlows.jl", path = "PowerFlows"),
+    (id = :pa, repo = "PowerAnalytics.jl", path = "PowerAnalytics"),
+    (id = :psid, repo = "PowerSimulationsDynamics.jl", path = "PowerSimulationsDynamics"),
+    (id = :pras, repo = "SiennaPRASInterface.jl", path = "SiennaPRASInterface"),
+    (id = :psinv, repo = "PowerSystemsInvestments.jl", path = "PowerSystemsInvestments"),
+    (id = :psip, repo = "PowerSystemsInvestmentsPortfolios.jl", path = "PowerSystemsInvestmentsPortfolios"),
+]
+const _PACKAGE_REF_BY_ID = Dict(
+    pkg.id => MultiDocumenter.MultiDocRef(
+        upstream = joinpath(clonedir, pkg.repo),
+        path = pkg.path,
+        name = pkg.repo,
+        giturl = "https://github.com/Sienna-Platform/$(pkg.repo).git",
+        include_versions = _INCLUDE_VERSIONS,
+    ) for pkg in _AGGREGATED_PACKAGES
 )
-pscb = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerSystemCaseBuilder.jl"),
-    path = "PowerSystemCaseBuilder",
-    name = "PowerSystemCaseBuilder.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-pg = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerGraphics.jl"),
-    path = "PowerGraphics",
-    name = "PowerGraphics.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerGraphics.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-pnm = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerNetworkMatrices.jl"),
-    path = "PowerNetworkMatrices",
-    name = "PowerNetworkMatrices.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-psi = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerSimulations.jl"),
-    path = "PowerSimulations",
-    name = "PowerSimulations.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerSimulations.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-sss = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "StorageSystemsSimulations.jl"),
-    path = "StorageSystemsSimulations",
-    name = "StorageSystemsSimulations.jl",
-    giturl = "https://github.com/Sienna-Platform/StorageSystemsSimulations.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-hps = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "HydroPowerSimulations.jl"),
-    path = "HydroPowerSimulations",
-    name = "HydroPowerSimulations.jl",
-    giturl = "https://github.com/Sienna-Platform/HydroPowerSimulations.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-pf = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerFlows.jl"),
-    path = "PowerFlows",
-    name = "PowerFlows.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerFlows.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-pa = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerAnalytics.jl"),
-    path = "PowerAnalytics",
-    name = "PowerAnalytics.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerAnalytics.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
-psid = MultiDocumenter.MultiDocRef(
-    upstream = joinpath(clonedir, "PowerSimulationsDynamics.jl"),
-    path = "PowerSimulationsDynamics",
-    name = "PowerSimulationsDynamics.jl",
-    giturl = "https://github.com/Sienna-Platform/PowerSimulationsDynamics.jl.git",
-    include_versions = _INCLUDE_VERSIONS,
-)
+_refs(ids) = [_PACKAGE_REF_BY_ID[id] for id in ids]
 
 # Hub at path "index" so root index.html redirects to ./index/ (one redirect, no loop)
 # and the hub page at .../build/index/ has the MultiDocumenter nav bar.
@@ -147,9 +102,12 @@ docs = Any[
         fix_canonical_url = false,
     ),
 
-    MultiDocumenter.DropdownNav("Sienna\\Data", [psy, pscb, pg, pnm]),
-    MultiDocumenter.DropdownNav("Sienna\\Ops", [psy, psi, sss, hps, pf, pa, pg]),
-    MultiDocumenter.DropdownNav("Sienna\\Dyn", [psy, psid, pg]),
+    # Dropdown composition keeps explicit unique identifiers while refs are built from one source list.
+    MultiDocumenter.DropdownNav("Sienna\\Data", _refs([:psy, :pscb])),
+    MultiDocumenter.DropdownNav("Sienna\\Ops", _refs([:psi, :sss, :hps, :pras, :pa, :pg, :psy])),
+    MultiDocumenter.DropdownNav("Sienna\\Dyn", _refs([:psid, :psy])),
+    MultiDocumenter.DropdownNav("Sienna\\Network", _refs([:pf, :pnm, :psy])),
+    # MultiDocumenter.DropdownNav("Sienna\\Invest", _refs([:psip, :psinv, :psy])),
 ]
 
 # Docs are served at https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/
@@ -171,16 +129,8 @@ MultiDocumenter.make(
 # MultiDocumenter copies pre-built HTML, so those links would leave the aggregate. Rewrite them to point under the aggregate base.
 const _AGGREGATE_BASE = rstrip(_docs_rootpath, '/')
 const _EXTERNAL_TO_AGGREGATE = [
-    "https://Sienna-Platform.github.io/PowerSystems.jl/" => "$_AGGREGATE_BASE/PowerSystems/",
-    "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/" => "$_AGGREGATE_BASE/PowerSystemCaseBuilder/",
-    "https://Sienna-Platform.github.io/PowerGraphics.jl/" => "$_AGGREGATE_BASE/PowerGraphics/",
-    "https://Sienna-Platform.github.io/PowerNetworkMatrices.jl/" => "$_AGGREGATE_BASE/PowerNetworkMatrices/",
-    "https://Sienna-Platform.github.io/PowerSimulations.jl/" => "$_AGGREGATE_BASE/PowerSimulations/",
-    "https://Sienna-Platform.github.io/StorageSystemsSimulations.jl/" => "$_AGGREGATE_BASE/StorageSystemsSimulations/",
-    "https://Sienna-Platform.github.io/HydroPowerSimulations.jl/" => "$_AGGREGATE_BASE/HydroPowerSimulations/",
-    "https://Sienna-Platform.github.io/PowerFlows.jl/" => "$_AGGREGATE_BASE/PowerFlows/",
-    "https://Sienna-Platform.github.io/PowerAnalytics.jl/" => "$_AGGREGATE_BASE/PowerAnalytics/",
-    "https://Sienna-Platform.github.io/PowerSimulationsDynamics.jl/" => "$_AGGREGATE_BASE/PowerSimulationsDynamics/",
+    "https://Sienna-Platform.github.io/$(pkg.repo)/" => "$_AGGREGATE_BASE/$(pkg.path)/" for
+    pkg in _AGGREGATED_PACKAGES
 ]
 const _HOMEPAGE_LINK = """<a href="https://Sienna-Platform.github.io/Sienna/" class="nav-link nav-item">Homepage</a>"""
 # MultiDocumenter/Gumbo serializes with attribute order class then id; support both for robustness.

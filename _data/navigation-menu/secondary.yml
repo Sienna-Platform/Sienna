@@ -12,6 +12,9 @@ toc:
       - page: Sienna\Dyn
         url: /pages/applications/sienna_dyn.html
 
+      - page: Sienna\Network
+        url: /pages/applications/sienna_network.html
+
   - title: DOCUMENTATION
     subfolderitems:
 

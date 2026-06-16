@@ -58,25 +58,4 @@ tablist:
     content: "Consistently represent data for devices' dynamic behavior"
     link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
-
-# tab item3
-  - name: "PowerFlows.jl"
-    icon: "/assets/img/icon_network_org.svg"
-    content: "Calculate AC power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
-# tab item4
-  - name: "PowerAnalytics.jl"
-    icon: "/assets/img/icon_comp_$_org.svg"
-    content: "Analyze common metrics and compare results across scenarios"
-    link: "https://github.com/Sienna-Platform/PowerAnalytics.jl"
-    version: "v4"
-
-# tab item5
-  - name: "PowerGraphics.jl"
-    icon: "/assets/img/icon_graph_org.svg"
-    content: "Visualize data inputs and results"
-    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
-    version: "v2"
 ---
