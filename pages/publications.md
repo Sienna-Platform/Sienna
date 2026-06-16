@@ -92,7 +92,7 @@ publist:
     descriptor: Technical Report
     venue: National Laboratory of the Rockies
     app: Sienna\Ops
-    applink: /Sienna/pages/applications/sienna_ops.html
+    applink: /pages/applications/sienna_ops.html
 
   - title: "Insights into methodologies and operational details of resource adequacy assessment: A case study with application to a broader flexibility framework"
     url: https://doi.org/10.1016/j.apenergy.2022.120191

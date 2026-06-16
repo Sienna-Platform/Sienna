@@ -41,21 +41,21 @@ why_us:
 tablist:
   # tab item1
   - name: "PowerSystems.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Parse and format input data for consistent representation"
     link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
 
   # tab item2
   - name: "PowerNetworkMatrices.jl"
-    icon: "/Sienna/assets/img/icon_matrix_org.svg"
+    icon: "/assets/img/icon_matrix_org.svg"
     content: "Build common power system matrices (Y bus, PTDF, LODF)"
     link: "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl"
     version: "v3"
 
   # tab item3
   - name: "PowerFlows.jl"
-    icon: "/Sienna/assets/img/icon_network_org.svg"
+    icon: "/assets/img/icon_network_org.svg"
     content: "Calculate simple power flows"
     link: "https://github.com/Sienna-Platform/PowerFlows.jl"
     version: "v5"

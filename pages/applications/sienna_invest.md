@@ -40,21 +40,21 @@ tablist:
 
   # tab item2
   - name: "PowerSystemsInvestmentsPortfolios.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Define options for new investments"
     link: "https://github.com/Sienna-Platform/PowerSystemsInvestmentsPortfolios.jl"
     version: "v1"
 
   # tab item3
   - name: "PowerSystemsInvestments.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Model generation and transmission expansion"
     link: "https://github.com/Sienna-Platform/PowerSystemsInvestments.jl"
     version: "v1"
 
   # tab item1
   - name: "PowerSystems.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Consistently represent data for existing devices"
     link: "https://github.com/Sienna-Platform/PowerSystems.jl"
     version: "v1"
