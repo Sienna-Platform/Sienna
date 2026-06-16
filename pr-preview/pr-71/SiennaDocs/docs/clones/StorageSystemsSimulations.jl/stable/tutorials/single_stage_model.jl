@@ -17,7 +17,7 @@ using HiGHS ## solver
 # !!! note
 #
 #     `PowerSystemCaseBuilder.jl` is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data instead of calling the function `build_system`.
-#     For more details visit [`PowerSystemCaseBuilder.jl`](https://nrel-sienna.github.io/PowerSystemCaseBuilder.jl/stable)
+#     For more details visit [`PowerSystemCaseBuilder.jl`](https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable)
 
 c_sys5_bat = build_system(
     PSITestSystems,
@@ -27,6 +27,11 @@ c_sys5_bat = build_system(
 )
 orcd = get_component(ReserveDemandCurve, c_sys5_bat, "ORDC1")
 set_available!(orcd, false)
+
+res_up = get_component(VariableReserve{ReserveUp}, c_sys5_bat, "Reserve3")
+set_requirement!(res_up, 2.0)
+res_down = get_component(VariableReserve{ReserveDown}, c_sys5_bat, "Reserve4")
+set_requirement!(res_down, 1.0)
 
 batt = get_component(EnergyReservoirStorage, c_sys5_bat, "Bat2")
 

@@ -4,7 +4,7 @@
 # and dynamic lines necessary for more complex EMT (electro-magnetic transient)
 # simulations.
 # To run a dynamic simulation in Sienna\Dyn using
-# [`PowerSimulationsDynamics.jl`](https://nrel-sienna.github.io/PowerSimulationsDynamics.jl/stable/),
+# [`PowerSimulationsDynamics.jl`](https://sienna-platform.github.io/PowerSimulationsDynamics.jl/stable/),
 # two data layers are required:
 #  1. A base layer of [static](@ref S) components, which includes the data needed to run a
 #     power flow problem
@@ -14,7 +14,7 @@
 
 # ## Defining the Static Data Layer
 # Instead of defining the static data in the [`System`](@ref) manually, we will load an existing three-bus system using
-# [`PowerSystemCaseBuilder.jl`](https://github.com/NREL-Sienna/PowerSystemCaseBuilder.jl)
+# [`PowerSystemCaseBuilder.jl`](https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl)
 # to use as a starting point.
 # Start by importing these packages:
 
@@ -47,7 +47,7 @@ show_components(ThermalStandard, threebus_sys, [:bus])
 
 slack_bus = first(get_components(x -> get_bustype(x) == ACBusTypes.REF, Bus, threebus_sys))
 
-# Notice we filtered by the [bus type](@ref acbustypes_list) to get the bus(es) we wanted.
+# Notice we filtered by [`ACBusTypes`](@ref) to get the bus(es) we wanted.
 # Next, manually define a [`Source`](@ref):
 
 inf_source = Source(;
@@ -282,7 +282,7 @@ add_component!(threebus_sys, dynamic_inv, gen_103)
 # ## Adding Dynamic Lines
 # !!! warning
 #     A [`System`](@ref) must have at least two buses and one branch to run a dynamic simulation in
-#     [`PowerSimulationsDynamics.jl`](https://nrel-sienna.github.io/PowerSimulationsDynamics.jl/stable/).
+#     [`PowerSimulationsDynamics.jl`](https://sienna-platform.github.io/PowerSimulationsDynamics.jl/stable/).
 # Let's review the AC branches currently in the system:
 
 get_components(ACBranch, threebus_sys)
@@ -328,11 +328,11 @@ threebus_sys
 # a more complex EMT simulation with the additional dynamic inverter and dynamic lines.
 # Next, you might like to:
 #   - Read more about the static and dynamic data layers and the dynamic data format in
-#     [Dynamic Devices](@ref).
+#     [Dynamic Devices](@ref dynamic_data).
 #   - Review the specific subsystem models available in `PowerSystems.jl` for [Machine](@ref),
 #     [Shaft](@ref), [AVR](@ref), [PSS](@ref),
 #     [Prime Mover and Turbine Governor](@ref TurbineGov), [Converter](@ref),
 #     [OuterControl](@ref), [InnerControl](@ref), [DCSource](@ref),
 #     [FrequencyEstimator](@ref), and [Filter](@ref) components
-#   - Explore [`PowerSimulationsDynamics.jl`](https://nrel-sienna.github.io/PowerSimulationsDynamics.jl/stable/)
+#   - Explore [`PowerSimulationsDynamics.jl`](https://sienna-platform.github.io/PowerSimulationsDynamics.jl/stable/)
 #     for dynamics modeling in Sienna\Dyn
