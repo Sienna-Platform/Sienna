@@ -38,7 +38,7 @@ what_we_do:
 why_us:
   title: "How It Works"
   subtitle: 
-  content: "Sienna\\Ops has a modular framework with seven core packages written in the Julia programming language. Use whichever combination is right for your use case. All packages are open-source, free to use, and have a command-line interface. See the Sienna Documentation Hub for each package's documentation, general installation instructions, and tutorials."
+  content: "Sienna\\Ops is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
   # tab item1
