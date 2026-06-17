@@ -110,9 +110,30 @@ docs = Any[
     # MultiDocumenter.DropdownNav("Sienna\\Invest", _refs([:psip, :psinv, :psy])),
 ]
 
+function _validate_aggregated_package_docs(packages, clonedir, required_versions)
+    missing = String[]
+    for pkg in packages
+        for ver in required_versions
+            verdir = joinpath(clonedir, pkg.repo, ver)
+            isdir(verdir) || push!(missing, "$(pkg.repo)/$(ver) (expected at $(verdir))")
+        end
+    end
+    isempty(missing) && return
+    error("""
+    Missing aggregated package documentation before MultiDocumenter.make:
+    $(join(missing, "\n"))
+
+    Each clone under $(clonedir) must contain gh-pages version directories listed in include_versions.
+    Confirm the package has published docs on GitHub Pages (branch gh-pages) with stable/ and dev/.
+    """)
+end
+
+_package_refs = collect(values(_PACKAGE_REF_BY_ID))
+MultiDocumenter.maybe_clone(_package_refs)
+_validate_aggregated_package_docs(_AGGREGATED_PACKAGES, clonedir, _INCLUDE_VERSIONS)
+
 # Docs are served at https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/
 # (Sienna repo = Jekyll site at /Sienna/ with SiennaDocs in subfolder)
-# Run docs/patch_multidocumenter.jl once if you see UndefVarError: indexhtml_path or many "Canonical URL missing" warnings.
 MultiDocumenter.make(
     outpath,
     docs;
