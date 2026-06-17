@@ -20,11 +20,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Read Julia version
+        if: github.event.action != 'closed'
+        id: julia-version
+        run: echo "version=$(tr -d '[:space:]' < .julia-version)" >> "$GITHUB_OUTPUT"
+
       - name: Setup Julia
         if: github.event.action != 'closed'
         uses: julia-actions/setup-julia@v1
         with:
-          version: '1.11'
+          version: ${{ steps.julia-version.outputs.version }}
+
+      - uses: julia-actions/cache@v2
+        if: github.event.action != 'closed'
+        with:
+          cache-name: julia-cache;project=SiennaDocs/docs;hash=${{ hashFiles('SiennaDocs/docs/Project.toml', 'SiennaDocs/docs/Manifest.toml') }}
 
       - name: Setup Ruby
         if: github.event.action != 'closed'

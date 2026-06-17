@@ -16,6 +16,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  schedule:
+    # GitHub cron is UTC; 07:00 UTC = midnight MST (UTC-7)
+    - cron: "0 7 * * *"
+
 # Required for pushing to gh-pages (and for PR preview workflow)
 permissions:
   contents: write
@@ -32,13 +36,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Read Julia version
+        id: julia-version
+        run: echo "version=$(tr -d '[:space:]' < .julia-version)" >> "$GITHUB_OUTPUT"
       - uses: julia-actions/setup-julia@v1
         with:
-          version: '1.11'
+          version: ${{ steps.julia-version.outputs.version }}
+      - uses: julia-actions/cache@v2
+        with:
+          cache-name: julia-cache;project=SiennaDocs/docs;hash=${{ hashFiles('SiennaDocs/docs/Project.toml', 'SiennaDocs/docs/Manifest.toml') }}
       - name: Install dependencies
         run: julia --project=SiennaDocs/docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=joinpath(pwd(),"SiennaDocs"))); Pkg.instantiate()'
-      - name: Patch MultiDocumenter (canonical_urls indexhtml_path fix)
-        run: julia --project=SiennaDocs/docs SiennaDocs/docs/patch_multidocumenter.jl
       - name: Build and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
