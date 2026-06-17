@@ -78,8 +78,8 @@ const _AGGREGATED_PACKAGES = [
     (id = :pa, repo = "PowerAnalytics.jl", path = "PowerAnalytics"),
     (id = :psid, repo = "PowerSimulationsDynamics.jl", path = "PowerSimulationsDynamics"),
     (id = :pras, repo = "SiennaPRASInterface.jl", path = "SiennaPRASInterface"),
-    (id = :psinv, repo = "PowerSystemsInvestments.jl", path = "PowerSystemsInvestments"),
-    (id = :psip, repo = "PowerSystemsInvestmentsPortfolios.jl", path = "PowerSystemsInvestmentsPortfolios"),
+    # (id = :psinv, repo = "PowerSystemsInvestments.jl", path = "PowerSystemsInvestments"),
+    # (id = :psip, repo = "PowerSystemsInvestmentsPortfolios.jl", path = "PowerSystemsInvestmentsPortfolios"),
 ]
 const _PACKAGE_REF_BY_ID = Dict(
     pkg.id => MultiDocumenter.MultiDocRef(
