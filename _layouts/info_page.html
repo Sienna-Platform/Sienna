@@ -101,9 +101,17 @@
 
                   <h3>
                     <img src="{{ site.baseurl }}{{ tablist.icon }}" alt="" />
-                    <a href="{{ tablist.link }}", target="_blank" title="">{{tablist.name}}</a>
+                    {% if tablist.link contains "http" %}
+                    <a href="{{ tablist.link }}" target="_blank" rel="noopener" title="">{{ tablist.name }}</a>
+                    {% else %}
+                    <a href="{{ site.baseurl }}{{ tablist.link }}" title="">{{ tablist.name }}</a>
+                    {% endif %}
                   </h3>
-                  <a href="{{ tablist.link }}", target="_blank" title="">{{tablist.content}}</a>
+                  {% if tablist.link contains "http" %}
+                  <a href="{{ tablist.link }}" target="_blank" rel="noopener" title="">{{ tablist.content }}</a>
+                  {% else %}
+                  <a href="{{ site.baseurl }}{{ tablist.link }}" title="">{{ tablist.content }}</a>
+                  {% endif %}
                 </div>
                 {% endfor %}
               </div>
@@ -122,10 +130,9 @@
                 <p>{{why_us.content}}</p>
                 <a
                   href="{{ site.baseurl }}/SiennaDocs/docs/build/index/"
-                  target="_blank"
                   title=""
                   class="btn-default"
-                  >Sienna Documentation Hub</a
+                  >Sienna Documentation</a
                 >
               </div>
               <!--abt-col-text end-->

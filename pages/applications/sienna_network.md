@@ -1,5 +1,6 @@
 ---
 layout: info_page
+# Hero image pending; see sienna_network application page assets
 img: ""
 
 ############################ Banner ##################################
@@ -35,29 +36,25 @@ what_we_do:
 ########################## How it Works #########################
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Network is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Network is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-  # tab item1
-  - name: "PowerSystems.jl"
-    icon: "/assets/img/icon_transmission_org.svg"
-    content: "Parse and format input data for consistent representation"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
-    version: "v1"
+  - name: "PowerFlows.jl"
+    icon: "/assets/img/icon_network_org.svg"
+    content: "Calculate AC and DC power flows"
+    link: "/SiennaDocs/docs/build/PowerFlows/stable/"
+    version: "v5"
 
-  # tab item2
   - name: "PowerNetworkMatrices.jl"
     icon: "/assets/img/icon_matrix_org.svg"
     content: "Build common power system matrices (Y bus, PTDF, LODF)"
-    link: "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl"
+    link: "/SiennaDocs/docs/build/PowerNetworkMatrices/stable/"
     version: "v3"
 
-  # tab item3
-  - name: "PowerFlows.jl"
-    icon: "/assets/img/icon_network_org.svg"
-    content: "Calculate simple power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
+  - name: "PowerSystems.jl"
+    icon: "/assets/img/icon_transmission_org.svg"
+    content: "Parse and format input data for consistent representation"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
+    version: "v1"
 ---

@@ -1,6 +1,7 @@
 ---
 layout: info_page
-img: 
+# Unpublished; hero image pending
+img: ""
 
 ############################ Banner ##################################
 banner:
@@ -33,29 +34,25 @@ what_we_do:
 ########################## How it Works #########################
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Invest is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Invest is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-
-  # tab item2
   - name: "PowerSystemsInvestmentsPortfolios.jl"
     icon: "/assets/img/icon_transmission_org.svg"
     content: "Define options for new investments"
-    link: "https://github.com/Sienna-Platform/PowerSystemsInvestmentsPortfolios.jl"
+    link: "/SiennaDocs/docs/build/PowerSystemsInvestmentsPortfolios/stable/"
     version: "v1"
 
-  # tab item3
   - name: "PowerSystemsInvestments.jl"
     icon: "/assets/img/icon_transmission_org.svg"
     content: "Model generation and transmission expansion"
-    link: "https://github.com/Sienna-Platform/PowerSystemsInvestments.jl"
+    link: "/SiennaDocs/docs/build/PowerSystemsInvestments/stable/"
     version: "v1"
 
-  # tab item1
   - name: "PowerSystems.jl"
     icon: "/assets/img/icon_transmission_org.svg"
     content: "Consistently represent data for existing devices"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
     version: "v1"
 ---

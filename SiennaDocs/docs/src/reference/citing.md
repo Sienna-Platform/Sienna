@@ -66,7 +66,7 @@ Please cite [this report](https://www.osti.gov/biblio/2323258):
   title        = {HybridSystemsSimulations.jl - Solving the Merchant Collocated Facilities with JuMP},
   url          = {https://www.osti.gov/biblio/2323258},
   place        = {United States},
-  organization = {National Renewable Energy Laboratory (NREL), Golden, CO (United States)},
+  organization = {National Laboratory of the Rockies, Golden, CO (United States)},
   year         = {2024},
   month        = {03}}
 ```

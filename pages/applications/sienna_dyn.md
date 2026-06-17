@@ -30,7 +30,7 @@ what_we_do:
     title: "Core Capabilities"
     service_list:
       - service: "Runs quasi-static, electromagnetic time domain simulations and small signal stability analysis"
-      - service: "Models novel and advanced inverter control methodologies "
+      - service: "Models novel and advanced inverter control methodologies"
       - service: "Integrates with Sienna\\Ops to perform stability analyses of systems with high share of inverter-based resources"
       - service: "Accelerates electromagnetic analysis of large interconnected systems by over 10×"
       - service: "Runs electromagnetic simulations employing averaging techniques and modern integration methods"
@@ -38,24 +38,21 @@ what_we_do:
       - service: "Allows researchers to assess the numerical requirements for new control techniques for inverter-based generation"
 
 ########################## How it Works #########################
-### Formatting from home11, there is a subtitle option available
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Dyn is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Dyn is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-# tab item1
-  - name: "PowerSystemDynamics.jl"
+  - name: "PowerSimulationsDynamics.jl"
     icon: "/assets/img/icon_time_series_org.svg"
     content: "Simulate small signal stability and electromagnetic transients"
-    link: "https://github.com/Sienna-Platform/PowerSimulationsDynamics.jl"
+    link: "/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/"
     version: "v2"
 
-# tab item2
   - name: "PowerSystems.jl"
     icon: "/assets/img/icon_transmission_org.svg"
     content: "Consistently represent data for devices' dynamic behavior"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
     version: "v1"
 ---

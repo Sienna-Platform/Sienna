@@ -16,10 +16,7 @@ toc:
         url: /pages/applications/sienna_network.html
 
   - title: DOCUMENTATION
-    subfolderitems:
-
-    - page: DOCUMENTATION
-      url: /SiennaDocs/docs/build/index.html
+    url: /SiennaDocs/docs/build/index/
 
   - title: RESOURCES
     subfolderitems:

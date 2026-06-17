@@ -32,28 +32,26 @@ what_we_do:
       - service: Efficient management of large quantities of time-series data, including time-series data for any device parameter
       - service: Expanded access for more users to solve more problems as energy systems evolve
       - service: Open-source sharing of publicly available data with a repository of 200+ data sets
-      - service: Optimized serialization of huge datasets into compressed file formats, allowing users to easily save and load  data
+      - service: Optimized serialization of huge datasets into compressed file formats, allowing users to easily save and load data
       - service: Comprehensive validation rules for every parameter of every device
-      - service: Consistent representation of millions of devices with automatic crosschecking for data compatability
+      - service: Consistent representation of millions of devices with automatic crosschecking for data compatibility
 
 ########################## How it Works #########################
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Data is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Data is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-  # tab item1
   - name: "PowerSystems.jl"
     icon: "/assets/img/icon_transmission_org.svg"
     content: "Data models for consistent representation of power system devices"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
     version: "v1"
 
-  # tab item2
-  - name: "PowerSystemsCaseBuilder.jl"
+  - name: "PowerSystemCaseBuilder.jl"
     icon: "/assets/img/icon_save_org.svg"
     content: "Load saved test systems and custom system data"
-    link: "https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl"
+    link: "/SiennaDocs/docs/build/PowerSystemCaseBuilder/stable/"
     version: "v4"
 ---

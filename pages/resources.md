@@ -11,7 +11,7 @@ resources:
   - title: Read the Docs
     sub_title: Documentation
     url: /SiennaDocs/docs/build/index/
-    content: Access the Sienna Documentation Hub for installation, tutorials,
+    content: Access the Sienna Documentation for installation, tutorials,
       and links to documentation for each core Sienna package. 
 
   - title: Watch Tutorials
@@ -29,14 +29,14 @@ resources:
   - title: Contribute Code
     sub_title: Sienna Codebase
     url: https://github.com/Sienna-Platform
-    content: Visit the Sienna project on Github to access and contribute to
+    content: Visit the Sienna project on GitHub to access and contribute to
       all the open-source software packages in the Sienna ecosystem.
 
   - title: Propose Features
     sub_title: Discussion Board
     url: https://github.com/orgs/Sienna-Platform/discussions
     content: Have an idea of where you'd like Sienna to go? Propose and discuss new features
-      on Sienna's Github Discussions page.
+      on Sienna's GitHub Discussions page.
 
   - title: Work with Us
     sub_title: Collaborate

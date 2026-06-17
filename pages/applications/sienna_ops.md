@@ -12,7 +12,7 @@ banner:
 badges:
   content1: What makes Sienna\Ops different?
   content2: Is Sienna\Ops right for your use case?
-  content3: How is Sienna\Ops structured? 
+  content3: How is Sienna\Ops structured?
 
 ########################## Features #########################
 what_we_do:
@@ -37,49 +37,49 @@ what_we_do:
 ########################## How it Works #########################
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Ops is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation page for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Ops is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-  # tab item1
   - name: "PowerSimulations.jl"
     icon: "/assets/img/icon_trajectory_org.svg"
     content: "Formulate and solve optimization problems to simulate system scheduling"
-    link: "https://github.com/Sienna-Platform/PowerSimulations.jl"
+    link: "/SiennaDocs/docs/build/PowerSimulations/stable/"
     version: "v3"
 
-  # tab item2
   - name: "StorageSystemsSimulations.jl"
     icon: "/assets/img/icon_battery_org.svg"
-    content: "Extend capabilties to simulate energy storage systems"
-    link: "https://github.com/Sienna-Platform/StorageSystemsSimulations.jl"
+    content: "Extend capabilities to simulate energy storage systems"
+    link: "/SiennaDocs/docs/build/StorageSystemsSimulations/stable/"
     version: "v3"
 
-  # tab item3
   - name: "HydroPowerSimulations.jl"
     icon: "/assets/img/icon_hydro_org.svg"
-    content: "Extend capabilties to simulate hydropower generators"
-    link: "https://github.com/Sienna-Platform/HydroPowerSimulations.jl"
+    content: "Extend capabilities to simulate hydropower generators"
+    link: "/SiennaDocs/docs/build/HydroPowerSimulations/stable/"
     version: "v3"
 
-  # tab item4
-  - name: "PowerSystems.jl"
-    icon: "/assets/img/icon_transmission_org.svg"
-    content: "Consistently represent power system data, including time series"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+  - name: "SiennaPRASInterface.jl"
+    icon: "/assets/img/icon_comp_$_org.svg"
+    content: "Assess resource adequacy with probabilistic reliability analysis"
+    link: "/SiennaDocs/docs/build/SiennaPRASInterface/stable/"
     version: "v1"
 
-  # tab item6
   - name: "PowerAnalytics.jl"
     icon: "/assets/img/icon_comp_$_org.svg"
     content: "Analyze common metrics and compare results across scenarios"
-    link: "https://github.com/Sienna-Platform/PowerAnalytics.jl"
+    link: "/SiennaDocs/docs/build/PowerAnalytics/stable/"
     version: "v4"
 
-  # tab item7
   - name: "PowerGraphics.jl"
     icon: "/assets/img/icon_graph_org.svg"
     content: "Visualize data inputs and results"
-    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
+    link: "/SiennaDocs/docs/build/PowerGraphics/stable/"
     version: "v2"
+
+  - name: "PowerSystems.jl"
+    icon: "/assets/img/icon_transmission_org.svg"
+    content: "Consistently represent power system data, including time series"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
+    version: "v1"
 ---
