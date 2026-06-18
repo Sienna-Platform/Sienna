@@ -2,6 +2,7 @@ using Documenter
 import DataStructures: OrderedDict
 using SiennaDocs
 using DocumenterInterLinks
+using DocumenterMermaid
 using MultiDocumenter
 
 # These will all be post-processed to point to the aggregate MultiDocumenter site
@@ -12,17 +13,26 @@ links = InterLinks(
     "PowerAnalytics" => "https://Sienna-Platform.github.io/PowerAnalytics.jl/stable/",
     "PowerGraphics" => "https://Sienna-Platform.github.io/PowerGraphics.jl/stable/",
     "PowerSystemCaseBuilder" => "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/stable/",
+    "PowerSimulationsDynamics" => "https://Sienna-Platform.github.io/PowerSimulationsDynamics.jl/stable/",
+    "PowerFlows" => "https://Sienna-Platform.github.io/PowerFlows.jl/stable/",
+    "PowerNetworkMatrices" => "https://Sienna-Platform.github.io/PowerNetworkMatrices.jl/stable/",
+    "SiennaPRASInterface" => "https://Sienna-Platform.github.io/SiennaPRASInterface.jl/stable/",
 )
 
 pages = OrderedDict(
-    "Sienna Documentation Hub" => "index.md",
+    "Sienna Documentation" => "index.md",
+    "Getting Started" => Any[
+        "Sienna\\Data" => "getting_started/data.md",
+        "Sienna\\Ops" => "getting_started/ops.md",
+        "Sienna\\Dyn" => "getting_started/dyn.md",
+        "Sienna\\Network" => "getting_started/network.md",
+    ],
     "How-to" => Any[
         "Install Sienna" => "how-to/install.md",
         "Use Sienna in VSCode" => "how-to/use_vscode.md",
     ],
     "Reference" => Any[
         "Citation" => "reference/citing.md",
-        "Developers" => ["Developer Guidelines" => "reference/developer_guidelines.md"],
     ],
 )
 
