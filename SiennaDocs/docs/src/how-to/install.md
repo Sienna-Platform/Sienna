@@ -121,29 +121,3 @@ Pkg.add(name="PowerSystems", rev="main")
 ```
 
 These commands may take a few minutes to download packages and compile them.
-
-## Troubleshooting on Windows
-
-Users regularly report challenges installing
-[PowerGraphics.jl](@extref PowerGraphics :doc:`index`) on Windows due to
-its dependency on [`PlotlyJS.jl`](https://github.com/JuliaPlots/PlotlyJS.jl).
-
-We ask if users come across other issues and solutions to please submit a Git issue so we
-can continue to build out this troubleshooting guide for other users.
-
-### `FFmpeg.jl` error
-
-If you get an error about building `FFmpeg.jl` (a dependency) when adding or running
-`using PowerGraphics.jl`, try uninstalling `PowerGraphics.jl`:
-
-```julia
-using Pkg
-Pkg.rm("PowerGraphics")
-```
-
-Install `FFmpeg.jl` separately, then reinstall `PowerGraphics.jl`:
-
-```julia
-Pkg.add("FFmpeg")
-Pkg.add("PowerGraphics")
-```
