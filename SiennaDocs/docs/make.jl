@@ -23,6 +23,7 @@ pages = OrderedDict(
     "Sienna Documentation" => "index.md",
     "Getting Started" => Any[
         "Sienna\\Data" => "getting_started/data.md",
+        "Sienna\\Invest" => "getting_started/invest.md",
         "Sienna\\Ops" => "getting_started/ops.md",
         "Sienna\\Dyn" => "getting_started/dyn.md",
         "Sienna\\Network" => "getting_started/network.md",
