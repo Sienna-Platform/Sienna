@@ -102,7 +102,7 @@ Pkg.add([
 ])
 ```
 
-#### Install a single package
+#### Install individual packages
 
 If instead you want to add specific packages instead of the entire application, install the latest stable release for individual packages such as: 
 
