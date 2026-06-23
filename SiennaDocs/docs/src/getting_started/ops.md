@@ -1,24 +1,36 @@
-# [Getting Started with Sienna Ops](@id getting_started_ops)
+# [Getting Started with Sienna\Ops](@id getting_started_ops)
 
-## Install
+## Prerequisite
+
+Visit to [Julia programming language page](https://julialang.org/) to install Julia
+and walk through some of their extensive learning resources.
+**Our tutorials assume users have some familiarity with Julia already.**
+
+## Install Sienna
 
 Add packages as described in [Install Sienna — Sienna\Ops](@ref install_ops).
 
-## Learn
+## Learn Sienna\Ops
 
 Work through these resources:
 
-| Package | Tutorial | Description |
-|:--------|:---------|:------------|
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Create and Explore a Power `System`](@extref PowerSystems :doc:`tutorials/generated_creating_system`) | Start here: shared foundation with Sienna\Data; needed before any Ops simulation |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Working with Time Series](@extref PowerSystems :doc:`tutorials/generated_working_with_time_series`) | Before multi-period studies: attach load, price, and renewable profiles to a system |
-| [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) | [Single-step Problem](@extref PowerSimulations :doc:`tutorials/generated_decision_problem`) | First optimization run: one period, minimal model complexity |
-| [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) | [Multi-stage Production Cost Simulation](@extref PowerSimulations :doc:`tutorials/generated_pcm_simulation`) | After the single-step tutorial: commitment and dispatch across many time stages |
-| [PowerAnalytics.jl](@extref PowerAnalytics :doc:`index`) | [Simulation Scenarios Analysis](@extref PowerAnalytics :doc:`tutorials/generated_PA_workflow_tutorial`) | After running simulations: compare cases and extract insights from results |
-| [SiennaPRASInterface.jl](@extref SiennaPRASInterface :doc:`index`) | [Resource adequacy workflow](https://Sienna-Platform.github.io/SiennaPRASInterface.jl/stable/tutorials/generated_resource_adequacy_workflow.html) | When the question is long-horizon reliability, not hourly dispatch |
+| Description | Resource | Package(s) |
+|:------------|:---------|:--------|
+| Data setup | [Learn Sienna\Data](@ref learn_sienna_data) | Sienna\Data |
+| Production cost model 101 | [Single-step Problem](@extref PowerSimulations :doc:`tutorials/generated_decision_problem`) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
+| Production cost model 102 | [Multi-stage Production Cost Simulation](@extref PowerSimulations :doc:`tutorials/generated_pcm_simulation`) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
+| Results processing | [Simulation Scenarios Analysis](@extref PowerAnalytics :doc:`tutorials/generated_PA_workflow_tutorial`) | [PowerAnalytics.jl](@extref PowerAnalytics :doc:`index`) |
+| Resource adequacy simulation | [Resource adequacy workflow](https://Sienna-Platform.github.io/SiennaPRASInterface.jl/stable/tutorials/generated_resource_adequacy_workflow.html) | [SiennaPRASInterface.jl](@extref SiennaPRASInterface :doc:`index`) |
 
-Scheduling models may call network power flow through Sienna\Network packages; see
-[Getting Started with Sienna Network](@ref getting_started_network) for standalone network analysis.
+Scheduling models may call network power flow through Sienna\Network packages; see:
+
+| Description | Resource | Package(s) |
+|:------------|:---------|:--------|
+| Standalone network analysis | [Learn Sienna\Network](@ref learn_sienna_network) | Sienna\Network |
+| Sienna\Ops -> Sienna\Network | [Running Power Flow In The Loop with Unit Commitment](@extref PowerSimulations uc-inloop-pf) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
+
+From there, explore the rest of each package's API, how-to guides, and explanation for more
+package-specific information, such as [Chronologies](@extref PowerSimulations :doc:`explanation/chronologies`), [Sequencing](@extref PowerSimulations :doc:`explanation/sequencing`), and the full [Formulation Library](@extref PowerSimulations :doc:`formulation_library/Introduction`).
 
 ## Community resources
 

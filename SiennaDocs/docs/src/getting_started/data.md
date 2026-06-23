@@ -1,22 +1,31 @@
-# [Getting Started with Sienna Data](@id getting_started_data)
+# [Getting Started with Sienna\Data](@id getting_started_data)
 
-## Install
+## Prerequisite
+
+Visit to [Julia programming language page](https://julialang.org/) to install Julia
+and walk through some of their extensive learning resources.
+**Our tutorials assume users have some familiarity with Julia already.**
+
+## Install Sienna
 
 Add packages as described in [Install Sienna — Sienna\Data](@ref install_data).
 
-## Learn
+## [Learn Sienna\Data](@id learn_sienna_data)
 
 Work through these resources:
 
-| Package | Tutorial | Description |
-|:--------|:---------|:------------|
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Create and Explore a Power `System`](@extref PowerSystems :doc:`tutorials/generated_creating_system`) | Data handling 101: the basics of data structures in Sienna |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Manipulating Datasets](@extref PowerSystems :doc:`tutorials/generated_manipulating_datasets`) | Data handling 102: update, retrieve, and filter data |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Working with Time Series](@extref PowerSystems :doc:`tutorials/generated_working_with_time_series`) | Adding time series data for Sienna\Ops |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Adding Data for Dynamic Simulations](@extref PowerSystems :doc:`tutorials/generated_add_dynamic_data`) | Adding dynamics data for Sienna\Dyn |
-| [PowerSystemCaseBuilder.jl](@extref PowerSystemCaseBuilder :doc:`index`) | [Select and Load a Power System](@extref PowerSystemCaseBuilder :doc:`how_to_guides/explore_load`) | Open a curated benchmark for hands-on practice |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Parse a MATPOWER or PSS/e file](@extref PowerSystems pm_data) | Moving on to building your own dataset from an industry case file |
-| [PowerSystemCaseBuilder.jl](@extref PowerSystemCaseBuilder :doc:`index`) | [Full Catalog of `System`s](@extref PowerSystemCaseBuilder :doc:`reference/generated_catalog`) | When you need to browse or compare standard test systems for a study |
+| Description | Resource | Package |
+|:------------|:---------|:--------|
+| Data handling 101 | [Create and Explore a Power `System`](@extref PowerSystems :doc:`tutorials/generated_creating_system`) | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+| Data handling 102 | [Manipulating Datasets](@extref PowerSystems :doc:`tutorials/generated_manipulating_datasets`) | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+| Time series for Sienna\Ops | [Working with Time Series](@extref PowerSystems :doc:`tutorials/generated_working_with_time_series`) | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+| Dynamics data for Sienna\Dyn | [Adding Data for Dynamic Simulations](@extref PowerSystems :doc:`tutorials/generated_add_dynamic_data`) | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+| Load open source data sets | [Select and Load a Power System](@extref PowerSystemCaseBuilder :doc:`how_to_guides/explore_load`) | [PowerSystemCaseBuilder.jl](@extref PowerSystemCaseBuilder :doc:`index`) |
+| Build your own data set | [Parse a MATPOWER or PSS/e file](@extref PowerSystems pm_data)<br>or [Build a `System` from .csv Files](@extref PowerSystems system_from_csv) | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+| Add other data as needed | `PowerSystems.jl` "How to..." pages, on e.g.,<br>[cost](@extref PowerSystems cost_how_to), [outage](@extref PowerSystems model_outages), and [emissions](@extref PowerSystems add_emissions_to_generators) data | [PowerSystems.jl](@extref PowerSystems :doc:`index`) |
+
+From there, explore the rest of each package's API, how-to guides, and explanation for more
+package-specific information.
 
 ## Community resources
 

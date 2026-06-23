@@ -1,27 +1,36 @@
-# [Getting Started with Sienna Dyn](@id getting_started_dyn)
+# [Getting Started with Sienna\Dyn](@id getting_started_dyn)
 
-## Install
+## Prerequisite
+
+Visit to [Julia programming language page](https://julialang.org/) to install Julia
+and walk through some of their extensive learning resources.
+**Our tutorials assume users have some familiarity with Julia already.**
+
+## Install Sienna
 
 Add packages as described in [Install Sienna — Sienna\Dyn](@ref install_dyn).
 
-## Learn
+## Learn Sienna\Dyn
 
 Work through these resources:
 
-| Package | Tutorial | Description |
-|:--------|:---------|:------------|
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Create and Explore a Power `System`](@extref PowerSystems :doc:`tutorials/generated_creating_system`) | Start here (1/2): static network and device data that dynamic models build on |
-| [PowerSystems.jl](@extref PowerSystems :doc:`index`) | [Adding Data for Dynamic Simulations](@extref PowerSystems :doc:`tutorials/generated_add_dynamic_data`) | Start here (2/2): attach machine, governor, and inverter dynamic data |
-| [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) | [`PowerSimulationsDynamics` Quick Start Guide](@extref PowerSimulationsDynamics :doc:`tutorials/generated_quick_start_guide`) | Shortest path to a working dynamics simulation; confirms your setup end to end |
-| [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) | [OMIB](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_omib`) | Small reference case for learning transient response and result interpretation |
-| [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) | [Small-Signal Analysis](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_continuation_pf`) | When you need stability at an operating point, not just large-disturbance trajectories |
+| Description | Resource | Package(s) |
+|:------------|:---------|:--------|
+| Data setup | [Learn Sienna\Data](@ref learn_sienna_data) | Sienna\Data |
+| Large-signal + small-signal preview | [Quick Start Guide](@extref PowerSimulationsDynamics :doc:`tutorials/generated_quick_start_guide`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
+| Large-signal (phasor) | [OMIB](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_omib`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
+| Small-signal | [Small-Signal Analysis](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_continuation_pf`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
 
-Advanced EMT and inverter tutorials:
+Next steps by simulation type:
 
-| Package | Tutorial | Description |
-|:--------|:---------|:------------|
-| [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) | [Inverter Modeling](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_inverter_modeling`) | For IBR-heavy systems where standard synchronous-machine models fall short |
-| [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) | [240 WECC solver comparison](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_240bus`) | When you need full EMT fidelity on a large network and want to compare solvers |
+| Description | Resource | Package |
+|:------------|:---------|:--------|
+| Large-signal with IBRs | [Inverter Modeling](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_inverter_modeling`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
+| Large-signal at scale | [240 WECC solver comparison](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_240bus`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
+| EMT-oriented | [Dynamic Lines Simulation](@extref PowerSimulationsDynamics :doc:`tutorials/generated_tutorial_dynamic_lines`) | [PowerSimulationsDynamics.jl](@extref PowerSimulationsDynamics :doc:`index`) |
+
+From there, explore the rest of each package's API, how-to guides, and explanation (e.g. [Small Signal](@extref PowerSimulationsDynamics :doc:`small`), [Models](@extref PowerSimulationsDynamics :doc:`models`), and
+[Dynamic Devices](@extref PowerSystems :doc:`explanation/dynamic_data`)) for the full catalog.
 
 ## Community resources
 
