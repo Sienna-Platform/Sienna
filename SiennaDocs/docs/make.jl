@@ -89,6 +89,7 @@ makedocs(
     authors = "Kate Doubleday",
     pages = Any[p for p in pages],
     plugins = [links],
+    pagesonly = true,
 )
 
 # MultiDocumenter's canonical update expects versions.js + version dirs; the hub is single-version
