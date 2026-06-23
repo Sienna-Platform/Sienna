@@ -10,7 +10,7 @@
 
 module CapabilityDiagram
 
-const INCLUDE_INVEST = true
+const INCLUDE_INVEST = false
 
 struct AppColumn
     id::Symbol
