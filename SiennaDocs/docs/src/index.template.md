@@ -11,20 +11,10 @@ language.
 Sienna is comprised of many Julia packages, organized
 into applications:
 
-  - [Sienna\Data](https://Sienna-Platform.github.io/Sienna/pages/applications/sienna_data.html) —
-    efficient data input, analysis, and transformation
-  - [Sienna\Ops](https://Sienna-Platform.github.io/Sienna/pages/applications/sienna_ops.html) —
-    system scheduling simulations and resource adequacy
-  - [Sienna\Dyn](https://Sienna-Platform.github.io/Sienna/pages/applications/sienna_dyn.html) —
-    transient analysis including small-signal stability and dynamic simulations
-  - [Sienna\Network](https://Sienna-Platform.github.io/Sienna/pages/applications/sienna_network.html) —
-    power flow, network reductions, and reactive power planning
+<!--CAPABILITY_DIAGRAM-->
 
-[Visit the Sienna homepage to learn more.](https://Sienna-Platform.github.io/Sienna/)
-
-## Sienna applications and capabilities
-
-<!--CAPABILITY_DIAGRAM--> <!-- replaced by capability_diagram.jl output in make.jl -->
+Click the links above to get started with each application's package install instructions and
+recommended learning pathway. 
 
 ## How to Use This Documentation
 
