@@ -1,8 +1,34 @@
 using Documenter
 import DataStructures: OrderedDict
-using SiennaDocs
 using DocumenterInterLinks
+using DocumenterMermaid
 using MultiDocumenter
+
+include(joinpath(@__DIR__, "capability_diagram.jl"))
+using .CapabilityDiagram
+
+# INCLUDE_INVEST: diagram column + Getting Started nav (see docs/capability_diagram.jl).
+const INCLUDE_INVEST = CapabilityDiagram.INCLUDE_INVEST
+const _prettyurls = haskey(ENV, "GITHUB_ACTIONS")
+
+# Landing-page splice: edit docs/src/index.template.md (tracked); make.jl writes
+# docs/src/index.md (gitignored) before makedocs. DocumenterMermaid only expands
+# top-level ```mermaid fences in parsed .md files, not @eval output — so the diagram
+# must be spliced into index.md here. pages must stay "index.md" for hub URL .../index/.
+_index_template = joinpath(@__DIR__, "src", "index.template.md")
+_index_src = joinpath(@__DIR__, "src", "index.md")
+_index_content = read(_index_template, String)
+occursin("<!--CAPABILITY_DIAGRAM-->", _index_content) ||
+    error("index.template.md must contain <!--CAPABILITY_DIAGRAM--> placeholder")
+write(
+    _index_src,
+    replace(
+        _index_content,
+        "<!--CAPABILITY_DIAGRAM-->" => CapabilityDiagram.capability_diagram_markdown(
+            prettyurls=_prettyurls,
+        ),
+    ),
+)
 
 # These will all be post-processed to point to the aggregate MultiDocumenter site
 links = InterLinks(
@@ -12,17 +38,36 @@ links = InterLinks(
     "PowerAnalytics" => "https://Sienna-Platform.github.io/PowerAnalytics.jl/stable/",
     "PowerGraphics" => "https://Sienna-Platform.github.io/PowerGraphics.jl/stable/",
     "PowerSystemCaseBuilder" => "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/stable/",
+    "PowerSimulationsDynamics" => "https://Sienna-Platform.github.io/PowerSimulationsDynamics.jl/stable/",
+    "PowerFlows" => "https://Sienna-Platform.github.io/PowerFlows.jl/stable/",
+    "PowerNetworkMatrices" => "https://Sienna-Platform.github.io/PowerNetworkMatrices.jl/stable/",
+    "SiennaPRASInterface" => "https://Sienna-Platform.github.io/SiennaPRASInterface.jl/stable/",
+)
+
+getting_started_pages = [
+    "Sienna\\Data" => "getting_started/data.md",
+]
+if INCLUDE_INVEST
+    push!(getting_started_pages, "Sienna\\Invest" => "getting_started/invest.md")
+end
+append!(
+    getting_started_pages,
+    [
+        "Sienna\\Ops" => "getting_started/ops.md",
+        "Sienna\\Dyn" => "getting_started/dyn.md",
+        "Sienna\\Network" => "getting_started/network.md",
+    ],
 )
 
 pages = OrderedDict(
-    "Sienna Documentation Hub" => "index.md",
+    "Sienna Documentation" => "index.md",
+    "Getting Started" => getting_started_pages,
     "How-to" => Any[
         "Install Sienna" => "how-to/install.md",
         "Use Sienna in VSCode" => "how-to/use_vscode.md",
     ],
     "Reference" => Any[
         "Citation" => "reference/citing.md",
-        "Developers" => ["Developer Guidelines" => "reference/developer_guidelines.md"],
     ],
 )
 
@@ -33,10 +78,9 @@ const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath
 # Hub is at path "index", so its canonical base is .../build/index
 hub_canonical = "https://Sienna-Platform.github.io" * rstrip(_docs_rootpath, '/') * "/index"
 makedocs(
-    modules = [SiennaDocs],
     format = Documenter.HTML(
         sidebar_sitename = false,
-        prettyurls = haskey(ENV, "GITHUB_ACTIONS"),
+        prettyurls = _prettyurls,
         size_threshold = nothing,
         canonical = hub_canonical,
         footer = "Return to the [Sienna homepage](https://Sienna-Platform.github.io/Sienna/). Docs powered by [Documenter.jl] (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
@@ -45,6 +89,7 @@ makedocs(
     authors = "Kate Doubleday",
     pages = Any[p for p in pages],
     plugins = [links],
+    pagesonly = true,
 )
 
 # MultiDocumenter's canonical update expects versions.js + version dirs; the hub is single-version

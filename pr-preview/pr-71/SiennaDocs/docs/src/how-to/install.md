@@ -53,75 +53,71 @@ If not, go back to check the Julia installation steps.
 
 ### Step 3: Install Sienna
 
-Sienna is a modular set of Julia packages, where each package can be installed with the
-[Julia package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/#Pkg).
-To install the core packages in one of the Sienna applications,
-Sienna\Data, Sienna\Ops, and/or Sienna\Dyn, run:
+Sienna is a modular set of Julia packages. Add the packages for the application you need, then follow
+the Getting Started pages for a recommended learning path.
 
-#### Install Sienna\Data
+#### [Sienna\Data](@id install_data)
 
 ```julia
-using Pkg;
+using Pkg
 Pkg.add([
     "PowerSystems",
-    "PowerNetworkMatrices",
-    "PowerFlows",
     "PowerSystemCaseBuilder",
-    "PowerGraphics",
-]);
+])
 ```
 
-#### Install Sienna\Ops
+#### [Sienna\Ops](@id install_ops)
 
 ```julia
-using Pkg;
+using Pkg
 Pkg.add([
     "PowerSystems",
     "PowerSimulations",
     "StorageSystemsSimulations",
     "HydroPowerSimulations",
-    "PowerFlows",
-    "PowerGraphics",
+    "SiennaPRASInterface",
     "PowerAnalytics",
-]);
+    "PowerGraphics",
+])
 ```
 
-#### Install Sienna\Dyn
+#### [Sienna\Dyn](@id install_dyn)
 
 ```julia
-using Pkg;
-Pkg.add(["PowerSystems", "PowerSimulationsDynamics", "PowerGraphics", "PowerAnalytics"]);
+using Pkg
+Pkg.add([
+    "PowerSystems",
+    "PowerSimulationsDynamics",
+])
 ```
 
-These commands may take a few minutes to download the packages and compile them.
-
-In addition to the core packages, there are auxilliary packages that extend the
-capabilities for particular use cases, such as storage or hydropower modeling.
-
-Check out the [Documentation Hub](@ref hub) to learn more.
-
-## Troubleshooting on Windows
-
-Users regularly report challenges installing
-[`PowerGraphics.jl`](https://sienna-platform.github.io/PowerGraphics.jl/stable/) on Windows due to
-its dependency on [`PlotlyJS.jl`](https://github.com/JuliaPlots/PlotlyJS.jl).
-
-We ask if users come across other issues and solutions to please submit a Git issue so we
-can continue to build out this troubleshooting guide for other users.
-
-### `FMMPEG.jl` error
-
-If you get an error about building `FMMPEG.jl` (a dependency) when adding or running
-`using PowerGraphics.jl`, try uninstalling `PowerGraphics.jl`:
+#### [Sienna\Network](@id install_network)
 
 ```julia
-using Pkg;
-Pkg.rm("PowerGraphics")
+using Pkg
+Pkg.add([
+    "PowerFlows",
+    "PowerNetworkMatrices",
+    "PowerSystems",
+])
 ```
 
-Install `FMMPEG.jl` separately, then reinstall `PowerGraphics.jl`:
+#### Install individual packages
+
+If instead you want to add specific packages instead of the entire application, install the latest stable release for individual packages such as:
 
 ```julia
-Pkg.add("FMMPEG")
-Pkg.add("PowerGraphics")
+using Pkg
+Pkg.add("PowerSystems")
 ```
+
+#### Install from the development branch
+
+To use the latest unreleased code on `main` for a package:
+
+```julia
+using Pkg
+Pkg.add(; name = "PowerSystems", rev = "main")
+```
+
+These commands may take a few minutes to download packages and compile them.

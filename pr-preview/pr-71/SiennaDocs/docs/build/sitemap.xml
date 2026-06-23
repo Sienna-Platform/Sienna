@@ -21,6 +21,7 @@
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerAnalytics/stable/reference/public/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerAnalytics/stable/tutorials/generated_PA_workflow_tutorial/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerFlows/stable/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerFlows/stable/explanation/fast_decoupled/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerFlows/stable/explanation/folds_and_diagnostics/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerFlows/stable/explanation/lcc_model/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerFlows/stable/explanation/lm_vs_gauss_seidel/</loc></url>
@@ -99,6 +100,7 @@
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/api/internal/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/api/public/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/code_base_developer_guide/adding_a_model/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/code_base_developer_guide/developer/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/component_models/avr/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/component_models/converter/</loc></url>
@@ -285,12 +287,11 @@
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/StorageSystemsSimulations/stable/reference/public/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/StorageSystemsSimulations/stable/tutorials/generated_single_stage_model/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/getting_started/data/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/getting_started/dyn/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/getting_started/network/</loc></url>
+<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/getting_started/ops/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/how-to/install/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/how-to/use_vscode/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/reference/citing/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/reference/developer_guidelines/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/tutorials/pcm_1/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/tutorials/pcm_2/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/tutorials/pcm_3/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/pr-preview/pr-71/SiennaDocs/docs/build/index/tutorials/pcm_4/</loc></url>
 </urlset>
