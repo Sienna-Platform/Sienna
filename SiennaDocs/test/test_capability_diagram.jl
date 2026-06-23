@@ -53,10 +53,11 @@ function _row_slot_count(row::String)
 end
 
 @testset "capability diagram generator" begin
-    diagram_invest = CapabilityDiagram.generate_block_beta_diagram(include_invest=true)
-    diagram_no_invest = CapabilityDiagram.generate_block_beta_diagram(include_invest=false)
-    diagram_no_cross = CapabilityDiagram.generate_block_beta_diagram(
-        cross_app=CapabilityDiagram.CrossAppCapability[],
+    diagram_invest = CapabilityDiagram.generate_block_beta_diagram(; include_invest = true)
+    diagram_no_invest =
+        CapabilityDiagram.generate_block_beta_diagram(; include_invest = false)
+    diagram_no_cross = CapabilityDiagram.generate_block_beta_diagram(;
+        cross_app = CapabilityDiagram.CrossAppCapability[],
     )
 
     @test occursin("columns 5", diagram_invest)
@@ -69,8 +70,14 @@ end
     @test occursin("O4", diagram_invest)
     @test occursin("N4", diagram_invest)
     @test occursin("Learn Sienna\\Ops", diagram_invest)
-    @test occursin("getting_started/ops.html", CapabilityDiagram.generate_block_beta_diagram(prettyurls=false))
-    @test occursin("getting_started/ops/", CapabilityDiagram.generate_block_beta_diagram(prettyurls=true))
+    @test occursin(
+        "getting_started/ops.html",
+        CapabilityDiagram.generate_block_beta_diagram(; prettyurls = false),
+    )
+    @test occursin(
+        "getting_started/ops/",
+        CapabilityDiagram.generate_block_beta_diagram(; prettyurls = true),
+    )
     @test !occursin("space space space space space", diagram_invest)
     @test occursin("block:pf:2", diagram_invest)
 
@@ -100,10 +107,10 @@ end
             true,
         ),
     ]
-    padded = CapabilityDiagram.generate_block_beta_diagram(
-        include_invest=false,
-        apps=extra_cap_apps,
-        cross_app=CapabilityDiagram.CrossAppCapability[],
+    padded = CapabilityDiagram.generate_block_beta_diagram(;
+        include_invest = false,
+        apps = extra_cap_apps,
+        cross_app = CapabilityDiagram.CrossAppCapability[],
     )
     @test occursin("columns 2", padded)
     @test occursin("space", padded)
@@ -132,7 +139,8 @@ end
             "X_DRAFT",
         ),
     ]
-    with_disabled = CapabilityDiagram.generate_block_beta_diagram(cross_app=disabled_cross)
+    with_disabled =
+        CapabilityDiagram.generate_block_beta_diagram(; cross_app = disabled_cross)
     @test !occursin("X_DRAFT", with_disabled)
     @test occursin("block:pf:2", with_disabled)
 
@@ -150,7 +158,7 @@ end
             "X_DRAFT",
         ),
     ]
-    with_draft = CapabilityDiagram.generate_block_beta_diagram(cross_app=enabled_draft)
+    with_draft = CapabilityDiagram.generate_block_beta_diagram(; cross_app = enabled_draft)
     @test occursin("X_DRAFT", with_draft)
     @test occursin("block:draft:2", with_draft)
 end

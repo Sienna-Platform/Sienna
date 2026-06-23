@@ -12,9 +12,8 @@ Sienna is comprised of many Julia packages, organized
 into applications:
 
 <!--CAPABILITY_DIAGRAM-->
-
 Click the links above to get started with each application's package install instructions and
-recommended learning pathway. 
+recommended learning pathway.
 
 ## How to Use This Documentation
 
@@ -25,6 +24,7 @@ Throughout the Sienna documentation, we strive to follow
 the [Diataxis](https://diataxis.fr/)
 documentation framework. Within each package's documentation, there are four main sections
 containing different information:
+
   - **Tutorials** - Detailed walk-throughs to help you *learn* how to use Sienna
   - **How to...** - Directions to help *guide* your work for a particular task
   - **Explanation** - Additional details and background information to help you *understand*

@@ -104,7 +104,7 @@ Pkg.add([
 
 #### Install individual packages
 
-If instead you want to add specific packages instead of the entire application, install the latest stable release for individual packages such as: 
+If instead you want to add specific packages instead of the entire application, install the latest stable release for individual packages such as:
 
 ```julia
 using Pkg
@@ -117,7 +117,7 @@ To use the latest unreleased code on `main` for a package:
 
 ```julia
 using Pkg
-Pkg.add(name="PowerSystems", rev="main")
+Pkg.add(; name = "PowerSystems", rev = "main")
 ```
 
 These commands may take a few minutes to download packages and compile them.

@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: julia-formatter
+        name: Format SiennaDocs sources
+        entry: bash -c "cd SiennaDocs && julia scripts/formatter/formatter_code.jl"
+        language: system
+        files: ^SiennaDocs/
+        pass_filenames: false
