@@ -56,6 +56,10 @@ jobs:
           SIENNA_DOCS_ROOTPATH: "/Sienna/pr-preview/pr-${{ github.event.number }}/SiennaDocs/docs/build"
         run: julia --project=SiennaDocs/docs --color=yes SiennaDocs/docs/make.jl
 
+      - name: Check Jekyll SiennaDocs links
+        if: github.event.action != 'closed'
+        run: julia --project=SiennaDocs/docs -e 'using Test; include("SiennaDocs/test/test_jekyll_docs_links.jl")'
+
       - name: Build with Jekyll
         if: github.event.action != 'closed'
         run: bundle exec jekyll build --baseurl "/Sienna/pr-preview/pr-${{ github.event.number }}"

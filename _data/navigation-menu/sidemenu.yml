@@ -16,7 +16,7 @@ toc:
         url: /pages/applications/sienna_network.html
 
   - title: DOCUMENTATION
-    url: /SiennaDocs/docs/build/index/
+    url: /SiennaDocs/docs/build/index/  # hub root; see _data/sienna_docs.yml
 
   - title: RESOURCES
     subfolderitems:
@@ -28,7 +28,7 @@ toc:
         url: /pages/publications.html
 
       - page: CITATION
-        url: /SiennaDocs/docs/build/reference/citing
+        url: /SiennaDocs/docs/build/index/reference/citing/
 
   - title: ABOUT
     subfolderitems:

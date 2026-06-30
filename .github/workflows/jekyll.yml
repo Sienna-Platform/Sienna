@@ -52,6 +52,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
         run: julia --project=SiennaDocs/docs --color=yes SiennaDocs/docs/make.jl
+      - name: Check Jekyll SiennaDocs links
+        run: julia --project=SiennaDocs/docs -e 'using Test; include("SiennaDocs/test/test_jekyll_docs_links.jl")'
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1 # latest major version
         with:
