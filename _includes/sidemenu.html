@@ -11,10 +11,10 @@
       {% if item.url %}
       {% if item.url contains "http" %}
       <a href="{{ item.url }}" class="animsition-link" data-animsition-out-class="fade-out"
-        title="{{ item.title }}" data-text="{{ item.title }}" target="_blank" rel="noopener">{{ item.title }}</a>
+        title="{{ item.title }}" target="_blank" rel="noopener">{{ item.title }}</a>
       {% else %}
       <a href="{{ site.baseurl }}{{ item.url }}" class="animsition-link" data-animsition-out-class="fade-out"
-        title="{{ item.title }}" data-text="{{ item.title }}">{{ item.title }}</a>
+        title="{{ item.title }}">{{ item.title }}</a>
       {% endif %}
       {% else %}
       <a href="#" title="{{ item.title }}">{{ item.title }}</a>
@@ -23,7 +23,7 @@
         <li>
           {% if entry.url contains "http" %}
           <a href="{{ entry.url }}" class="animsition-link" data-animsition-out-class="fade-out"
-            title="{{ entry.page }}" data-text="{{ entry.page }}" target="_blank" rel="noopener"
+            title="{{ entry.page }}" target="_blank" rel="noopener"
             >{{ entry.page }}</a>
           {% else %}
           <a
@@ -31,7 +31,6 @@
             class="animsition-link {% if entry.url == page.url %}active{% endif %}"
             data-animsition-out-class="fade-out"
             title="{{ entry.page }}"
-            data-text="{{ entry.page }}"
             >{{ entry.page }}</a
           >
           {% endif %}
