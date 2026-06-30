@@ -14940,25 +14940,12 @@ body.hp13 #pp-nav {
     display: block;
     position: relative;
     transition: color 0.3s cubic-bezier(0.82, 0, 0.21, 1);
-    overflow: hidden;
     color: #343a40;
     font-weight: 700;
 }
 
-.mobile-menu > li a:after {
-    content: attr(data-text);
-    position: absolute;
-    width: 0;
-    transition: width 0.3s cubic-bezier(0.82, 0, 0.21, 1);
-    color: #d5892d;
-    z-index: 2;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-}
-
-.mobile-menu > li a:hover:after {
-    width: 100%;
+.mobile-menu > li a:hover {
+    color: #EB932F;
 }
 
 .mobile-menu > li a:before {

@@ -9,7 +9,7 @@ using .CapabilityDiagram
 
 # INCLUDE_INVEST: diagram column + Getting Started nav (see docs/capability_diagram.jl).
 const INCLUDE_INVEST = CapabilityDiagram.INCLUDE_INVEST
-const _prettyurls = haskey(ENV, "GITHUB_ACTIONS")
+const _prettyurls = true
 
 # Landing-page splice: edit docs/src/index.template.md (tracked); make.jl writes
 # docs/src/index.md (gitignored) before makedocs. DocumenterMermaid only expands
