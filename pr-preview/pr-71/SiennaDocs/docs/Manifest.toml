@@ -5,9 +5,9 @@ manifest_format = "2.0"
 project_hash = "86a40abd582d6d70ad9252ddcebc601dfeb9e852"
 
 [[deps.ADTypes]]
-git-tree-sha1 = "d9aaef7c63466eee4de23b4d9dad03629df54bea"
+git-tree-sha1 = "ec6be48a85c93d995563b84bff8a86bc98df45ce"
 uuid = "47edcb42-4c32-4615-8424-f2b9edc5f35b"
-version = "1.22.1"
+version = "1.22.2"
 
     [deps.ADTypes.extensions]
     ADTypesChainRulesCoreExt = "ChainRulesCore"
@@ -228,9 +228,9 @@ version = "1.16.0"
 
 [[deps.DifferentiationInterface]]
 deps = ["ADTypes", "LinearAlgebra"]
-git-tree-sha1 = "2147a95a217cc8a78ec96ee03581adf129468e49"
+git-tree-sha1 = "dbd46a5cd0e79a97438b0ebbec42e744e8f436fe"
 uuid = "a0c0ee7d-e4b9-4e03-894e-1c5f64a51d63"
-version = "0.7.18"
+version = "0.7.20"
 
     [deps.DifferentiationInterface.extensions]
     DifferentiationInterfaceChainRulesCoreExt = "ChainRulesCore"
@@ -334,9 +334,9 @@ version = "1.6.0"
 
 [[deps.Expat_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "c307cd83373868391f3ac30b41530bc5d5d05d08"
+git-tree-sha1 = "e6c4a6407a949e79a9d3f249bf49e6987c80e01f"
 uuid = "2e619515-83b5-522b-bb60-26c02a35a201"
-version = "2.8.1+0"
+version = "2.8.2+0"
 
 [[deps.ExprTools]]
 git-tree-sha1 = "27415f162e6028e81c72b82ef756bf321213b6ec"
@@ -360,9 +360,9 @@ version = "1.11.0"
 
 [[deps.FiniteDiff]]
 deps = ["ArrayInterface", "LinearAlgebra", "Setfield"]
-git-tree-sha1 = "2e5742cda07276e1834281ada4cc71b6bfc87586"
+git-tree-sha1 = "07e98e3f332ee60179813dd9cdf21412e3c0a96a"
 uuid = "6a86dc24-6348-571c-b903-95158fe2bd41"
-version = "2.31.1"
+version = "2.32.0"
 
     [deps.FiniteDiff.extensions]
     FiniteDiffBandedMatricesExt = "BandedMatrices"
@@ -449,15 +449,15 @@ version = "2.1.2+0"
 
 [[deps.HiGHS]]
 deps = ["HiGHS_jll", "LinearAlgebra", "MathOptIIS", "MathOptInterface", "OpenBLAS32_jll", "PrecompileTools", "SparseArrays"]
-git-tree-sha1 = "8b6c49e994b09d646c26ef2c41fabe95f4679b4c"
+git-tree-sha1 = "01a5241985559c08a5baadbcebd6d87daaf84a84"
 uuid = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
-version = "1.24.0"
+version = "1.24.1"
 
 [[deps.HiGHS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Zlib_jll", "libblastrampoline_jll"]
-git-tree-sha1 = "5b9e398d6e4ed7e1f9a801a6f50ecca92dab0e10"
+git-tree-sha1 = "5814a4409f49e8430c184cbe4bc19fa2957bbf0a"
 uuid = "8fd58aa0-07eb-5a78-9b36-339c94fd15ea"
-version = "1.15.0+0"
+version = "1.15.1+0"
 
 [[deps.Hwloc_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "XML2_jll", "Xorg_libpciaccess_jll"]
@@ -816,9 +816,9 @@ version = "22.15.0+0"
 
 [[deps.OpenBLAS32_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "libblastrampoline_jll"]
-git-tree-sha1 = "565175ce692c065e50ad32efbb61ba69b1586593"
+git-tree-sha1 = "8b492aefdd20fb9dc1ebc377ff7e5fa1591c9acc"
 uuid = "656ef2d0-ae68-5445-9ca0-591084a874a2"
-version = "0.3.33+1"
+version = "0.3.33+2"
 
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
@@ -838,9 +838,9 @@ version = "5.0.11+0"
 
 [[deps.OpenSSH_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "OpenSSL_jll", "Zlib_jll"]
-git-tree-sha1 = "57baa4b81a24c2910afbb6d853aa0685e4312bf7"
+git-tree-sha1 = "b862f484cf659efabffd601c5c920e981c942b63"
 uuid = "9bd350c2-7e96-507f-8002-3f2e150b4e1b"
-version = "10.3.1+0"
+version = "10.4.1+0"
 
 [[deps.OpenSSL_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -1101,9 +1101,9 @@ version = "0.3.7"
 
 [[deps.StringManipulation]]
 deps = ["PrecompileTools"]
-git-tree-sha1 = "d05693d339e37d6ab134c5ab53c29fce5ee5d7d5"
+git-tree-sha1 = "6a73aec31c56a0c2833e8efa637d10b532cb2f0c"
 uuid = "892a3eda-7b42-436c-8928-eab12a02cf0e"
-version = "0.4.4"
+version = "0.4.5"
 
 [[deps.StructTypes]]
 deps = ["Dates", "UUIDs"]

@@ -7,24 +7,15 @@ Sienna is a command line tool written in the Julia programming language.
   - Internet access and admin permissions.
   - Basic knowledge of command-line tools.
 
-### Step 1: Install Julia
+### Step 1: Install Julia and `juliaup`
 
-Follow the instructions on [the Julia Downloads page](https://julialang.org/downloads/).
+Follow the instructions on [the Julia Downloads page](https://julialang.org/downloads/) to download Julia and `juliaup`, Julia's version manager, and add Julia to your path.
 
-Tips for Windows:
+Verify installation:
 
- 1. Visit [Julia Downloads](https://julialang.org/downloads/platform/#windows).
-
- 2. Download the **Windows installer** (`.exe`).
- 3. Run the installer and follow these steps:
-    
-      + Choose **installation path** (default: `C:\\Users\\<YourUser>\\AppData\\Local\\Programs\\Julia`).
-      + Select **"Add Julia to PATH"** for easier access from the terminal.
- 4. Verify installation:
-    
-    ```bash
-    julia --version
-    ```
+```bash
+julia --version
+```
 
 ### Step 2: Open Julia
 
@@ -91,7 +82,7 @@ Pkg.add([
 ])
 ```
 
-#### [Sienna\Network](@id install_network)
+#### [Sienna\Net](@id install_network)
 
 ```julia
 using Pkg

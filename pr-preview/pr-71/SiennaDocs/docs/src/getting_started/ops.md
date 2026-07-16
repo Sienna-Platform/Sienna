@@ -22,12 +22,12 @@ Work through these resources:
 | Results processing           | [Simulation Scenarios Analysis](@extref PowerAnalytics :doc:`tutorials/generated_PA_workflow_tutorial`)                                           | [PowerAnalytics.jl](@extref PowerAnalytics :doc:`index`)           |
 | Resource adequacy simulation | [Resource adequacy workflow](https://Sienna-Platform.github.io/SiennaPRASInterface.jl/stable/tutorials/generated_resource_adequacy_workflow.html) | [SiennaPRASInterface.jl](@extref SiennaPRASInterface :doc:`index`) |
 
-Scheduling models may call network power flow through Sienna\Network packages; see:
+Scheduling models may call network power flow through Sienna\Net packages; see:
 
-| Description                  | Resource                                                                                     | Package(s)                                                   |
-|:---------------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |
-| Standalone network analysis  | [Learn Sienna\Network](@ref learn_sienna_network)                                            | Sienna\Network                                               |
-| Sienna\Ops -> Sienna\Network | [Running Power Flow In The Loop with Unit Commitment](@extref PowerSimulations uc-inloop-pf) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
+| Description                 | Resource                                                                                     | Package(s)                                                   |
+|:--------------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |
+| Standalone network analysis | [Learn Sienna\Net](@ref learn_sienna_network)                                                | Sienna\Net                                                   |
+| Sienna\Ops -> Sienna\Net    | [Running Power Flow In The Loop with Unit Commitment](@extref PowerSimulations uc-inloop-pf) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
 
 From there, explore the rest of each package's API, how-to guides, and explanation for more
 package-specific information, such as [Chronologies](@extref PowerSimulations :doc:`explanation/chronologies`), [Sequencing](@extref PowerSimulations :doc:`explanation/sequencing`), and the full [Formulation Library](@extref PowerSimulations :doc:`formulation_library/Introduction`).

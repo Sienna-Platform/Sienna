@@ -55,7 +55,7 @@ append!(
     [
         "Sienna\\Ops" => "getting_started/ops.md",
         "Sienna\\Dyn" => "getting_started/dyn.md",
-        "Sienna\\Network" => "getting_started/network.md",
+        "Sienna\\Net" => "getting_started/net.md",
     ],
 )
 
@@ -79,13 +79,12 @@ const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath
 hub_canonical = "https://Sienna-Platform.github.io" * rstrip(_docs_rootpath, '/') * "/index"
 makedocs(
     format = Documenter.HTML(
-        sidebar_sitename = false,
         prettyurls = _prettyurls,
         size_threshold = nothing,
         canonical = hub_canonical,
         footer = "Return to the [Sienna homepage](https://Sienna-Platform.github.io/Sienna/). Docs powered by [Documenter.jl] (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
     ),
-    sitename = "Sienna Documentation",
+    sitename = "Sienna",
     authors = "Kate Doubleday",
     pages = Any[p for p in pages],
     plugins = [links],
@@ -151,7 +150,7 @@ docs = Any[
     MultiDocumenter.DropdownNav("Sienna\\Data", _refs([:psy, :pscb])),
     MultiDocumenter.DropdownNav("Sienna\\Ops", _refs([:psi, :sss, :hps, :pras, :pa, :pg, :psy])),
     MultiDocumenter.DropdownNav("Sienna\\Dyn", _refs([:psid, :psy])),
-    MultiDocumenter.DropdownNav("Sienna\\Network", _refs([:pf, :pnm, :psy])),
+    MultiDocumenter.DropdownNav("Sienna\\Net", _refs([:pf, :pnm, :psy])),
     # MultiDocumenter.DropdownNav("Sienna\\Invest", _refs([:psip, :psinv, :psy])),
 ]
 
