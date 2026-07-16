@@ -1,5 +1,7 @@
 ---
 layout: tiles
+section_title_highlight: Learn
+section_title_rest: and Contribute
 
 resources:
   - title: Learn Julia
@@ -22,7 +24,7 @@ resources:
 
   - title: Ask Questions
     sub_title: Slack
-    url: https://core-sienna.slack.com
+    url: https://core-sienna.slack.com/join/shared_invite/zt-1lyt10wio-y3yV_yug3F68vLau27gUzA#/shared-invite/email
     content: Join our active community on Slack to ask our developers questions and
       share your experience with other users.
 

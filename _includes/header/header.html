@@ -1,0 +1,42 @@
+{% if page.layout == 'home-sienna' %}
+<header class="header-v8 v9">
+  <div class="container">
+    <div class="header-content-v8">
+      <div class="logo-v8">
+        <a href="{{ site.baseurl }}/" title="">
+          <img src="{{ site.baseurl }}{{ site.data.settings.logo_dark }}" alt="">
+        </a>
+      </div>
+      {% include nav.html %}
+      <button class="nav-toggle-btn a-nav-toggle">
+        <span class="nav-toggle nav-toggle-sm">
+          <span class="stick stick-1"></span>
+          <span class="stick stick-2"></span>
+          <span class="stick stick-3"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+{% else %}
+<header class="header-v6">
+  <div class="container">
+    <div class="header-content-v8">
+      <div class="logo-v8">
+        <a href="{{ site.baseurl }}/" title=""><img src="{{ site.baseurl }}{{ site.data.settings.logo_dark }}" alt=""></a>
+      </div>
+      {% include nav.html %}
+      <div class="mile-right ms-auto">
+        <button class="nav-toggle-btn a-nav-toggle ms-auto">
+          <span class="nav-toggle nav-toggle-sm">
+            <span class="stick stick-1"></span>
+            <span class="stick stick-2"></span>
+            <span class="stick stick-3"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+{% endif %}
+{% include sidemenu.html %}

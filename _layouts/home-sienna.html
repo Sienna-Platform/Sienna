@@ -4,46 +4,27 @@
 
 <body onload="GetDownloads()">
   <div class="wrapper">
-    {% include header/header-consulting.html %}
-    <!--header end-->
+    {% include header/header.html %}
     <section class="main-banner-v9">
       <div class="container">
         <div class="banner-slider-v9 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
+          {% for slide in page.banner_slides %}
           <div class="banner-slide-v9">
-            <span>Open-source power systems modeling platform</span>
-            <h2><span>Sienna</span></h2>
-            <p>The most advanced power systems modeling platform ever built</p>
-            <a href="{{ site.baseurl }}{{ site.data.sienna_docs.hub }}{{ site.data.sienna_docs.pages.install }}" title="" class="btn-default-v9">Get Started</a>
-          </div><!--banner-slide-v9 end-->
-          <div class="banner-slide-v9">
-            <span>Efficiently access and handle power systems data </span>
-            <h2><span>Sienna</span>\Data</h2>
-            <p>Comprehensive, extensible library of data structures for energy systems modeling across timescales</p>
-            <a href="{{ site.baseurl }}/pages/applications/sienna_data.html" title="" class="btn-default-v9">Learn More</a>
-          </div><!--banner-slide-v9 end-->
-          <div class="banner-slide-v9">
-            <span>Optimal power system scheduling simulations</span>
-            <h2><span>Sienna</span>\Ops</h2>
-            <p>Efficient, flexible, and reproducible simulations of dispatch and scheduling, including sequential
-              problems for production cost modeling</p>
-            <a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title="" class="btn-default-v9">Learn More</a>
-          </div><!--banner-slide-v9 end-->
-          <div class="banner-slide-v9">
-            <span>Transient stability modeling</span>
-            <h2><span>Sienna</span>\Dyn</h2>
-            <p>Simulation and modeling of power systems dynamics specifically designed to analyze inverter-based
-              resource integration</p>
-            <a href="{{ site.baseurl }}/pages/applications/sienna_dyn.html" title="" class="btn-default-v9">Learn More</a>
-          </div><!--banner-slide-v9 end-->
-          <div class="banner-slide-v9">
-            <span>Transmission network analysis</span>
-            <h2><span>Sienna</span>\Network</h2>
-            <p>Power flow, network reductions, and reactive power planning for reliable transmission systems</p>
-            <a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title="" class="btn-default-v9">Learn More</a>
-          </div><!--banner-slide-v9 end-->
-        </div><!--banner-slider-v9 end-->
+            <span>{{ slide.tagline }}</span>
+            <h2><span>{{ slide.title }}</span>{{ slide.suffix }}</h2>
+            <p>{{ slide.description }}</p>
+            {% if slide.cta.use_sienna_docs_install %}
+            <a href="{{ site.baseurl }}{{ site.data.sienna_docs.hub }}{{ site.data.sienna_docs.pages.install }}" title="" class="btn-default-v9">{{ slide.cta.label }}</a>
+            {% elsif slide.cta.url contains "http" %}
+            <a href="{{ slide.cta.url }}" title="" class="btn-default-v9" target="_blank" rel="noopener">{{ slide.cta.label }}</a>
+            {% else %}
+            <a href="{{ site.baseurl }}{{ slide.cta.url }}" title="" class="btn-default-v9">{{ slide.cta.label }}</a>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
       </div>
-    </section><!--main-banner-v9 end-->
+    </section>
 
     <section class="about-v9">
       <div class="container">
@@ -52,127 +33,53 @@
             <div class="col-lg-6">
               <div class="call-us-v9">
                 <ul class="cl-ordr" id="contact">
-                  <a href="https://join.slack.com/t/core-sienna/shared_invite/zt-1lyt10wio-y3yV_yug3F68vLau27gUzA"
-                    target="_blank" rel="noopener">
+                  <a href="{{ page.contact_bar.slack_url }}" target="_blank" rel="noopener">
                     <span class="icon-v9"><i class="lni lni-slack"></i></span></a>
-                    <h4 style="min-width: 200px;">join the conversation</h4>
-                  <a href="mailto:sienna@nlr.gov">
+                    <h4 style="min-width: 200px;">{{ page.contact_bar.slack_label }}</h4>
+                  <a href="mailto:{{ page.contact_bar.email }}">
                     <span class="icon-v9"><i class="lni lni-envelope"></i></span></a>
-                    <h4>contact us</h4>
+                    <h4>{{ page.contact_bar.email_label }}</h4>
                 </ul>
           </div>
-          <!--call-us-v9 end-->
         </div>
         <div class="col-lg-6">
           <ul class="cl-ordr" id="counter">
             <li>
-              <a href="https://github.com/Sienna-Platform" target="_blank" rel="noopener"><img alt="GitHub Org's stars" src="https://img.shields.io/github/stars/Sienna-Platform?logoSize=auto&link=https%3A%2F%2Fgithub.com%2FSienna-Platform" width="80%"></a>
-              <span><a href="https://github.com/Sienna-Platform" target="_blank" rel="noopener">github.com/Sienna-Platform</a></span>
+              <a href="{{ page.contact_bar.github_url }}" target="_blank" rel="noopener"><img alt="GitHub Org's stars" src="https://img.shields.io/github/stars/Sienna-Platform?logoSize=auto&link=https%3A%2F%2Fgithub.com%2FSienna-Platform" width="80%"></a>
+              <span><a href="{{ page.contact_bar.github_url }}" target="_blank" rel="noopener">github.com/Sienna-Platform</a></span>
             </li>
             <li>
-              <a href="https://github.com/Sienna-Platform" target="_blank" rel="noopener"><img alt="Downloads" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fjuliapkgstats.com%2Fapi%2Fv1%2Ftotal_downloads%2Fpowersystems&query=total_requests&label=Downloads" width="175%"></a>
+              <a href="{{ page.contact_bar.github_url }}" target="_blank" rel="noopener"><img alt="Downloads" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fjuliapkgstats.com%2Fapi%2Fv1%2Ftotal_downloads%2Fpowersystems&query=total_requests&label=Downloads" width="175%"></a>
             </li>
           </ul>
         </div>
       </div>
   </div>
-  <!--abt-v9-cntr end-->
   </div>
   </section>
-  <!-- about-v9 end-->
-
 
   <section class="services-v9">
     <div class="container">
       <div class="title-v9 text-center wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
-        <span>CAPABILITIES FOR INDUSTRY AND RESEARCH APPLICATIONS</span>
-        <h2><span>Enabling scalable open-source modeling</span></h2>
+        <span>{{ page.capabilities.section.tagline }}</span>
+        <h2><span>{{ page.capabilities.section.heading_highlight }}</span></h2>
       </div>
-      <!--title-v9 end-->
       <div class="row services_v9">
+        {% for card in page.capabilities.cards %}
         <div class="col-lg-4 col-md-6">
           <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title=""><i class="lni lni-bolt"></i></a></span>
+            <span class="s-icon"><a href="{{ site.baseurl }}{{ card.link }}" title=""><i class="lni {{ card.icon }}"></i></a></span>
             <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title="">Production Cost Modeling</a>
+              <a href="{{ site.baseurl }}{{ card.link }}" title="">{{ card.title }}</a>
             </h3>
-            <p>
-              System scheduling, technology performance, and market opportunities
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title="">Sienna\Ops</a></span>
+            <p>{{ card.description }}</p>
+            <span class="s-category"><a href="{{ site.baseurl }}{{ card.link }}" title="">{{ card.category }}</a></span>
           </div>
-          <!--service-v9 end-->
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title=""><i class="lni lni-bolt"></i></a></span>
-            <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title="">Resource Adequacy</a>
-            </h3>
-            <p>
-              Probabilistic calculations for reliability analysis
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_ops.html" title="">Sienna\Ops</a></span>
-          </div>
-          <!--service-v9 end-->
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title=""><i class="lni lni-bolt"></i></a></span>
-            <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title="">Power Flow</a>
-            </h3>
-            <p>
-              Efficient linearized-DC and AC power flow
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title="">Sienna\Network</a></span>
-          </div>
-          <!--service-v9 end-->
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_dyn.html" title=""><i class="lni lni-bolt"></i></a></span>
-            <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_dyn.html" title="">Transient Stability</a>
-            </h3>
-            <p>
-              Small signal stability and full dynamic simulations
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_dyn.html" title="">Sienna\Dyn</a></span>
-          </div>
-          <!--service-v9 end-->
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title=""><i class="lni lni-bolt"></i></a></span>
-            <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title="">Network Reduction</a>
-            </h3>
-            <p>
-              Geographic reduction and reactive power planning for large networks
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_network.html" title="">Sienna\Network</a></span>
-          </div>
-          <!--service-v9 end-->
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="service-v9">
-            <span class="s-icon"><a href="{{ site.baseurl }}/pages/applications/sienna_data.html" title=""><i class="lni lni-bolt"></i></a></span>
-            <h3>
-              <a href="{{ site.baseurl }}/pages/applications/sienna_data.html" title="">Power System Data</a>
-            </h3>
-            <p>
-               Import, manipulate, and access power system datasets
-            </p>
-            <span class="s-category"><a href="{{ site.baseurl }}/pages/applications/sienna_data.html" title="">Sienna\Data</a></span>
-          </div>
-          <!--service-v9 end-->
-        </div>
+        {% endfor %}
       </div>
-      <!--services_v9 end-->
     </div>
   </section>
-  <!--services-v9 end-->
 
   <section class="why-us-v9">
     <div class="container">
@@ -180,152 +87,94 @@
         <div class="col-lg-6">
           <div class="why-txt-v9">
             <div class="title-v9">
-              <span>Why Choose Sienna</span>
-              <h2><span>Open solutions</span> for a transforming industry</h2>
+              <span>{{ page.why_us.tagline }}</span>
+              <h2><span>{{ page.why_us.heading_highlight }}</span> {{ page.why_us.heading_rest }}</h2>
             </div>
-            <!--title-v9 end-->
             <ul>
+              {% for item in page.why_us.items %}
               <li>
                 <div class="us-svs">
                   <span class="svs-icon">
-                    <i class="lni lni-calculator"></i>
+                    <i class="lni {{ item.icon }}"></i>
                   </span>
                   <div class="svs-info">
-                    <h3>Cutting-edge modeling capabilities</h3>
-                    <p>
-                      Scalable modeling capabilities powered by Julia with the rapid evolution of open-source development.
-                    </p>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
                   </div>
                 </div>
-                <!--us-svs end-->
               </li>
-              <li>
-                <div class="us-svs">
-                  <span class="svs-icon">
-                    <i class="lni lni-bricks"></i>
-                  </span>
-                  <div class="svs-info">
-                    <h3>Extensibility</h3>
-                    <p>
-                      Open codebase and permissive licensing (BSD 3.0) enable endless customization, reuse, and commercialization opportunities.
-                    </p>
-                  </div>
-                </div>
-                <!--us-svs end-->
-              </li>
-              <li>
-                <div class="us-svs">
-                  <span class="svs-icon">
-                    <i class="lni lni-bi-cycle"></i>
-                  </span>
-                  <div class="svs-info">
-                    <h3>Efficiency by design</h3>
-                    <p>
-                      Designed with efficiency in mind, Sienna promotes efficient, reproducible workflows that allow users to identify issues early and generate results quickly.
-                    </p>
-                  </div>
-                </div>
-                <!--us-svs end-->
-              </li>
+              {% endfor %}
             </ul>
           </div>
-          <!--why-txt-v9 end-->
         </div>
         <div class="col-lg-6">
           <div class="wy-img wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="0ms">
-            <img src="{{ site.baseurl }}/assets/img/badfon-pole-lep-nebo_crop.png" alt=""/>
+            <img src="{{ site.baseurl }}{{ page.why_us.image }}" alt=""/>
           </div>
-          <!--wy-img end-->
         </div>
       </div>
     </div>
   </section>
-  <!--why-us-v9 end-->
 
   <section class="about-v9-content">
     <div class="container-fluid">
       <div class="about-v9-row">
         <div class="ban-img-v9">
-          <img src="{{ site.baseurl }}/assets/img/nlr.png" alt="" />
+          <img src="{{ site.baseurl }}{{ page.about_nlr.image }}" alt="" />
         </div>
-        <!--ban-img-v9 end-->
         <div class="about-v9-txt wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
-          <span>about NLR</span>
-          <h2>Focused on today's <span>Energy Challenges</span></h2>
-          <p>
-            From breakthroughs in fundamental science to new clean technologies to integrated energy systems that power our lives, researchers at the National Laboratory of the Rockies are transforming the way the nation and the world use energy. We built Sienna to enable energy systems analysis at a scale that matters for users around the globe.
-          </p>
-          <a href="https://www.nlr.gov" target="_blank" title="" class="btn-default-v9 v2">Learn More</a>
-          <a href="https://www.youtube.com/watch?v=nujA2HHrxyI" target="_blank" title="" class="view-btn html5lightbox">
+          <span>{{ page.about_nlr.tagline }}</span>
+          <h2>{{ page.about_nlr.heading_before }}<span>{{ page.about_nlr.heading_highlight }}</span></h2>
+          <p>{{ page.about_nlr.body }}</p>
+          <a href="{{ page.about_nlr.cta_url }}" target="_blank" title="" class="btn-default-v9 v2" rel="noopener">{{ page.about_nlr.cta_label }}</a>
+          <a href="{{ page.about_nlr.video_url }}" target="_blank" title="" class="view-btn html5lightbox" rel="noopener">
             <span class="pl-btn"><i class="lni lni-play"></i></span>
-            <span class="vt">view our story</span>
+            <span class="vt">{{ page.about_nlr.video_label }}</span>
           </a>
         </div>
-        <!--about-v9-txt end-->
       </div>
     </div>
   </section>
-  <!--about-v9-content end-->
 
   {% include testimonial/testimonial-developer.html %}
-  <section class="team-sec v9">
-    <div class="container">
-      <div class="team-sec-content">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="team-thumb wow zoomIn" data-wow-duration="1000ms" data-wow-delay="0ms">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="blog-section-v7 v9">
     <div class="container">
       <div class="title-v9 text-center wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
-        <span><a href="{{ site.baseurl }}/pages/publications.html">PUBLICATIONS</a></span>
-        <h2><span><a href="{{ site.baseurl }}/pages/publications.html">Latest</a></span> <a href="{{ site.baseurl }}/pages/publications.html">Articles</a></h2>
+        <span><a href="{{ site.baseurl }}{{ page.publications_section.publications_url }}">{{ page.publications_section.tagline }}</a></span>
+        <h2><span><a href="{{ site.baseurl }}{{ page.publications_section.publications_url }}">{{ page.publications_section.heading_highlight }}</a></span> <a href="{{ site.baseurl }}{{ page.publications_section.publications_url }}">{{ page.publications_section.heading_rest }}</a></h2>
       </div>
-      <!--title-v9 end-->
       <div class="blog-posts-v7">
         <div class="row">
-          {% for blog in page.blog limit: 3 %}
+          {% for publication in page.featured_publications limit: 3 %}
           <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="blog-post-v7">
               <div class="blog-thumbnail">
-                <a href="{{blog.url}}" target="_blank"><img src="{{ site.baseurl }}{{ blog.layout_image }}" alt="" class="w-100" /></a>
+                <a href="{{ publication.url }}" target="_blank" rel="noopener"><img src="{{ site.baseurl }}{{ publication.layout_image }}" alt="" class="w-100" /></a>
               </div>
               <div class="blog-info">
                 <ul class="meta">
                   <li>
-                    <a>{{ page.date | date_to_long_string: "ordinal", "US"
-                      }}</a>
+                    <a>{{ page.date | date_to_long_string: "ordinal", "US" }}</a>
                   </li>
                 </ul>
                 <h2>
-                  <a href="{{blog.url}}" target="_blank" title="">{{blog.title}}</a>
+                  <a href="{{ publication.url }}" target="_blank" rel="noopener" title="">{{ publication.title }}</a>
                 </h2>
               </div>
             </div>
-            <!--blog-post-v7 end-->
           </div>
           {% endfor %}
         </div>
-        <a href="{{ site.baseurl }}/pages/publications.html" title="" class="btn-default-v9 v2">See All Publications</a>
+        <a href="{{ site.baseurl }}{{ page.publications_section.publications_url }}" title="" class="btn-default-v9 v2">{{ page.publications_section.see_all_label }}</a>
       </div>
-      <!--blog-posts-v7 end-->
     </div>
   </section>
 
   {% include footer/footer-sienna.html %}
-  <!--footer end-->
   </div>
-  <!--wrapper end-->
 
   <script src="{{ site.baseurl }}/assets/js/bundle.min.js"></script>
-
-
 </body>
 
 </html>

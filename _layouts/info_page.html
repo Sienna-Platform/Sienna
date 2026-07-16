@@ -4,7 +4,7 @@
 
 <body>
   <div class="wrapper">
-    {% include header/header-default.html %}
+    {% include header/header.html %}
 
     <section class="service-page-banner">
       <div class="container">
@@ -37,7 +37,7 @@
       {% assign what_we_do = page.what_we_do%}
       <div class="container">
         <div class="title-v9 text-center wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
-            <h2><span>Features</span> and Capabilities</h2>
+            <h2><span>{{ what_we_do.title_highlight | default: "Features" }}</span> {{ what_we_do.title_rest | default: "and Capabilities" }}</h2>
         </div>
         <!--section-title-v2 end-->
         <div class="what-we-do-content">
@@ -143,7 +143,6 @@
   </div>
   </section>
 
-  <!--career-page end-->
   {% include footer/footer-sienna.html %}
   </div>
   <!--wrapper end-->

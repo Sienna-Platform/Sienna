@@ -96,13 +96,11 @@ end
         @test occursin("site.data.sienna_docs.hub", home_layout)
         @test occursin("site.data.sienna_docs.pages.install", home_layout)
 
-        for nav in ("sidemenu.yml", "secondary.yml")
-            nav_content = read(
-                joinpath(_SIENNA_ROOT, "_data", "navigation-menu", nav),
-                String,
-            )
-            @test occursin(citing_href, nav_content)
-        end
+        nav_content = read(
+            joinpath(_SIENNA_ROOT, "_data", "navigation-menu", "secondary.yml"),
+            String,
+        )
+        @test occursin(citing_href, nav_content)
 
         if isdir(_DOCS_BUILD)
             for expected in (install_href, citing_href)

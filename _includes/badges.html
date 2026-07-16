@@ -1,3 +1,4 @@
+<!-- Not included in info_page yet; wire up when ready -->
 {% assign badges = page.badges %}
 <section class="our-services-sec v10">
   <div class="container">
@@ -6,33 +7,28 @@
         <div class="col-lg-4 col-md-6">
           <div class="service-card-mile wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="0ms">
             <img src="{{ site.baseurl }}/assets/img/icon_checklist_big.svg" alt="" />
-            <h2><a href="27_service_1.html" title="">Key Features</a></h2>
-            <p>{{badges.content1}}</p>
-            <a href="#" title="" class="cat-up">Learn More</a>
+            <h2><a href="#how_works" title="">Key Features</a></h2>
+            <p>{{ badges.content1 }}</p>
+            <a href="#how_works" title="" class="cat-up">Learn More</a>
           </div>
-          <!--service-card end-->
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="service-card-mile wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
             <img src="{{ site.baseurl }}/assets/img/icon_gear.svg" alt="" />
-            <h2><a href="27_service_1.html" title="">Core Capabilities</a></h2>
-            <p>{{badges.content2}}</p>
-            <a href="#" title="" class="cat-up">Learn More</a>
+            <h2><a href="#how_works" title="">Core Capabilities</a></h2>
+            <p>{{ badges.content2 }}</p>
+            <a href="#how_works" title="" class="cat-up">Learn More</a>
           </div>
-          <!--service-card end-->
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="service-card-mile wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="400ms">
             <img src="{{ site.baseurl }}/assets/img/icon_comp_mouse.svg" alt="" />
             <h2><a href="#how_works" title="">How It Works</a></h2>
-            <p>{{badges.content3}}</p>
+            <p>{{ badges.content3 }}</p>
             <a href="#how_works" title="" class="cat-up">Learn More</a>
           </div>
-          <!--service-card end-->
         </div>
       </div>
     </div>
-    <!--our-services-content end-->
   </div>
 </section>
-<!--our-services-sec end-->

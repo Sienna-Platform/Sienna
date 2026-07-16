@@ -1,16 +1,8 @@
 ---
 layout: publications
 title: Resources
-
-#######################Upcoming Events######################
-events:
-  section_title: "Publications and Projects"
-  title: "Publications and Projects"
-  label: "Strategy developer Ecommerce with AI"
-  image: "/assets/img/us-img1.png"
-  names: "Andy grammer, Bob howy"
-  location: "25 Orchard St, NY, CA"
-  date: "September 19, 2020"
+section_title_highlight: Publications
+section_title_rest: and Projects
 
 publist:
   - title: PowerSimulations.jl -- A Power Systems operations simulation Library
