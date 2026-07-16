@@ -5,15 +5,15 @@ img: ""
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Network
+  title: Sienna\Net
   sub_title: Ensure transmission network reliability
   content: Power flow, network reductions, and reactive power planning
 
 ############################ Transition Badges ##################################
 badges:
-  content1: What makes Sienna\Network different?
-  content2: Is Sienna\Network right for your use case?
-  content3: How is Sienna\Network structured?
+  content1: What makes Sienna\Net different?
+  content2: Is Sienna\Net right for your use case?
+  content3: How is Sienna\Net structured?
 
 ########################## Features #########################
 what_we_do:
@@ -37,7 +37,7 @@ what_we_do:
 why_us:
   title: "How It Works"
   subtitle:
-  content: "Sienna\\Network is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
+  content: "Sienna\\Net is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
   - name: "PowerFlows.jl"

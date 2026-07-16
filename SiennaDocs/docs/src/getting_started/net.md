@@ -1,4 +1,4 @@
-# [Getting Started with Sienna\Network](@id getting_started_network)
+# [Getting Started with Sienna\Net](@id getting_started_network)
 
 ## Prerequisite
 
@@ -8,9 +8,9 @@ and walk through some of their extensive learning resources.
 
 ## Install Sienna
 
-Add packages as described in [Install Sienna — Sienna\Network](@ref install_network).
+Add packages as described in [Install Sienna — Sienna\Net](@ref install_network).
 
-## [Learn Sienna\Network](@id learn_sienna_network)
+## [Learn Sienna\Net](@id learn_sienna_network)
 
 Work through these resources:
 

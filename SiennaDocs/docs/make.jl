@@ -55,7 +55,7 @@ append!(
     [
         "Sienna\\Ops" => "getting_started/ops.md",
         "Sienna\\Dyn" => "getting_started/dyn.md",
-        "Sienna\\Network" => "getting_started/network.md",
+        "Sienna\\Net" => "getting_started/net.md",
     ],
 )
 
@@ -151,7 +151,7 @@ docs = Any[
     MultiDocumenter.DropdownNav("Sienna\\Data", _refs([:psy, :pscb])),
     MultiDocumenter.DropdownNav("Sienna\\Ops", _refs([:psi, :sss, :hps, :pras, :pa, :pg, :psy])),
     MultiDocumenter.DropdownNav("Sienna\\Dyn", _refs([:psid, :psy])),
-    MultiDocumenter.DropdownNav("Sienna\\Network", _refs([:pf, :pnm, :psy])),
+    MultiDocumenter.DropdownNav("Sienna\\Net", _refs([:pf, :pnm, :psy])),
     # MultiDocumenter.DropdownNav("Sienna\\Invest", _refs([:psip, :psinv, :psy])),
 ]
 

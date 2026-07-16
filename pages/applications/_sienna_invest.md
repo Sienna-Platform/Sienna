@@ -29,7 +29,7 @@ what_we_do:
     title: "Core Capabilities"
     service_list:
       - service: Generation and transmission investment planning
-      - service: Built-in interoperability with Sienna\\Ops and Sienna\\Network to assess operational and reliability impacts of investments
+      - service: Built-in interoperability with Sienna\\Ops and Sienna\\Net to assess operational and reliability impacts of investments
 
 ########################## How it Works #########################
 why_us:

@@ -12,7 +12,7 @@ toc:
       - page: Sienna\Dyn
         url: /pages/applications/sienna_dyn.html
       
-      - page: Sienna\Network
+      - page: Sienna\Net
         url: /pages/applications/sienna_network.html
 
   - title: DOCUMENTATION
