@@ -24,10 +24,10 @@ Work through these resources:
 
 Scheduling models may call network power flow through Sienna\Net packages; see:
 
-| Description                  | Resource                                                                                     | Package(s)                                                   |
-|:---------------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |
-| Standalone network analysis  | [Learn Sienna\Net](@ref learn_sienna_network)                                            | Sienna\Net                                               |
-| Sienna\Ops -> Sienna\Net | [Running Power Flow In The Loop with Unit Commitment](@extref PowerSimulations uc-inloop-pf) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
+| Description                 | Resource                                                                                     | Package(s)                                                   |
+|:--------------------------- |:-------------------------------------------------------------------------------------------- |:------------------------------------------------------------ |
+| Standalone network analysis | [Learn Sienna\Net](@ref learn_sienna_network)                                                | Sienna\Net                                                   |
+| Sienna\Ops -> Sienna\Net    | [Running Power Flow In The Loop with Unit Commitment](@extref PowerSimulations uc-inloop-pf) | [PowerSimulations.jl](@extref PowerSimulations :doc:`index`) |
 
 From there, explore the rest of each package's API, how-to guides, and explanation for more
 package-specific information, such as [Chronologies](@extref PowerSimulations :doc:`explanation/chronologies`), [Sequencing](@extref PowerSimulations :doc:`explanation/sequencing`), and the full [Formulation Library](@extref PowerSimulations :doc:`formulation_library/Introduction`).

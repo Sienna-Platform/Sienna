@@ -9,10 +9,10 @@ Sienna is a command line tool written in the Julia programming language.
 
 ### Step 1: Install Julia and `juliaup`
 
-Follow the instructions on [the Julia Downloads page](https://julialang.org/downloads/) to download Julia and `juliaup`, Julia's version manager, and add Julia to your path. 
+Follow the instructions on [the Julia Downloads page](https://julialang.org/downloads/) to download Julia and `juliaup`, Julia's version manager, and add Julia to your path.
 
 Verify installation:
-    
+
 ```bash
 julia --version
 ```
