@@ -16,7 +16,7 @@ struct AppColumn
     id::Symbol
     header::String
     capabilities::Vector{String}
-    gs_page::String          # page stem, e.g. "getting_started/network" (matches make.jl pages)
+    gs_page::String          # page stem, e.g. "getting_started/net" (matches make.jl pages)
     enabled::Bool
 end
 
@@ -73,7 +73,7 @@ const CAPABILITY_APPS = AppColumn[
     ),
     AppColumn(
         :network,
-        "Network",
+        "Net",
         [
             "AC and DC|power flow",
             "Network reduction",
@@ -84,7 +84,7 @@ const CAPABILITY_APPS = AppColumn[
             # "Multi-period|power flows",
             "Contingency analysis",
         ],
-        "getting_started/network",
+        "getting_started/net",
         true,
     ),
     AppColumn(
@@ -112,7 +112,7 @@ const CAPABILITY_APPS = AppColumn[
 #      immediately after that app's cap row N (e.g. after_cap_index = 4 → below O4).
 #      If you add/remove caps in that app, update after_cap_index to match.
 #   3. Set span_from / span_to to two neighboring enabled columns (e.g. :ops → :network).
-#      With INCLUDE_INVEST = false, column order is Data, Ops, Network, Dyn — re-check spans.
+#      With INCLUDE_INVEST = false, column order is Data, Ops, Net, Dyn — re-check spans.
 #   4. Choose unique block_id and node_id strings (not used elsewhere in the diagram).
 #   5. Set enabled = false to draft without deleting the entry.
 #   6. Run test/test_capability_diagram.jl; orphan `style block_id` without a row causes Mermaid errors.
