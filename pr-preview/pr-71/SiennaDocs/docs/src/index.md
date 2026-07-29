@@ -12,10 +12,10 @@ Sienna is comprised of many Julia packages, organized
 into applications:
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'lineColor': '#9ec5e8', 'arrowheadColor': '#9ec5e8', 'primaryTextColor': '#ffffff', 'secondaryTextColor': '#ffffff'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'lineColor': '#9ec5e8', 'arrowheadColor': '#9ec5e8'}}}%%
 block-beta
   columns 4
-  DataHdr("Sienna\Data") OpsHdr("Sienna\Ops") NetworkHdr("Sienna\Network") DynHdr("Sienna\Dyn")
+  DataHdr("Sienna\Data") OpsHdr("Sienna\Ops") NetworkHdr("Sienna\Net") DynHdr("Sienna\Dyn")
   D1["Data assembly, parsing<br/>and archiving"] O1["Production cost<br/>modeling"] N1["AC and DC<br/>power flow"] Y1["Transient stability"]
   D2["Common data ontology<br/>across applications"] O2["Market analysis"] N2["Network reduction"] Y2["Electromagnetic<br/>transient modeling"]
   D3["Publicly available data sets"] O3["Resource adequacy<br/>assessment"] N3["Reactive power<br/>planning"] Y3["Small signal<br/>stability"]
@@ -23,10 +23,10 @@ block-beta
   space block:pf:2
     X_PF["Power flow<br/>in the loop"]
   end space
-  GSData(["<a href='getting_started/data/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Data</a>"]) GSOps(["<a href='getting_started/ops/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Ops</a>"]) GSNetwork(["<a href='getting_started/network/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Network</a>"]) GSDyn(["<a href='getting_started/dyn/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Dyn</a>"])
-  classDef appHdr fill:none,stroke:#f59e31,color:#ffffff,stroke-width:2px
-  classDef coreCap fill:none,stroke:#7eb6e0,color:#ffffff,stroke-width:2px
-  classDef interCap fill:none,stroke:#7eb6e0,color:#ffffff,stroke-width:2px
+  GSData(["<a href='getting_started/data/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Data</a>"]) GSOps(["<a href='getting_started/ops/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Ops</a>"]) GSNetwork(["<a href='getting_started/net/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Net</a>"]) GSDyn(["<a href='getting_started/dyn/' style='color:#ffffff;text-decoration:none'>Learn Sienna\Dyn</a>"])
+  classDef appHdr fill:none,stroke:#f59e31,stroke-width:2px
+  classDef coreCap fill:none,stroke:#7eb6e0,stroke-width:2px
+  classDef interCap fill:none,stroke:#7eb6e0,stroke-width:2px
   classDef gsBtn fill:#1a5f4a,color:#ffffff,stroke:#0d3d2e,stroke-width:2px
   class DataHdr,OpsHdr,NetworkHdr,DynHdr appHdr
   class D1,O1,N1,Y1,D2,O2,N2,Y2,D3,O3,N3,Y3,O4,N4,Y4 coreCap
@@ -37,17 +37,71 @@ block-beta
 
 ```@raw html
 <style>
-article .mermaid svg .nodeLabel p,
-article .mermaid svg .nodeLabel span,
-article .mermaid svg .nodeLabel div,
-article .mermaid svg .nodeLabel a,
-article .mermaid svg .label text,
-article .mermaid svg .label span,
-article .mermaid svg foreignObject div {
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+article .mermaid svg g.node:not(.gsBtn) .label text,
+article .mermaid svg g.node:not(.gsBtn) .label span,
+article .mermaid svg g.node:not(.gsBtn) foreignObject div {
+  color: #222 !important;
+}
+article .mermaid svg g.node:not(.gsBtn) .label text,
+article .mermaid svg g.node:not(.gsBtn) text {
+  fill: #222 !important;
+}
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) foreignObject div {
   color: #ffffff !important;
 }
-article .mermaid svg .label text,
-article .mermaid svg text {
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) text {
+  fill: #ffffff !important;
+}
+article .mermaid svg g.node.gsBtn .nodeLabel p,
+article .mermaid svg g.node.gsBtn .nodeLabel span,
+article .mermaid svg g.node.gsBtn .nodeLabel div,
+article .mermaid svg g.node.gsBtn .nodeLabel a,
+article .mermaid svg g.node.gsBtn .label text,
+article .mermaid svg g.node.gsBtn .label span,
+article .mermaid svg g.node.gsBtn foreignObject div,
+article .mermaid svg g.node.gsBtn a {
+  color: #ffffff !important;
+}
+article .mermaid svg g.node.gsBtn .label text,
+article .mermaid svg g.node.gsBtn text {
   fill: #ffffff !important;
 }
 article .mermaid svg .edgePath .path,

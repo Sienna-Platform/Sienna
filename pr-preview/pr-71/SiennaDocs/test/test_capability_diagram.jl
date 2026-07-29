@@ -161,4 +161,42 @@ end
     with_draft = CapabilityDiagram.generate_block_beta_diagram(; cross_app = enabled_draft)
     @test occursin("X_DRAFT", with_draft)
     @test occursin("block:draft:2", with_draft)
+
+    @test occursin(
+        "classDef appHdr fill:none,stroke:#f59e31,stroke-width:2px",
+        diagram_no_invest,
+    )
+    @test occursin(
+        "classDef coreCap fill:none,stroke:#7eb6e0,stroke-width:2px",
+        diagram_no_invest,
+    )
+    @test occursin(
+        "classDef interCap fill:none,stroke:#7eb6e0,stroke-width:2px",
+        diagram_no_invest,
+    )
+    @test !occursin("primaryTextColor", diagram_no_invest)
+    @test !occursin("secondaryTextColor", diagram_no_invest)
+    @test occursin(
+        "classDef gsBtn fill:#1a5f4a,color:#ffffff,stroke:#0d3d2e,stroke-width:2px",
+        diagram_no_invest,
+    )
+
+    css = CapabilityDiagram.diagram_css()
+    @test occursin("g.node:not(.gsBtn)", css)
+    @test occursin("color: #222 !important;", css)
+    @test occursin("fill: #222 !important;", css)
+    @test occursin("html.theme--documenter-dark", css)
+    @test occursin("html.theme--catppuccin-frappe", css)
+    @test occursin("html.theme--catppuccin-macchiato", css)
+    @test occursin("html.theme--catppuccin-mocha", css)
+    @test occursin("g.node.gsBtn", css)
+    @test occursin("color: #ffffff !important;", css)
+    @test occursin("fill: #ffffff !important;", css)
+    @test !occursin("color: inherit", css)
+    @test !occursin("currentColor", css)
+    # White/light text for unfilled nodes must be theme-scoped, not global.
+    @test !occursin(
+        r"article \.mermaid svg \.nodeLabel p,\narticle \.mermaid svg \.nodeLabel span",
+        css,
+    )
 end

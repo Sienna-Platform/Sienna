@@ -358,7 +358,7 @@ mkpath(export_dir)</code></pre><pre><code class="nohighlight hljs">&quot;./uc_po
     overwrite = true,
 )
 
-power_flow_model = ACPowerFlow(; exporter = psse_export)</code></pre><pre><code class="nohighlight hljs">PowerFlows.ACPolarPowerFlow{PowerFlows.NewtonRaphsonACPowerFlow}(false, PowerFlows.PSSEExportPowerFlow(:v33, &quot;./uc_power_flow_in_the_loop_results/psse_exports&quot;, &quot;export&quot;, false, true), false, false, false, nothing, true, false, false, false, PowerNetworkMatrices.NetworkReduction[], 1, String[], false, Dict{Symbol, Any}())</code></pre><h3 id="Alternative:-Fast-Decoupled-(FDNR)-solver"><a class="docs-heading-anchor" href="#Alternative:-Fast-Decoupled-(FDNR)-solver">Alternative: Fast Decoupled (FDNR) solver</a><a id="Alternative:-Fast-Decoupled-(FDNR)-solver-1"></a><a class="docs-heading-anchor-permalink" href="#Alternative:-Fast-Decoupled-(FDNR)-solver" title="Permalink"></a></h3><p>PowerFlows 0.22 adds a fast-decoupled AC solver, selected via the solver type parameter of <a href="https://sienna-platform.github.io/PowerFlows.jl/stable/reference/api/public/#PowerFlows.ACPowerFlow"><code>PowerFlows.ACPowerFlow</code></a>. It plugs into <code>power_flow_evaluation</code> exactly like the default Newton-Raphson solver (same auxiliary variables and PSS/e exports) and matches its converged solution, but is often faster on large networks. Optionally hand off to an exact Newton solver for the final refinement:</p><pre><code class="language-julia hljs">using PowerFlows: FastDecoupledACPowerFlow, NewtonRaphsonACPowerFlow
+power_flow_model = ACPowerFlow(; exporter = psse_export)</code></pre><pre><code class="nohighlight hljs">PowerFlows.ACPolarPowerFlow{PowerFlows.NewtonRaphsonACPowerFlow}(false, PowerFlows.PSSEExportPowerFlow(:v33, &quot;./uc_power_flow_in_the_loop_results/psse_exports&quot;, &quot;export&quot;, false, true), false, false, false, nothing, true, false, false, false, PowerNetworkMatrices.NetworkReduction[], 1, String[], false, false, Dict{Symbol, Any}())</code></pre><h3 id="Alternative:-Fast-Decoupled-(FDNR)-solver"><a class="docs-heading-anchor" href="#Alternative:-Fast-Decoupled-(FDNR)-solver">Alternative: Fast Decoupled (FDNR) solver</a><a id="Alternative:-Fast-Decoupled-(FDNR)-solver-1"></a><a class="docs-heading-anchor-permalink" href="#Alternative:-Fast-Decoupled-(FDNR)-solver" title="Permalink"></a></h3><p>PowerFlows 0.22 adds a fast-decoupled AC solver, selected via the solver type parameter of <a href="https://sienna-platform.github.io/PowerFlows.jl/stable/reference/api/public/#PowerFlows.ACPowerFlow"><code>PowerFlows.ACPowerFlow</code></a>. It plugs into <code>power_flow_evaluation</code> exactly like the default Newton-Raphson solver (same auxiliary variables and PSS/e exports) and matches its converged solution, but is often faster on large networks. Optionally hand off to an exact Newton solver for the final refinement:</p><pre><code class="language-julia hljs">using PowerFlows: FastDecoupledACPowerFlow, NewtonRaphsonACPowerFlow
 
 fd_power_flow_model = ACPowerFlow{FastDecoupledACPowerFlow}(;
     exporter = psse_export,
@@ -431,55 +431,34 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
   </thead>
   <tbody>
     <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowBranchActivePowerFromTo__TapTransformer</td>
+    </tr>
+    <tr class = "dataRow">
       <td style = "text-align: left;">PowerFlowBranchActivePowerLoss__Line</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerLoss__TwoTerminalGenericHVDCLine</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchReactivePowerFromTo__Line</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__TwoTerminalGenericHVDCLine</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchReactivePowerFromTo__TwoTerminalGenericHVDCLine</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">TimeDurationOn__ThermalStandard</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchReactivePowerToFrom__TwoTerminalGenericHVDCLine</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__Line</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">HydroEnergyOutput__HydroDispatch</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerFromTo__TapTransformer</td>
+      <td style = "text-align: left;">PowerFlowBranchReactivePowerToFrom__Line</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">PowerFlowBranchReactivePowerToFrom__TapTransformer</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">TimeDurationOff__ThermalStandard</td>
+      <td style = "text-align: left;">PowerFlowVoltageMagnitude__ACBus</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowVoltageAngle__ACBus</td>
+      <td style = "text-align: left;">PowerFlowBranchReactivePowerFromTo__Line</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">PowerFlowBranchActivePowerFromTo__Line</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerLoss__TapTransformer</td>
+      <td style = "text-align: left;">PowerFlowBranchReactivePowerToFrom__TwoTerminalGenericHVDCLine</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowVoltageMagnitude__ACBus</td>
+      <td style = "text-align: left;">PowerFlowBranchActivePowerLoss__TwoTerminalGenericHVDCLine</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__TapTransformer</td>
+      <td style = "text-align: left;">PowerFlowVoltageAngle__ACBus</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">PowerFlowBranchActivePowerFromTo__TwoTerminalGenericHVDCLine</td>
@@ -488,7 +467,31 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
       <td style = "text-align: left;">PowerFlowBranchReactivePowerFromTo__TapTransformer</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">PowerFlowBranchReactivePowerToFrom__Line</td>
+      <td style = "text-align: left;">PowerFlowBranchActivePowerLoss__TapTransformer</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">TimeDurationOn__ThermalStandard</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">HydroEnergyOutput__HydroDispatch</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__Line</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__TapTransformer</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">TimeDurationOff__ThermalStandard</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowHVDCNetPower__ACBus</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowBranchActivePowerToFrom__TwoTerminalGenericHVDCLine</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">PowerFlowBranchReactivePowerFromTo__TwoTerminalGenericHVDCLine</td>
     </tr>
   </tbody>
 </table>
@@ -501,46 +504,46 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
   </thead>
   <tbody>
     <tr class = "dataRow">
-      <td style = "text-align: left;">VOMCostExpression__ThermalStandard</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">FuelCostExpression__ThermalStandard</td>
+      <td style = "text-align: left;">ProductionCostExpression__HydroDispatch</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">ShutDownCostExpression__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ActivePowerBalance__ACBus</td>
+      <td style = "text-align: left;">FixedCostExpression__RenewableDispatch</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">ProductionCostExpression__RenewableDispatch</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ActivePowerBalance__System</td>
+      <td style = "text-align: left;">VOMCostExpression__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ProductionCostExpression__HydroDispatch</td>
+      <td style = "text-align: left;">FixedCostExpression__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">CurtailmentCostExpression__RenewableDispatch</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">VOMCostExpression__RenewableDispatch</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">FuelConsumptionExpression__ThermalStandard</td>
+      <td style = "text-align: left;">ActivePowerBalance__ACBus</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">StartUpCostExpression__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
+      <td style = "text-align: left;">CurtailmentCostExpression__RenewableDispatch</td>
+    </tr>
+    <tr class = "dataRow">
       <td style = "text-align: left;">ProductionCostExpression__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">FixedCostExpression__RenewableDispatch</td>
+      <td style = "text-align: left;">ActivePowerBalance__System</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">FixedCostExpression__ThermalStandard</td>
+      <td style = "text-align: left;">FuelConsumptionExpression__ThermalStandard</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">FuelCostExpression__ThermalStandard</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">VOMCostExpression__RenewableDispatch</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">PTDFBranchFlow__Line</td>
@@ -556,13 +559,7 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
   </thead>
   <tbody>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ActivePowerTimeSeriesParameter__HydroDispatch</td>
-    </tr>
-    <tr class = "dataRow">
       <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__HydroDispatch</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__RenewableNonDispatch</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">ActivePowerTimeSeriesParameter__PowerLoad</td>
@@ -571,13 +568,19 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
       <td style = "text-align: left;">ActivePowerTimeSeriesParameter__RenewableDispatch</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__RenewableDispatch</td>
-    </tr>
-    <tr class = "dataRow">
       <td style = "text-align: left;">ActivePowerTimeSeriesParameter__RenewableNonDispatch</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__PowerLoad</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__RenewableDispatch</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">ReactivePowerTimeSeriesParameter__RenewableNonDispatch</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">ActivePowerTimeSeriesParameter__HydroDispatch</td>
     </tr>
   </tbody>
 </table>
@@ -590,13 +593,10 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
   </thead>
   <tbody>
     <tr class = "dataRow">
-      <td style = "text-align: left;">SystemBalanceSlackUp__System</td>
+      <td style = "text-align: left;">StopVariable__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">ActivePowerVariable__HydroDispatch</td>
-    </tr>
-    <tr class = "dataRow">
-      <td style = "text-align: left;">OnVariable__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">StartVariable__ThermalStandard</td>
@@ -605,17 +605,33 @@ uc_results = get_decision_problem_results(sim_results, &quot;UC&quot;)</code></p
       <td style = "text-align: left;">ActivePowerVariable__RenewableDispatch</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">StopVariable__ThermalStandard</td>
+      <td style = "text-align: left;">ActivePowerVariable__ThermalStandard</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: left;">OnVariable__ThermalStandard</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: left;">SystemBalanceSlackDown__System</td>
     </tr>
     <tr class = "dataRow">
-      <td style = "text-align: left;">ActivePowerVariable__ThermalStandard</td>
+      <td style = "text-align: left;">SystemBalanceSlackUp__System</td>
     </tr>
   </tbody>
 </table>
-<p>Notice the &quot;UC Problem Auxiliary variables Results&quot; table, which lists the active and reactive power flow and bus voltage magnitude and angle results from the AC power flow  (e.g., <code>PowerFlowBranchReactivePowerFromTo__Line</code>, <code>PowerFlowVoltageMagnitude__ACBus</code>). These are not output when a UC problem is run alone.</p><h2 id="PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop"><a class="docs-heading-anchor" href="#PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop">PTDF UC Flows vs. AC Power Flow In the Loop</a><a id="PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop-1"></a><a class="docs-heading-anchor-permalink" href="#PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop" title="Permalink"></a></h2><p>Now, we&#39;ll compare the PTDF UC flows to the AC power flow results.</p><p>The UC stage optimizes flows using the PTDF network model, and the line flows are not variables; they are recorded in the <code>PTDFBranchFlow__*</code> expressions.</p><p>First, load in the PTDF branch flows for one line with <a href="../../api/PowerSimulations/#PowerSimulations.read_realized_expression-Tuple{PowerSimulations.SimulationProblemResults, AbstractString}"><code>read_realized_expression</code></a>:</p><pre><code class="language-julia hljs">ptdf_flows = read_realized_expression(uc_results, &quot;PTDFBranchFlow__Line&quot;)
+<p>Notice the &quot;UC Problem Auxiliary variables Results&quot; table, which lists the active and reactive power flow and bus voltage magnitude and angle results from the AC power flow  (e.g., <code>PowerFlowBranchReactivePowerFromTo__Line</code>, <code>PowerFlowVoltageMagnitude__ACBus</code>). These are not output when a UC problem is run alone.</p><h3 id="Power-Flow-Auxiliary-Variable-Types"><a class="docs-heading-anchor" href="#Power-Flow-Auxiliary-Variable-Types">Power Flow Auxiliary Variable Types</a><a id="Power-Flow-Auxiliary-Variable-Types-1"></a><a class="docs-heading-anchor-permalink" href="#Power-Flow-Auxiliary-Variable-Types" title="Permalink"></a></h3><p>The AC power flow writes its solved quantities into auxiliary variables, all subtypes of <code>PowerFlowAuxVariableType</code>. They are grouped by what each is indexed on:</p><pre><code class="language-text hljs">PowerFlowAuxVariableType
+├─ BranchFlowAuxVariableType              # per-AC-branch flows (natural-units powers)
+│    ├─ PowerFlowBranchActivePowerFromTo / …ToFrom / …Loss
+│    └─ PowerFlowBranchReactivePowerFromTo / …ToFrom
+├─ PowerFlowHVDCAuxVariableType           # per-HVDC-component, from PowerFlows.get_hvdc_results
+│    ├─ PowerFlowHVDCActivePower/ReactivePower {FromTo,ToFrom} + PowerFlowHVDCActivePowerLoss
+│    ├─ PowerFlowHVDCDCCurrent / DCVoltageFrom / DCVoltageTo
+│    ├─ PowerFlowLCC{Rectifier,Inverter}Tap / RectifierDelayAngle / InverterExtinctionAngle
+│    └─ PowerFlowConverterDCPower / ReactivePower / DCVoltage
+├─ bus-indexed:   PowerFlowVoltageAngle, PowerFlowVoltageMagnitude, PowerFlowHVDCNetPower,
+│                 PowerFlowLossFactors, PowerFlowVoltageStabilityFactors
+└─ control-device-indexed:  PowerFlowTapRatio (TapTransformer),
+                 PowerFlowSwitchedShuntSusceptance (SwitchedAdmittance),
+                 PowerFlowFACTSReactivePower (FACTSControlDevice)</code></pre><p><code>PowerFlowHVDCNetPower</code> is a <em>per-bus</em> net-injection quantity, which is why it is a direct subtype of <code>PowerFlowAuxVariableType</code> and not a <code>PowerFlowHVDCAuxVariableType</code> (those are all per-component).</p><h2 id="PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop"><a class="docs-heading-anchor" href="#PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop">PTDF UC Flows vs. AC Power Flow In the Loop</a><a id="PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop-1"></a><a class="docs-heading-anchor-permalink" href="#PTDF-UC-Flows-vs.-AC-Power-Flow-In-the-Loop" title="Permalink"></a></h2><p>Now, we&#39;ll compare the PTDF UC flows to the AC power flow results.</p><p>The UC stage optimizes flows using the PTDF network model, and the line flows are not variables; they are recorded in the <code>PTDFBranchFlow__*</code> expressions.</p><p>First, load in the PTDF branch flows for one line with <a href="../../api/PowerSimulations/#PowerSimulations.read_realized_expression-Tuple{PowerSimulations.SimulationProblemResults, AbstractString}"><code>read_realized_expression</code></a>:</p><pre><code class="language-julia hljs">ptdf_flows = read_realized_expression(uc_results, &quot;PTDFBranchFlow__Line&quot;)
 example_line = first(unique(ptdf_flows.name))
 ptdf_line = filter(row -&gt; row.name == example_line, ptdf_flows)</code></pre><div>
   <div style = "float: right; font-style: italic;">
@@ -640,52 +656,52 @@ ptdf_line = filter(row -&gt; row.name == example_line, ptdf_flows)</code></pre><
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T00:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">20.436887483178324</td>
+      <td style = "text-align: right;">20.424915636211495</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T01:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">18.477820525200862</td>
+      <td style = "text-align: right;">18.790735839657103</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T02:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">19.598251370512905</td>
+      <td style = "text-align: right;">20.093062213301195</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T03:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">20.357110344611062</td>
+      <td style = "text-align: right;">20.662603974337852</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T04:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">50.87555718326905</td>
+      <td style = "text-align: right;">45.890097494270265</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T05:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">35.38550321178777</td>
+      <td style = "text-align: right;">51.680456761973936</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T06:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">37.56143150066425</td>
+      <td style = "text-align: right;">52.663695405193835</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T07:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">49.57893304145403</td>
+      <td style = "text-align: right;">60.51612290640789</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T08:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">58.887068930330685</td>
+      <td style = "text-align: right;">61.59337056293713</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T09:00:00</td>
       <td style = "text-align: right;">A1</td>
-      <td style = "text-align: right;">45.29552739877552</td>
+      <td style = "text-align: right;">66.14765253496016</td>
     </tr>
     <tr>
       <td style = "text-align: right;">&vellip;</td>
@@ -726,53 +742,53 @@ innerjoin(
   <tbody>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T00:00:00</td>
-      <td style = "text-align: right;">20.436887483178324</td>
-      <td style = "text-align: right;">17.927580133868528</td>
+      <td style = "text-align: right;">20.424915636211495</td>
+      <td style = "text-align: right;">17.91825221822047</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T01:00:00</td>
-      <td style = "text-align: right;">18.477820525200862</td>
-      <td style = "text-align: right;">16.266720094319034</td>
+      <td style = "text-align: right;">18.790735839657103</td>
+      <td style = "text-align: right;">16.527002138024056</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T02:00:00</td>
-      <td style = "text-align: right;">19.598251370512905</td>
-      <td style = "text-align: right;">17.326720538257863</td>
+      <td style = "text-align: right;">20.093062213301195</td>
+      <td style = "text-align: right;">17.724633546101007</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T03:00:00</td>
-      <td style = "text-align: right;">20.357110344611062</td>
-      <td style = "text-align: right;">17.973165036339566</td>
+      <td style = "text-align: right;">20.662603974337852</td>
+      <td style = "text-align: right;">18.21409443613939</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T04:00:00</td>
-      <td style = "text-align: right;">50.87555718326905</td>
-      <td style = "text-align: right;">48.81471358299862</td>
+      <td style = "text-align: right;">45.890097494270265</td>
+      <td style = "text-align: right;">43.78304730433842</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T05:00:00</td>
-      <td style = "text-align: right;">35.38550321178777</td>
-      <td style = "text-align: right;">33.58345992070997</td>
+      <td style = "text-align: right;">51.680456761973936</td>
+      <td style = "text-align: right;">49.4886564787847</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T06:00:00</td>
-      <td style = "text-align: right;">37.56143150066425</td>
-      <td style = "text-align: right;">35.926722614698285</td>
+      <td style = "text-align: right;">52.663695405193835</td>
+      <td style = "text-align: right;">50.9695025729458</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T07:00:00</td>
-      <td style = "text-align: right;">49.57893304145403</td>
-      <td style = "text-align: right;">49.04123908769041</td>
+      <td style = "text-align: right;">60.51612290640789</td>
+      <td style = "text-align: right;">60.00931842384514</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T08:00:00</td>
-      <td style = "text-align: right;">58.887068930330685</td>
-      <td style = "text-align: right;">58.51057345041244</td>
+      <td style = "text-align: right;">61.59337056293713</td>
+      <td style = "text-align: right;">61.181553644283305</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T09:00:00</td>
-      <td style = "text-align: right;">45.29552739877552</td>
-      <td style = "text-align: right;">44.95980883413789</td>
+      <td style = "text-align: right;">66.14765253496016</td>
+      <td style = "text-align: right;">65.82253104755544</td>
     </tr>
     <tr>
       <td style = "text-align: right;">&vellip;</td>
@@ -801,7 +817,7 @@ innerjoin(
         @warn &quot;Could not get rating for $(typeof(branch)): $e — treating as unlimited&quot;
         return Inf
     end
-end</code></pre><pre><code class="nohighlight hljs">_branch_flow_limit_mw (generic function with 1 method)</code></pre><p>Next, build a lookup for each <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/reference/public/#PowerSystems.ACBranch"><code>PowerSystems.ACBranch</code></a> keyed by branch name using <a href="https://sienna-platform.github.io/PowerSimulations.jl/stable/api/internal/#PowerSystems.get_components-Union%7BTuple%7BT%7D%2C%20Tuple%7BType%7BT%7D%2C%20InfrastructureSystems.Results%7D%7D%20where%20T%3C%3AInfrastructureSystems.InfrastructureSystemsComponent"><code>PowerSystems.get_components</code></a> and <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/model_library/generated_Line/#InfrastructureSystems.get_name-Tuple%7BLine%7D"><code>get_name</code></a>:</p><pre><code class="language-julia hljs">ratings = Dict{String, Float64}()
+end</code></pre><pre><code class="nohighlight hljs">_branch_flow_limit_mw (generic function with 1 method)</code></pre><p>Next, build a lookup for each <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/reference/public/#PowerSystems.ACBranch"><code>PowerSystems.ACBranch</code></a> keyed by branch name using <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/reference/public/#PowerSystems.get_components-Union%7BTuple%7BT%7D%2C%20Tuple%7BType%7BT%7D%2C%20System%7D%7D%20where%20T%3C%3AComponent"><code>PowerSystems.get_components</code></a> and <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/model_library/generated_Line/#InfrastructureSystems.get_name-Tuple%7BLine%7D"><code>get_name</code></a>:</p><pre><code class="language-julia hljs">ratings = Dict{String, Float64}()
 for b in get_components(ACBranch, sys)
     ratings[get_name(b)] = _branch_flow_limit_mw(b, sys)
 end</code></pre><p>Then, scan every interval for branches whose AC flow exceeds the thermal rating:</p><pre><code class="language-julia hljs">overloads = DataFrame(;
@@ -837,31 +853,43 @@ overloads</code></pre><table>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T00:00:00</td>
       <td style = "text-align: right;">C6</td>
-      <td style = "text-align: right;">189.44175516783903</td>
+      <td style = "text-align: right;">189.66809670818427</td>
       <td style = "text-align: right;">175.0</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T01:00:00</td>
       <td style = "text-align: right;">C6</td>
-      <td style = "text-align: right;">251.02888391400802</td>
+      <td style = "text-align: right;">250.8689711843636</td>
       <td style = "text-align: right;">175.0</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T02:00:00</td>
       <td style = "text-align: right;">C6</td>
-      <td style = "text-align: right;">190.2012682731686</td>
+      <td style = "text-align: right;">189.93163685373278</td>
       <td style = "text-align: right;">175.0</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T05:00:00</td>
       <td style = "text-align: right;">C6</td>
-      <td style = "text-align: right;">186.96679501296904</td>
+      <td style = "text-align: right;">194.9527193586331</td>
+      <td style = "text-align: right;">175.0</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: right;">2020-01-01T06:00:00</td>
+      <td style = "text-align: right;">C6</td>
+      <td style = "text-align: right;">191.70394590362866</td>
+      <td style = "text-align: right;">175.0</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: right;">2020-01-01T17:00:00</td>
+      <td style = "text-align: right;">AB1</td>
+      <td style = "text-align: right;">184.590800762641</td>
       <td style = "text-align: right;">175.0</td>
     </tr>
     <tr class = "dataRow">
       <td style = "text-align: right;">2020-01-01T18:00:00</td>
       <td style = "text-align: right;">AB1</td>
-      <td style = "text-align: right;">183.67167161079624</td>
+      <td style = "text-align: right;">189.60003082130112</td>
       <td style = "text-align: right;">175.0</td>
     </tr>
   </tbody>
@@ -870,4 +898,4 @@ overloads</code></pre><table>
 length(psse_export_folders)</code></pre><pre><code class="nohighlight hljs">48</code></pre><p>Each folder contains the PSS/e <code>.raw</code> file for that interval, available for further analysis:</p><pre><code class="language-julia hljs">first_subdir = first(sort(psse_export_folders))
 readdir(joinpath(export_dir, first_subdir))</code></pre><pre><code class="nohighlight hljs">2-element Vector{String}:
  &quot;export_1_1.raw&quot;
- &quot;export_1_1_export_metadata.json&quot;</code></pre><h2 id="Next-Steps"><a class="docs-heading-anchor" href="#Next-Steps">Next Steps</a><a id="Next-Steps-1"></a><a class="docs-heading-anchor-permalink" href="#Next-Steps" title="Permalink"></a></h2><ul><li>Tighten the UC network model with transmission constraints if needed until overloads are removed — see the formulation library <a href="../../formulation_library/Network/#network_formulations">Network</a> and <a href="../../formulation_library/Branch/#PowerSystems.Branch-Formulations"><code>PowerSystems.Branch</code> Formulations</a> pages.</li><li>See the <a href="https://sienna-platform.github.io/PowerFlows.jl/stable/tutorials/generated_solving_a_power_flow/#Solving-a-Power-Flow">Solving a Power Flow</a> tutorial in PowerFlows.jl for standalone power flow examples.</li></ul></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_dynamic_line_ratings/">« Dynamic Line Ratings</a><a class="docs-footer-nextpage" href="../../how_to/register_variable/">...register a variable in a custom operation model »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Monday 13 July 2026 22:04">Monday 13 July 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+ &quot;export_1_1_export_metadata.json&quot;</code></pre><h2 id="Next-Steps"><a class="docs-heading-anchor" href="#Next-Steps">Next Steps</a><a id="Next-Steps-1"></a><a class="docs-heading-anchor-permalink" href="#Next-Steps" title="Permalink"></a></h2><ul><li>Tighten the UC network model with transmission constraints if needed until overloads are removed — see the formulation library <a href="../../formulation_library/Network/#network_formulations">Network</a> and <a href="../../formulation_library/Branch/#PowerSystems.Branch-Formulations"><code>PowerSystems.Branch</code> Formulations</a> pages.</li><li>See the <a href="https://sienna-platform.github.io/PowerFlows.jl/stable/tutorials/generated_solving_a_power_flow/#Solving-a-Power-Flow">Solving a Power Flow</a> tutorial in PowerFlows.jl for standalone power flow examples.</li></ul></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_dynamic_line_ratings/">« Dynamic Line Ratings</a><a class="docs-footer-nextpage" href="../../how_to/register_variable/">...register a variable in a custom operation model »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Sunday 19 July 2026 15:56">Sunday 19 July 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

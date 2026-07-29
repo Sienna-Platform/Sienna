@@ -16,7 +16,7 @@ struct AppColumn
     id::Symbol
     header::String
     capabilities::Vector{String}
-    gs_page::String          # page stem, e.g. "getting_started/network" (matches make.jl pages)
+    gs_page::String          # page stem, e.g. "getting_started/net" (matches make.jl pages)
     enabled::Bool
 end
 
@@ -73,7 +73,7 @@ const CAPABILITY_APPS = AppColumn[
     ),
     AppColumn(
         :network,
-        "Network",
+        "Net",
         [
             "AC and DC|power flow",
             "Network reduction",
@@ -84,7 +84,7 @@ const CAPABILITY_APPS = AppColumn[
             # "Multi-period|power flows",
             "Contingency analysis",
         ],
-        "getting_started/network",
+        "getting_started/net",
         true,
     ),
     AppColumn(
@@ -112,7 +112,7 @@ const CAPABILITY_APPS = AppColumn[
 #      immediately after that app's cap row N (e.g. after_cap_index = 4 → below O4).
 #      If you add/remove caps in that app, update after_cap_index to match.
 #   3. Set span_from / span_to to two neighboring enabled columns (e.g. :ops → :network).
-#      With INCLUDE_INVEST = false, column order is Data, Ops, Network, Dyn — re-check spans.
+#      With INCLUDE_INVEST = false, column order is Data, Ops, Net, Dyn — re-check spans.
 #   4. Choose unique block_id and node_id strings (not used elsewhere in the diagram).
 #   5. Set enabled = false to draft without deleting the entry.
 #   6. Run test/test_capability_diagram.jl; orphan `style block_id` without a row causes Mermaid errors.
@@ -274,7 +274,7 @@ function generate_block_beta_diagram(;
     cross_styles = _cross_app_styles(inserted_cross)
 
     lines = String[
-        "%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'lineColor': '#9ec5e8', 'arrowheadColor': '#9ec5e8', 'primaryTextColor': '#ffffff', 'secondaryTextColor': '#ffffff'}}}%%",
+        "%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '18px', 'lineColor': '#9ec5e8', 'arrowheadColor': '#9ec5e8'}}}%%",
         "block-beta",
         "  columns $ncol",
         "",
@@ -284,9 +284,9 @@ function generate_block_beta_diagram(;
         "",
         gs_row,
         "",
-        "  classDef appHdr fill:none,stroke:#f59e31,color:#ffffff,stroke-width:2px",
-        "  classDef coreCap fill:none,stroke:#7eb6e0,color:#ffffff,stroke-width:2px",
-        "  classDef interCap fill:none,stroke:#7eb6e0,color:#ffffff,stroke-width:2px",
+        "  classDef appHdr fill:none,stroke:#f59e31,stroke-width:2px",
+        "  classDef coreCap fill:none,stroke:#7eb6e0,stroke-width:2px",
+        "  classDef interCap fill:none,stroke:#7eb6e0,stroke-width:2px",
         "  classDef gsBtn fill:#1a5f4a,color:#ffffff,stroke:#0d3d2e,stroke-width:2px",
         "",
         "  class $(join(header_ids, ",")) appHdr",
@@ -299,19 +299,75 @@ function generate_block_beta_diagram(;
 end
 
 function diagram_css()
+    # Explicit colors: Mermaid bakes dark label colors into the SVG tree, so
+    # `inherit` does not pick up Documenter body text under dark themes.
     return """
 <style>
-article .mermaid svg .nodeLabel p,
-article .mermaid svg .nodeLabel span,
-article .mermaid svg .nodeLabel div,
-article .mermaid svg .nodeLabel a,
-article .mermaid svg .label text,
-article .mermaid svg .label span,
-article .mermaid svg foreignObject div {
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+article .mermaid svg g.node:not(.gsBtn) .label text,
+article .mermaid svg g.node:not(.gsBtn) .label span,
+article .mermaid svg g.node:not(.gsBtn) foreignObject div {
+  color: #222 !important;
+}
+article .mermaid svg g.node:not(.gsBtn) .label text,
+article .mermaid svg g.node:not(.gsBtn) text {
+  fill: #222 !important;
+}
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) foreignObject div,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel p,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel span,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel div,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .nodeLabel a,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label span,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) foreignObject div {
   color: #ffffff !important;
 }
-article .mermaid svg .label text,
-article .mermaid svg text {
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--documenter-dark article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-frappe article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-macchiato article .mermaid svg g.node:not(.gsBtn) text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) .label text,
+html.theme--catppuccin-mocha article .mermaid svg g.node:not(.gsBtn) text {
+  fill: #ffffff !important;
+}
+article .mermaid svg g.node.gsBtn .nodeLabel p,
+article .mermaid svg g.node.gsBtn .nodeLabel span,
+article .mermaid svg g.node.gsBtn .nodeLabel div,
+article .mermaid svg g.node.gsBtn .nodeLabel a,
+article .mermaid svg g.node.gsBtn .label text,
+article .mermaid svg g.node.gsBtn .label span,
+article .mermaid svg g.node.gsBtn foreignObject div,
+article .mermaid svg g.node.gsBtn a {
+  color: #ffffff !important;
+}
+article .mermaid svg g.node.gsBtn .label text,
+article .mermaid svg g.node.gsBtn text {
   fill: #ffffff !important;
 }
 article .mermaid svg .edgePath .path,
