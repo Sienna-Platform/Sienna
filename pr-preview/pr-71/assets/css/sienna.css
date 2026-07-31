@@ -497,6 +497,12 @@ header.v2 .container-fluid {
     color: #fff;
     font-size: 30px;
     font-weight: 400;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.about-v4-sec .about-v4-content .abt-list .abt-content > h3 a {
+    overflow-wrap: break-word;
 }
 
 .about-v4-sec .about-v4-content .abt-list .abt-content > h3:hover {
@@ -3685,6 +3691,11 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         white-space: nowrap;
         max-width: 100%;
     }
+
+    .about-v4-sec .about-v4-content .abt-list .abt-content > h3 {
+        font-size: 20px;
+        line-height: 1.3;
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -3879,7 +3890,8 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .about-v4-sec .about-v4-content .abt-list .abt-content > h3 {
-        font-size: 24px;
+        font-size: 18px;
+        line-height: 1.3;
         margin-bottom: 15px;
     }
 

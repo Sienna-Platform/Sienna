@@ -561,6 +561,13 @@
   <!--wrapper end-->
 
   <script src="/Sienna/pr-preview/pr-71/assets/js/bundle.min.js"></script>
+  <script>
+  document.querySelectorAll(".abt-list .abt-content > h3 a").forEach(function (el) {
+    el.innerHTML = el.textContent
+      .replace(/([a-z0-9])([A-Z])/g, "$1<wbr>$2")
+      .replace(/\.jl$/, "<wbr>.jl");
+  });
+  </script>
 </body>
 
 </html>
