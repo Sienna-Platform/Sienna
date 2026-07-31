@@ -2,8 +2,7 @@
 
 ## Prerequisite
 
-Visit to [Julia programming language page](https://julialang.org/) to install Julia
-and walk through some of their extensive learning resources.
+Visit the [Julia programming language page](https://julialang.org/) to install Julia and explore their extensive learning resources.
 **Our tutorials assume users have some familiarity with Julia already.**
 
 ## Install Sienna

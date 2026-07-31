@@ -2,9 +2,7 @@
 
 ## Welcome to Sienna
 
-The National Laboratory of the Rockies' [Sienna platform](https://sienna-
-platform.github.io/Sienna/)
-is an open-source framework for power systems planning, operations, and reliability modeling.
+The National Laboratory of the Rockies' [Sienna platform](https://sienna-platform.github.io/Sienna/) is an open-source framework for power systems planning, operations, and reliability modeling.
 
 Sienna is a modular, extensible platform built in the [Julia](https://julialang.org/) programming
 language.

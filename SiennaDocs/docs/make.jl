@@ -82,7 +82,7 @@ makedocs(
         prettyurls = _prettyurls,
         size_threshold = nothing,
         canonical = hub_canonical,
-        footer = "Return to the [Sienna homepage](https://Sienna-Platform.github.io/Sienna/). Docs powered by [Documenter.jl] (https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
+        footer = "Return to the [Sienna homepage](https://Sienna-Platform.github.io/Sienna/). Docs powered by [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl) and the [Julia Programming Language](https://julialang.org/).",
     ),
     sitename = "Sienna",
     authors = "Kate Doubleday",
