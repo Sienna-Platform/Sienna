@@ -2223,8 +2223,8 @@ header.v2 .container-fluid {
 
 .sv-title > h2 {
     color: #000;
-    font-size: 48px;
-    line-height: 60px;
+    font-size: 72px;
+    line-height: 90px;
     margin-bottom: 51px;
 }
 
@@ -2245,6 +2245,11 @@ header.v2 .container-fluid {
 .service-page-banner {
     background-color: #eceff5;
     padding: 180px 0 180px;
+}
+
+.svss-img > img {
+    max-width: 100%;
+    height: auto;
 }
 
 .service-page-banner .sv-title {
@@ -2965,10 +2970,6 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         padding: 0 15px;
     }
 
-    .svss-img > img {
-        max-width: 100%;
-    }
-
     .service-page-banner .row {
         -ms-flex-align: center;
         align-items: center;
@@ -3184,7 +3185,7 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .sv-title > h2 {
-        font-size: 40px;
+        font-size: 60px;
     }
 
     .sv-title > span {
@@ -3418,8 +3419,8 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .sv-title > h2 {
-        font-size: 40px;
-        line-height: 50px;
+        font-size: 60px;
+        line-height: 75px;
     }
 
     .sv-title {
@@ -3698,8 +3699,8 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .sv-title > h2 {
-        font-size: 32px;
-        line-height: 42px;
+        font-size: 48px;
+        line-height: 63px;
     }
 
     .page-content {
@@ -3855,10 +3856,8 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .sv-title > h2 {
-        font-size: 32px;
-        line-height: 40px;
-        font-size: 26px;
-        line-height: 38px;
+        font-size: 39px;
+        line-height: 57px;
     }
 
     .page-sec-title > h2 {

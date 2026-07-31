@@ -1,12 +1,12 @@
 ---
 layout: info_page
-img: "/assets/Sienna-Dyn-info-page.png"
+img: "/assets/img/sienna_dyn_004584.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Dyn
-  sub_title: "Simulate power system dynamic response to disturbances and contingencies"
-  content: Capture the fast dynamics of inverter-based resources
+  title: Simulate system dynamic response
+  sub_title: Sienna\Dyn
+  content: Capture the fast dynamics of inverter-based resources after disturbances
 
 ############################ Transition Badges ##################################
 badges:

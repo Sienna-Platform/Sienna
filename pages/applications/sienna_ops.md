@@ -1,12 +1,12 @@
 ---
 layout: info_page
-img: "/assets/Sienna-Ops-info-page.png"
+img: "/assets/img/sienna_ops_081182.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Ops
-  sub_title: Simulate system scheduling with large shares of inverter-based resources
-  content: Simulate sequential problems for production cost modeling
+  title: Production cost modeling and resource adequacy
+  sub_title: Sienna\Ops
+  content: Efficient, flexible, and reproducible scheduling and dispatch simulations
 
 ############################ Transition Badges ##################################
 badges:

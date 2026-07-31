@@ -1,12 +1,12 @@
 ---
 layout: info_page
-img: "/assets/Sienna-Data-info-page.png"
+img: "/assets/img/sienna_data_098940.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Data
-  sub_title: Efficiently input and use energy systems data
-  content: Exceptional performance for large data
+  title: Efficiently input and manipulate data
+  sub_title: Sienna\Data
+  content: Optimized for managing large energy system datasets
 
 ############################ Transition Badges ##################################
 badges:

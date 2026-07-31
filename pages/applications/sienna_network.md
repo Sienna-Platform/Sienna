@@ -1,13 +1,12 @@
 ---
 layout: info_page
-# Hero image pending; see sienna_network application page assets
-img: ""
+img: "/assets/img/sienna_net_018981.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Net
-  sub_title: Ensure transmission network reliability
-  content: Power flow, network reductions, and reactive power planning
+  title: Transmission network flows and model simplifications
+  sub_title: Sienna\Net
+  content: Power flows, network reductions, and reactive power planning
 
 ############################ Transition Badges ##################################
 badges:

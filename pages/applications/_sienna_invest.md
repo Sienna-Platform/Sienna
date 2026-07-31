@@ -1,13 +1,12 @@
 ---
 layout: info_page
-# Unpublished; hero image pending
-img: ""
+img: "/assets/img/sienna_invest_066407.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Invest
-  sub_title: Plan generation and transmission for the future
-  content: Exceptional performance for large data
+  title: 
+  sub_title: Sienna\Invest
+  content: Plan generation and transmission for the future
 
 ############################ Transition Badges ##################################
 badges:
