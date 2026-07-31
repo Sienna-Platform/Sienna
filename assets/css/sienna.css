@@ -1345,11 +1345,6 @@ header.v2 .container-fluid {
     margin-right: 80px;
 }
 
-.abt-v9-cntr .cl-ordr li img {
-    max-width: 100%;
-    height: auto;
-}
-
 .abt-v9-cntr .cl-ordr li:last-child {
     margin-right: 0;
 }
@@ -3052,7 +3047,7 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     }
 
     .header-v6 {
-        padding: 40px 0 0;
+        padding: 24px 0;
     }
 
     .about-v4-sec {
@@ -3095,10 +3090,35 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         display: none;
     }
 
+    .header-content-v8 {
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
     .header-content-v8 .logo-v8 {
-        max-width: min(370px, 70%);
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: calc(100% - 48px);
+    }
+
+    .header-content-v8 .logo-v8 img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .nav-toggle-btn {
+        margin-left: 0;
+    }
+
+    .header-content-v8 .nav-toggle-btn {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        margin-left: auto;
+        margin-right: 0;
     }
 
     .header-v8.v9 .container {
@@ -3118,6 +3138,12 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
         margin-right: 0;
+    }
+
+    .abt-v9-cntr .cl-ordr li img {
+        width: 100% !important;
+        max-width: 100%;
+        height: auto;
     }
 
     .about-v9-content .about-v9-txt {
@@ -3459,6 +3485,10 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         padding-bottom: 0;
     }
 
+    .header-v6 {
+        padding: 24px 0;
+    }
+
     .sidebar.blog-sidebar {
         margin-top: 100px;
     }
@@ -3604,6 +3634,10 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
         padding: 40px 0 0;
     }
 
+    .header-v6 {
+        padding: 24px 0;
+    }
+
     .lt-news .blog-posts-v10 .col-12,
     .lt-news .blog-posts-v10 .col-lg-4 {
         padding: 0 15px;
@@ -3641,15 +3675,6 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
     .slide-container {
         padding-top: 12rem;
         padding-bottom: 3rem;
-    }
-
-    .nav-toggle-btn {
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .header-content-v8 .nav-toggle-btn {
-        margin-left: auto;
     }
 
     .btn-default {
@@ -3779,12 +3804,6 @@ footer.footer-v9.v11 .btm-footer .cp-txt {
 
     .events-list {
         padding-bottom: 70px;
-    }
-
-    .header-content-v8 .logo-v8 {
-        max-width: inherit;
-        -ms-flex: inherit;
-        flex: inherit;
     }
 
     .banner-slider-v9 .banner-slide-v9 > h2 {
