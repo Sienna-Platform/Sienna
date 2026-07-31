@@ -14,6 +14,58 @@ linked from the main website. These files are located in the `SiennaDocs/` subfo
 The documentation site is published at
 [https://sienna-platform.github.io/Sienna/SiennaDocs/docs/build/](https://sienna-platform.github.io/Sienna/SiennaDocs/docs/build/).
 
+## Production deploy (two workflows)
+
+Both write to the `gh-pages` branch with `clean: false` / `force: false`, and share
+concurrency group `gh-pages` (`cancel-in-progress: false`) so marketing, docs, and
+PR previews serialize instead of canceling each other.
+
+| Workflow | Triggers | Deploys |
+| --- | --- | --- |
+| `.github/workflows/jekyll.yml` | `push` to `main`, `workflow_dispatch` | Jekyll `_site` (marketing only; `_site/SiennaDocs` removed before deploy) |
+| `.github/workflows/sienna-docs-aggregate.yml` | `push` to `main`, daily cron `0 7 * * *` (UTC), `workflow_dispatch`, `repository_dispatch` type `sienna-docs-refresh` | `SiennaDocs/docs/build` → `gh-pages` path `SiennaDocs/docs/build` |
+
+If the docs aggregate job fails, JamesIves never runs, so the previous
+`SiennaDocs/docs/build` tree on `gh-pages` stays live (last-good docs). Marketing
+never ships a `SiennaDocs/` tree, so a marketing-only rebuild cannot wipe docs.
+
+PR previews (`.github/workflows/jekyll-preview.yml`) still run combined `make.jl` +
+Jekyll into `pr-preview/pr-N/`. Before Jekyll, CI removes `SiennaDocs/docs/clones`.
+`_config.yml` `exclude` keeps clones, sources, manifests, tests, scripts, and similar
+build inputs out of the Jekyll publish surface (while leaving `SiennaDocs/docs/build`
+available for the combined preview assemble).
+
+### Package docs refresh (`SIENNA_DOCS_DISPATCH_TOKEN`)
+
+After a successful non-PR docs deploy, each website-aggregated package
+(`PowerSystems.jl`, `PowerSystemCaseBuilder.jl`, `PowerGraphics.jl`,
+`PowerNetworkMatrices.jl`, `PowerSimulations.jl`, `StorageSystemsSimulations.jl`,
+`HydroPowerSimulations.jl`, `PowerFlows.jl`, `PowerAnalytics.jl`,
+`PowerSimulationsDynamics.jl`, `SiennaPRASInterface.jl`) may send
+`repository_dispatch` / `sienna-docs-refresh` to this repo.
+
+Configure an org (or per-repo) secret named `SIENNA_DOCS_DISPATCH_TOKEN`: a PAT or
+fine-grained token that can dispatch workflows on `Sienna-Platform/Sienna`. The
+package step uses `continue-on-error` so a missing token does not fail package docs
+deploy while the secret is rolled out. Until dispatch is live, daily cron,
+`workflow_dispatch`, and pushes to this repo still refresh the aggregate.
+
+### Go-live / merge checklist
+
+1. Merge this Sienna branch to `main` **before** merging package dispatch PRs (the
+   receiver workflow must exist on the default branch for `repository_dispatch`).
+2. Configure `SIENNA_DOCS_DISPATCH_TOKEN` on the org (or the 11 package repos) before
+   or immediately after.
+3. Confirm both marketing and docs-aggregate workflows run on the first `main` push.
+4. **One-time orphan cleanup on `gh-pages`:** prior monolithic deploys may have left
+   junk such as `SiennaDocs/docs/clones`, sources, or Manifests under `SiennaDocs/`.
+   With `clean: false`, new deploys will not remove them. Manually delete known bad
+   prefixes under `SiennaDocs/` on `gh-pages` except `docs/build`, and leave
+   `pr-preview/` alone. (A JamesIves `clean-exclude` wipe is risky for a shared
+   branch; prefer a deliberate one-shot cleanup.)
+5. Cold `gh-pages` (no prior docs publish) would 404 docs until the first successful
+   docs job; not expected for the current production site.
+
 ## Serving the main website with Jekyll
 
 Install Ruby and Jekyll according to the
@@ -52,5 +104,3 @@ using Jekyll. Built docs use directory URLs (for example
 For more information, see
 [How to Compile and View Documentation Locally](https://sienna-platform.github.io/InfrastructureSystems.jl/stable/docs_best_practices/how-to/compile/)
 in Sienna's `InfrastructureSystems.jl` package.
-
-

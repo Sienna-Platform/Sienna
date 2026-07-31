@@ -1,33 +1,20 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# Builds and deploys the two-part Sienna site: Jekyll (main pages) + SiennaDocs (Documenter.jl/MultiDocumenter).
-# Docs are served at https://sienna-platform.github.io/Sienna/SiennaDocs/docs/build/
-# Deploys to gh-pages branch so PR previews (jekyll-preview.yml) can coexist.
+# Marketing / landing pages only (Jekyll). Aggregated Documenter docs are deployed
+# separately by sienna-docs-aggregate.yml so a marketing-only failure or rebuild
+# cannot clobber last-good SiennaDocs on gh-pages.
+# Live site: https://sienna-platform.github.io/Sienna/
 name: Deploy Jekyll site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  schedule:
-    # GitHub cron is UTC; 07:00 UTC = midnight MST (UTC-7)
-    - cron: "0 7 * * *"
-
-# Required for pushing to gh-pages (and for PR preview workflow)
 permissions:
   contents: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Shared with docs-aggregate and PR preview; queue rather than cancel.
 concurrency:
-  group: "pages"
+  group: gh-pages
   cancel-in-progress: false
 
 jobs:
@@ -36,34 +23,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Read Julia version
-        id: julia-version
-        run: echo "version=$(tr -d '[:space:]' < .julia-version)" >> "$GITHUB_OUTPUT"
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: ${{ steps.julia-version.outputs.version }}
-      - uses: julia-actions/cache@v2
-        with:
-          cache-name: julia-cache;project=SiennaDocs/docs;hash=${{ hashFiles('SiennaDocs/docs/Project.toml', 'SiennaDocs/docs/Manifest.toml') }}
-      - name: Install dependencies
-        run: julia --project=SiennaDocs/docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=joinpath(pwd(),"SiennaDocs"))); Pkg.instantiate()'
-      - name: Build and deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
-        run: julia --project=SiennaDocs/docs --color=yes SiennaDocs/docs/make.jl
-      - name: Check Jekyll SiennaDocs links
-        run: julia --project=SiennaDocs/docs -e 'using Test; include("SiennaDocs/test/test_jekyll_docs_links.jl")'
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1 # latest major version
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2' # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 0 # Increment this number if you need to re-download cached gems
+          ruby-version: '3.2'
+          bundler-cache: true
+          cache-version: 0
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "/Sienna"
         env:
           JEKYLL_ENV: production
+      - name: Remove SiennaDocs from marketing site
+        # Exclude may still leave build/ via include; never ship docs via this job.
+        run: rm -rf _site/SiennaDocs
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

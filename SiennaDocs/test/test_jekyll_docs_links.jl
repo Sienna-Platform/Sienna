@@ -125,3 +125,34 @@ end
             _DOCS_BUILD
     end
 end
+
+# Paths match SiennaDocs/docs/make.jl `_AGGREGATED_PACKAGES` (active entries only).
+const _AGGREGATED_PACKAGE_PATHS = (
+    "PowerSystems",
+    "PowerSystemCaseBuilder",
+    "PowerGraphics",
+    "PowerNetworkMatrices",
+    "PowerSimulations",
+    "StorageSystemsSimulations",
+    "HydroPowerSimulations",
+    "PowerFlows",
+    "PowerAnalytics",
+    "PowerSimulationsDynamics",
+    "SiennaPRASInterface",
+)
+
+@testset "Aggregated package stable/dev indexes" begin
+    if isdir(_DOCS_BUILD)
+        missing = String[]
+        for path in _AGGREGATED_PACKAGE_PATHS
+            for ver in ("stable", "dev")
+                index = joinpath(_DOCS_BUILD, path, ver, "index.html")
+                isfile(index) || push!(missing, index)
+            end
+        end
+        @test isempty(missing)
+    else
+        @info "Skipping aggregated package index check; run docs/make.jl first" build_dir =
+            _DOCS_BUILD
+    end
+end

@@ -14,3 +14,26 @@ kramdown:
 
 plugins:
   - jekyll-feed
+
+# Keep MultiDocumenter/build inputs and package internals out of the published
+# Jekyll tree. Do not exclude SiennaDocs/docs/build (needed for PR preview's
+# combined assemble). Marketing CI also removes _site/SiennaDocs before deploy
+# so a local build cannot clobber last-good docs on gh-pages.
+exclude:
+  - SiennaDocs/docs/clones
+  - SiennaDocs/docs/src
+  - SiennaDocs/docs/Project.toml
+  - SiennaDocs/docs/Manifest.toml
+  - SiennaDocs/docs/make.jl
+  - SiennaDocs/docs/capability_diagram.jl
+  - SiennaDocs/docs/Makefile
+  - SiennaDocs/src
+  - SiennaDocs/test
+  - SiennaDocs/scripts
+  - SiennaDocs/Project.toml
+  - SiennaDocs/Manifest.toml
+  - SiennaDocs/codecov.yml
+  - SiennaDocs/CONTRIBUTING.md
+  - SiennaDocs/LICENSE
+  - SiennaDocs/.editorconfig
+  - SiennaDocs/.gitignore
