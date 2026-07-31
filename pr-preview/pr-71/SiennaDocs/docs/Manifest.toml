@@ -407,9 +407,9 @@ version = "3.7.1+0"
 
 [[deps.Git_jll]]
 deps = ["Artifacts", "Expat_jll", "JLLWrappers", "LibCURL_jll", "Libdl", "Libiconv_jll", "OpenSSL_jll", "PCRE2_jll", "Zlib_jll"]
-git-tree-sha1 = "0dd4cfb426924210c8f42742751cbde74b27bfa3"
+git-tree-sha1 = "7b16700f9e313c0d972d1222ede50a2076aa0770"
 uuid = "f8c6e375-362e-5223-8a59-34ff63f689eb"
-version = "2.54.0+0"
+version = "2.55.0+0"
 
 [[deps.Gumbo]]
 deps = ["AbstractTrees", "Gumbo_jll", "Libdl"]
@@ -723,9 +723,9 @@ version = "0.2.0"
 
 [[deps.MathOptInterface]]
 deps = ["CodecBzip2", "CodecZlib", "ForwardDiff", "JSON", "LinearAlgebra", "MutableArithmetics", "NaNMath", "OrderedCollections", "PrecompileTools", "Printf", "SparseArrays", "SpecialFunctions", "Test"]
-git-tree-sha1 = "7b57dbe5d2c988a0c7a0ea977045e844e3d0b263"
+git-tree-sha1 = "f1ccd9ffcb8577e207deb9aaebeb3f961de70380"
 uuid = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
-version = "1.51.2"
+version = "1.52.0"
 
     [deps.MathOptInterface.extensions]
     MathOptInterfaceBenchmarkToolsExt = "BenchmarkTools"
@@ -1101,9 +1101,9 @@ version = "0.3.7"
 
 [[deps.StringManipulation]]
 deps = ["PrecompileTools"]
-git-tree-sha1 = "532e983cd333609f95d618c744fc40d01ea6e17a"
+git-tree-sha1 = "8a90c1d77c3277a5d43b83927b3cbe2c70a37484"
 uuid = "892a3eda-7b42-436c-8928-eab12a02cf0e"
-version = "0.4.6"
+version = "0.4.7"
 
 [[deps.StructTypes]]
 deps = ["Dates", "UUIDs"]
