@@ -1,6 +1,6 @@
 - name: "Jim Himelic"
-  position: "Founding Principal"
-  company: "First Principles Advisory"
+  position: "CEO"
+  company: "QXT"
   content: "With its innovative data architecture and flexible modeling capabilities, Sienna has the potential to bridge the longstanding divide between planning and operations."
   image: "assets/img/himelic_pic.jpg"
 
@@ -11,7 +11,7 @@
   image: "assets/img/barrows_pic.jpg"
 
 - name: "José Daniel Lara"
-  position: "Sienna Development Lead"
-  company: "Senior Researcher, NLR"
+  position: "CTO and Co-Founder"
+  company: "QXT"
   content: "I started developing Sienna during my Ph.D. program to explore new methods at scale on real datasets."
   image: "assets/img/jose_pic.jpg"

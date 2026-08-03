@@ -1,0 +1,54 @@
+# Builds and deploys the MultiDocumenter aggregate under SiennaDocs/docs/build.
+# Docs: https://sienna-platform.github.io/Sienna/SiennaDocs/docs/build/
+# Marketing pages are deployed by jekyll.yml; this job never overwrites them.
+# JamesIves owns deploy (no DOCUMENTER_KEY / deploydocs).
+name: Deploy SiennaDocs aggregate
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    # GitHub cron is UTC; 07:00 UTC is near midnight Mountain Time (MST/MDT depends on DST).
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sienna-docs-refresh]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Read Julia version
+        id: julia-version
+        run: echo "version=$(tr -d '[:space:]' < .julia-version)" >> "$GITHUB_OUTPUT"
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ steps.julia-version.outputs.version }}
+      - uses: julia-actions/cache@v2
+        with:
+          cache-name: julia-cache;project=SiennaDocs/docs;hash=${{ hashFiles('SiennaDocs/docs/Project.toml', 'SiennaDocs/docs/Manifest.toml') }}
+      - name: Install dependencies
+        run: julia --project=SiennaDocs/docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=joinpath(pwd(),"SiennaDocs"))); Pkg.instantiate()'
+      - name: Build MultiDocumenter aggregate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: julia --project=SiennaDocs/docs --color=yes SiennaDocs/docs/make.jl
+      - name: Check Jekyll SiennaDocs links and package indexes
+        run: julia --project=SiennaDocs/docs -e 'using Test; include("SiennaDocs/test/test_jekyll_docs_links.jl")'
+      - name: Deploy aggregate docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: SiennaDocs/docs/build
+          target-folder: SiennaDocs/docs/build
+          branch: gh-pages
+          clean: false
+          force: false

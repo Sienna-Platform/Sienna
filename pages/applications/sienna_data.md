@@ -1,12 +1,12 @@
 ---
 layout: info_page
-img: "/Sienna/assets/Sienna-Data-info-page.png"
+img: "/assets/img/sienna_data_098940.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Data
-  sub_title: Efficiently input and use energy systems data
-  content: Exceptional performance for large data
+  title: Efficiently input and manipulate data
+  sub_title: Sienna\Data
+  content: Optimized for managing large energy system datasets
 
 ############################ Transition Badges ##################################
 badges:
@@ -32,49 +32,26 @@ what_we_do:
       - service: Efficient management of large quantities of time-series data, including time-series data for any device parameter
       - service: Expanded access for more users to solve more problems as energy systems evolve
       - service: Open-source sharing of publicly available data with a repository of 200+ data sets
-      - service: Optimized serialization of huge datasets into compressed file formats, allowing users to easily save and load  data
+      - service: Optimized serialization of huge datasets into compressed file formats, allowing users to easily save and load data
       - service: Comprehensive validation rules for every parameter of every device
-      - service: Consistent representation of millions of devices with automatic crosschecking for data compatability
+      - service: Consistent representation of millions of devices with automatic crosschecking for data compatibility
 
 ########################## How it Works #########################
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Data has a modular framework with five core packages written in the Julia programming language. Use whichever combination is right for your use case. All packages are open-source, free to use, and have a command-line interface. See the Sienna Documentation Hub for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Data is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-  # tab item1
   - name: "PowerSystems.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
-    content: "Parse and format input data for consistent representation"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    icon: "/assets/img/icon_transmission_org.svg"
+    content: "Data models for consistent representation of power system devices"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
     version: "v1"
 
-  # tab item2
-  - name: "PowerSystemsCaseBuilder.jl"
-    icon: "/Sienna/assets/img/icon_save_org.svg"
+  - name: "PowerSystemCaseBuilder.jl"
+    icon: "/assets/img/icon_save_org.svg"
     content: "Load saved test systems and custom system data"
-    link: "https://github.com/Sienna-Platform/PowerSystemCaseBuilder.jl"
+    link: "/SiennaDocs/docs/build/PowerSystemCaseBuilder/stable/"
     version: "v4"
-
-  # tab item3
-  - name: "PowerNetworkMatrices.jl"
-    icon: "/Sienna/assets/img/icon_matrix_org.svg"
-    content: "Build common power system matrices (Y bus, PTDF, LODF)"
-    link: "https://github.com/Sienna-Platform/PowerNetworkMatrices.jl"
-    version: "v3"
-
-  # tab item4
-  - name: "PowerFlows.jl"
-    icon: "/Sienna/assets/img/icon_network_org.svg"
-    content: "Calculate simple power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
-  # tab item5
-  - name: "PowerGraphics.jl"
-    icon: "/Sienna/assets/img/icon_graph_org.svg"
-    content: "Visualize data inputs and results"
-    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
-    version: "v2"
 ---

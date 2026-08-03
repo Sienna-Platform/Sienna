@@ -5,9 +5,8 @@ name: "Sienna"
 description: "Sienna Platform"
 
 # Logo
-logo_home_businessconsulting: /Sienna/assets/Sienna-logo-dark.png
-logo_white: /Sienna/assets/Sienna-logo-white.png
-logo_dark: /Sienna/assets/Sienna-logo-dark.png
+logo_dark: /assets/Sienna-logo-dark.png
+logo_white: /assets/Sienna-logo-white.png
 
 # Contact info
 contact_settings:

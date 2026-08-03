@@ -1,65 +1,39 @@
-#baseurl: ""
-#url: ""
-
-#paginate_path: "/blog/page:num/"
-#paginate: 9
-#gems: [jekyll-paginate]
-#plugins:
-#  - jekyll-feed
-#  - jekyll-paginate
-
-#address1: "90 Fairground Rd, FL 3290, United States"
-#phone_number: "+65 - 3002 56 56 376"
-
-
-# Welcome to Miles Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
-baseurl: "/Sienna" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/Sienna"
+url: ""
 
 favicon: "/assets/img/favicon.png"
 
-
-permalink: /blog/:title
-post_dirs: false
-
 highlighter: rouge
-# library used for syntax highlighting
 
 markdown: kramdown
 kramdown:
- input: GFM
- auto_ids: true
- hard_wrap: false
- syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
 
 plugins:
   - jekyll-feed
-  - jekyll-paginate
 
-gems:
-  - jekyll-paginate
-
-paginate_path: "/blog/page:num/"
-
-paginate: 4
-
-
-collections:
-  portfolio:
-    output: true
-  career:
-    output: true
-    permalink: /career/:path/
-
-# Disqus Comments
-disqus:
-  enable: false # disque is enabled. Set as false to disable it
-  # Leave shortname blank to disable comments site-wide.
-  # Disable comments for any post by adding `comments: false` to that post's YAML Front Matter.
-  shortname: dexfolio
+# Keep MultiDocumenter/build inputs and package internals out of the published
+# Jekyll tree. Do not exclude SiennaDocs/docs/build (needed for PR preview's
+# combined assemble). Marketing CI also removes _site/SiennaDocs before deploy
+# so a local build cannot clobber last-good docs on gh-pages.
+exclude:
+  - SiennaDocs/docs/clones
+  - SiennaDocs/docs/src
+  - SiennaDocs/docs/Project.toml
+  - SiennaDocs/docs/Manifest.toml
+  - SiennaDocs/docs/make.jl
+  - SiennaDocs/docs/capability_diagram.jl
+  - SiennaDocs/docs/Makefile
+  - SiennaDocs/src
+  - SiennaDocs/test
+  - SiennaDocs/scripts
+  - SiennaDocs/Project.toml
+  - SiennaDocs/Manifest.toml
+  - SiennaDocs/codecov.yml
+  - SiennaDocs/CONTRIBUTING.md
+  - SiennaDocs/LICENSE
+  - SiennaDocs/.editorconfig
+  - SiennaDocs/.gitignore

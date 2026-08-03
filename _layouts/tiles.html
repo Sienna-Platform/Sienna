@@ -4,25 +4,30 @@
 
 <body>
   <div class="wrapper">
-    {% include header/header-default.html %}
+    {% include header/header.html %}
     <!--header end-->
 
   <section class="services-v9">
     <div class="container">
       <div class="title-v9 text-center wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
-        <h2><span>Learn</span> and Contribute</h2>
+        <h2><span>{{ page.section_title_highlight }}</span> {{ page.section_title_rest }}</h2>
       </div>
       <!--title-v9 end-->
       <div class="row services_v9">
         {% for resource in page.resources %}
         <div class="col-lg-4 col-md-6">
           <div class="service-v9">
-            <span class="s-icon"><a target="_blank" href={{resource.url}} title=""><i class="lni lni-bolt"></i></span>
+            {% if resource.url contains "http" or resource.url contains "mailto" %}
+              {% assign resource_href = resource.url %}
+            {% else %}
+              {% assign resource_href = site.baseurl | append: resource.url %}
+            {% endif %}
+            <span class="s-icon"><a target="_blank" href="{{ resource_href }}" title=""><i class="lni lni-bolt"></i></a></span
             <h3>
-              <a href={{resource.url}} target="_blank" title="">{{resource.title}}</a>
+              <a href="{{ resource_href }}" target="_blank" title="">{{resource.title}}</a>
             </h3>
             <p>{{resource.content}}</p>
-            <span class="s-category"><a target="_blank" href={{resource.url}} title="">{{resource.sub_title}} </a></span>
+            <span class="s-category"><a target="_blank" href="{{ resource_href }}" title="">{{resource.sub_title}} </a></span>
           </div>
         </div>
         {% endfor %}

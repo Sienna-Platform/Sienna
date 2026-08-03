@@ -1,12 +1,12 @@
 ---
 layout: info_page
-img: "/Sienna/assets/Sienna-Dyn-info-page.png"
+img: "/assets/img/sienna_dyn_004584.jpg"
 
 ############################ Banner ##################################
 banner:
-  title: Sienna\Dyn
-  sub_title: "Simulate power system dynamic response to disturbances and contingencies"
-  content: Capture the fast dynamics of inverter-based resources
+  title: Simulate system dynamic response
+  sub_title: Sienna\Dyn
+  content: Capture the fast dynamics of inverter-based resources after disturbances
 
 ############################ Transition Badges ##################################
 badges:
@@ -30,7 +30,7 @@ what_we_do:
     title: "Core Capabilities"
     service_list:
       - service: "Runs quasi-static, electromagnetic time domain simulations and small signal stability analysis"
-      - service: "Models novel and advanced inverter control methodologies "
+      - service: "Models novel and advanced inverter control methodologies"
       - service: "Integrates with Sienna\\Ops to perform stability analyses of systems with high share of inverter-based resources"
       - service: "Accelerates electromagnetic analysis of large interconnected systems by over 10×"
       - service: "Runs electromagnetic simulations employing averaging techniques and modern integration methods"
@@ -38,45 +38,21 @@ what_we_do:
       - service: "Allows researchers to assess the numerical requirements for new control techniques for inverter-based generation"
 
 ########################## How it Works #########################
-### Formatting from home11, there is a subtitle option available
 why_us:
   title: "How It Works"
-  subtitle: 
-  content: "Sienna\\Dyn has a modular framework with five core packages written in the Julia programming language. Use whichever combination is right for your use case. All packages are open-source, free to use, and have a command-line interface. See the Sienna Documentation Hub for each package's documentation, general installation instructions, and tutorials."
+  subtitle:
+  content: "Sienna\\Dyn is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials."
 
 tablist:
-# tab item1
-  - name: "PowerSystemDynamics.jl"
-    icon: "/Sienna/assets/img/icon_time_series_org.svg"
+  - name: "PowerSimulationsDynamics.jl"
+    icon: "/assets/img/icon_time_series_org.svg"
     content: "Simulate small signal stability and electromagnetic transients"
-    link: "https://github.com/Sienna-Platform/PowerSimulationsDynamics.jl"
+    link: "/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/"
     version: "v2"
 
-# tab item2
   - name: "PowerSystems.jl"
-    icon: "/Sienna/assets/img/icon_transmission_org.svg"
+    icon: "/assets/img/icon_transmission_org.svg"
     content: "Consistently represent data for devices' dynamic behavior"
-    link: "https://github.com/Sienna-Platform/PowerSystems.jl"
+    link: "/SiennaDocs/docs/build/PowerSystems/stable/"
     version: "v1"
-
-# tab item3
-  - name: "PowerFlows.jl"
-    icon: "/Sienna/assets/img/icon_network_org.svg"
-    content: "Calculate AC power flows"
-    link: "https://github.com/Sienna-Platform/PowerFlows.jl"
-    version: "v5"
-
-# tab item4
-  - name: "PowerAnalytics.jl"
-    icon: "/Sienna/assets/img/icon_comp_$_org.svg"
-    content: "Analyze common metrics and compare results across scenarios"
-    link: "https://github.com/Sienna-Platform/PowerAnalytics.jl"
-    version: "v4"
-
-# tab item5
-  - name: "PowerGraphics.jl"
-    icon: "/Sienna/assets/img/icon_graph_org.svg"
-    content: "Visualize data inputs and results"
-    link: "https://github.com/Sienna-Platform/PowerGraphics.jl"
-    version: "v2"
 ---

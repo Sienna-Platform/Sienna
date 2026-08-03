@@ -6,23 +6,38 @@
     <a href="#" title="" class="close-menu"><i class="lni lni-close"></i></a>
   </div>
   <ul class="mobile-menu">
-    {% for item in site.data.navigation-menu.sidemenu.toc %}
+    {% for item in site.data.navigation-menu.secondary.toc %}
     <li>
+      {% if item.url %}
+      {% if item.url contains "http" %}
+      <a href="{{ item.url }}" class="animsition-link" data-animsition-out-class="fade-out"
+        title="{{ item.title }}" target="_blank" rel="noopener">{{ item.title }}</a>
+      {% else %}
+      <a href="{{ site.baseurl }}{{ item.url }}" class="animsition-link" data-animsition-out-class="fade-out"
+        title="{{ item.title }}">{{ item.title }}</a>
+      {% endif %}
+      {% else %}
       <a href="#" title="{{ item.title }}">{{ item.title }}</a>
       <ul>
         {% for entry in item.subfolderitems %}
         <li>
+          {% if entry.url contains "http" %}
+          <a href="{{ entry.url }}" class="animsition-link" data-animsition-out-class="fade-out"
+            title="{{ entry.page }}" target="_blank" rel="noopener"
+            >{{ entry.page }}</a>
+          {% else %}
           <a
-            href="{{ entry.url }}"
+            href="{{ site.baseurl }}{{ entry.url }}"
             class="animsition-link {% if entry.url == page.url %}active{% endif %}"
             data-animsition-out-class="fade-out"
             title="{{ entry.page }}"
-            data-text="{{ entry.page }}"
             >{{ entry.page }}</a
           >
+          {% endif %}
         </li>
         {% endfor %}
       </ul>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>
