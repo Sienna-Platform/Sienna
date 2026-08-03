@@ -17,8 +17,9 @@ The documentation site is published at
 ## Production deploy (two workflows)
 
 Both write to the `gh-pages` branch with `clean: false` / `force: false`, and share
-concurrency group `gh-pages` (`cancel-in-progress: false`) so marketing, docs, and
-PR previews serialize instead of canceling each other.
+concurrency group `gh-pages` (`cancel-in-progress: false`, `queue: max`) so marketing,
+docs, and PR previews serialize and multiple pending runs wait in line instead of
+canceling each other.
 
 | Workflow | Triggers | Deploys |
 | --- | --- | --- |
@@ -35,36 +36,8 @@ Jekyll into `pr-preview/pr-N/`. Before Jekyll, CI removes `SiennaDocs/docs/clone
 build inputs out of the Jekyll publish surface (while leaving `SiennaDocs/docs/build`
 available for the combined preview assemble).
 
-### Package docs refresh (`SIENNA_DOCS_DISPATCH_TOKEN`)
-
-After a successful non-PR docs deploy, each website-aggregated package
-(`PowerSystems.jl`, `PowerSystemCaseBuilder.jl`, `PowerGraphics.jl`,
-`PowerNetworkMatrices.jl`, `PowerSimulations.jl`, `StorageSystemsSimulations.jl`,
-`HydroPowerSimulations.jl`, `PowerFlows.jl`, `PowerAnalytics.jl`,
-`PowerSimulationsDynamics.jl`, `SiennaPRASInterface.jl`) may send
+After a successful non-PR docs deploy, each website-aggregated package may send
 `repository_dispatch` / `sienna-docs-refresh` to this repo.
-
-Configure an org (or per-repo) secret named `SIENNA_DOCS_DISPATCH_TOKEN`: a PAT or
-fine-grained token that can dispatch workflows on `Sienna-Platform/Sienna`. The
-package step uses `continue-on-error` so a missing token does not fail package docs
-deploy while the secret is rolled out. Until dispatch is live, daily cron,
-`workflow_dispatch`, and pushes to this repo still refresh the aggregate.
-
-### Go-live / merge checklist
-
-1. Merge this Sienna branch to `main` **before** merging package dispatch PRs (the
-   receiver workflow must exist on the default branch for `repository_dispatch`).
-2. Configure `SIENNA_DOCS_DISPATCH_TOKEN` on the org (or the 11 package repos) before
-   or immediately after.
-3. Confirm both marketing and docs-aggregate workflows run on the first `main` push.
-4. **One-time orphan cleanup on `gh-pages`:** prior monolithic deploys may have left
-   junk such as `SiennaDocs/docs/clones`, sources, or Manifests under `SiennaDocs/`.
-   With `clean: false`, new deploys will not remove them. Manually delete known bad
-   prefixes under `SiennaDocs/` on `gh-pages` except `docs/build`, and leave
-   `pr-preview/` alone. (A JamesIves `clean-exclude` wipe is risky for a shared
-   branch; prefer a deliberate one-shot cleanup.)
-5. Cold `gh-pages` (no prior docs publish) would 404 docs until the first successful
-   docs job; not expected for the current production site.
 
 ## Serving the main website with Jekyll
 
