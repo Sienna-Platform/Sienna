@@ -16,6 +16,7 @@ permissions:
 concurrency:
   group: gh-pages
   cancel-in-progress: false
+  queue: max
 
 jobs:
   build-and-deploy:

@@ -12,6 +12,7 @@ on:
 concurrency:
   group: gh-pages
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write
@@ -97,4 +98,6 @@ jobs:
         with:
           source-dir: _site
           preview-branch: gh-pages
+          comment: false
+          qr-code: false
           action: remove
