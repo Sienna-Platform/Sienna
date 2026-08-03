@@ -63,7 +63,7 @@
           <a
             href="/Sienna/pages/applications/sienna_dyn.html"
             title="Sienna\Dyn"
-            class="active"
+            class=""
             >Sienna\Dyn</a
           >
           
@@ -74,7 +74,7 @@
           <a
             href="/Sienna/pages/applications/sienna_network.html"
             title="Sienna\Net"
-            class=""
+            class="active"
             >Sienna\Net</a
           >
           
@@ -207,7 +207,7 @@
           
           <a
             href="/Sienna/pages/applications/sienna_dyn.html"
-            class="animsition-link active"
+            class="animsition-link "
             data-animsition-out-class="fade-out"
             title="Sienna\Dyn"
             >Sienna\Dyn</a
@@ -219,7 +219,7 @@
           
           <a
             href="/Sienna/pages/applications/sienna_network.html"
-            class="animsition-link "
+            class="animsition-link active"
             data-animsition-out-class="fade-out"
             title="Sienna\Net"
             >Sienna\Net</a
@@ -313,19 +313,19 @@
           <div class="col-lg-6">
             <div class="sv-title wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="0ms">
               
-              <span>Simulate system dynamic response</span>
+              <span>Transmission network flows and model simplifications</span>
               <h2>
-                Sienna\Dyn
+                Sienna\Net
               </h2>
               <p>
-                Capture the fast dynamics of inverter-based resources after disturbances
+                Power flows, network reductions, and reactive power planning
               </p>
             </div>
             <!--sv-title end-->
           </div>
           <div class="col-lg-6">
             <div class="svss-img wow zoomIn" data-wow-duration="1000ms" data-wow-delay="0ms">
-              <img src="/Sienna/assets/img/sienna_dyn_004584.jpg" alt="" />
+              <img src="/Sienna/assets/img/sienna_net_018981.jpg" alt="" />
             </div>
             <!--svss-img end-->
           </div>
@@ -355,22 +355,12 @@
                   <ul>
                     
                     <li>
-                      <a>Industry-standard models for synchronous machines, automatic voltage regulators, governors, and inverters</a
+                      <a>Multiple algorithmic options for robust DC and AC power flow</a
                       >
                     </li>
                     
                     <li>
-                      <a>Novel models, including synchronous machines, machine learning surrogates and aggregate distribution systems</a
-                      >
-                    </li>
-                    
-                    <li>
-                      <a>Exchangeable solvers from the scientific machine learning ecosystem</a
-                      >
-                    </li>
-                    
-                    <li>
-                      <a>Separation of models from the integration algorithms coupled with novel numerical techniques</a
+                      <a>Calculation and transformation of key power network matrices (PTDF, LODF, virtual matrices for large data sets)</a
                       >
                     </li>
                     
@@ -387,31 +377,19 @@
                   <ul>
                     
                     <li>
-                      <a>Runs quasi-static, electromagnetic time domain simulations and small signal stability analysis</a>
+                      <a>Geographic network reduction to enable faster modeling of large-scale datasets</a>
                     </li>
                     
                     <li>
-                      <a>Models novel and advanced inverter control methodologies</a>
+                      <a>Built-in interoperability with Sienna\\Ops for simulating power flow-in-the-loop</a>
                     </li>
                     
                     <li>
-                      <a>Integrates with Sienna\Ops to perform stability analyses of systems with high share of inverter-based resources</a>
+                      <a>Reactive power planning for the next generation power systems</a>
                     </li>
                     
                     <li>
-                      <a>Accelerates electromagnetic analysis of large interconnected systems by over 10×</a>
-                    </li>
-                    
-                    <li>
-                      <a>Runs electromagnetic simulations employing averaging techniques and modern integration methods</a>
-                    </li>
-                    
-                    <li>
-                      <a>Provides flexibility in choosing between precision and solution speed for distinct use cases and requirements</a>
-                    </li>
-                    
-                    <li>
-                      <a>Allows researchers to assess the numerical requirements for new control techniques for inverter-based generation</a>
+                      <a>Contingency analysis for assessing system reliability</a>
                     </li>
                     
                   </ul>
@@ -438,13 +416,26 @@
                 <div class="abt-content">
 
                   <h3>
-                    <img src="/Sienna/assets/img/icon_time_series_org.svg" alt="" />
+                    <img src="/Sienna/assets/img/icon_network_org.svg" alt="" />
                     
-                    <a href="/Sienna/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/" title="">PowerSimulationsDynamics.jl</a>
+                    <a href="/Sienna/SiennaDocs/docs/build/PowerFlows/stable/" title="">PowerFlows.jl</a>
                     
                   </h3>
                   
-                  <a href="/Sienna/SiennaDocs/docs/build/PowerSimulationsDynamics/stable/" title="">Simulate small signal stability and electromagnetic transients</a>
+                  <a href="/Sienna/SiennaDocs/docs/build/PowerFlows/stable/" title="">Calculate AC and DC power flows</a>
+                  
+                </div>
+                
+                <div class="abt-content">
+
+                  <h3>
+                    <img src="/Sienna/assets/img/icon_matrix_org.svg" alt="" />
+                    
+                    <a href="/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/" title="">PowerNetworkMatrices.jl</a>
+                    
+                  </h3>
+                  
+                  <a href="/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/" title="">Build common power system matrices (Y bus, PTDF, LODF)</a>
                   
                 </div>
                 
@@ -457,7 +448,7 @@
                     
                   </h3>
                   
-                  <a href="/Sienna/SiennaDocs/docs/build/PowerSystems/stable/" title="">Consistently represent data for devices' dynamic behavior</a>
+                  <a href="/Sienna/SiennaDocs/docs/build/PowerSystems/stable/" title="">Parse and format input data for consistent representation</a>
                   
                 </div>
                 
@@ -474,7 +465,7 @@
                   <h2>How It Works</h2>
                 </div>
                 <h3></h3>
-                <p>Sienna\Dyn is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials.</p>
+                <p>Sienna\Net is a modular platform using software packages written in the Julia programming language. All packages are open-source, free to use, and have a command-line interface. See the Documentation for each package's documentation, general installation instructions, and tutorials.</p>
                 <a
                   href="/Sienna/SiennaDocs/docs/build/index/"
                   title=""
