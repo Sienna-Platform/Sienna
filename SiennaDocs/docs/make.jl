@@ -1,7 +1,6 @@
 using Documenter
 import DataStructures: OrderedDict
 using DocumenterInterLinks
-using DocumenterMermaid
 using MultiDocumenter
 
 include(joinpath(@__DIR__, "capability_diagram.jl"))
@@ -12,9 +11,9 @@ const INCLUDE_INVEST = CapabilityDiagram.INCLUDE_INVEST
 const _prettyurls = true
 
 # Landing-page splice: edit docs/src/index.template.md (tracked); make.jl writes
-# docs/src/index.md (gitignored) before makedocs. DocumenterMermaid only expands
-# top-level ```mermaid fences in parsed .md files, not @eval output — so the diagram
-# must be spliced into index.md here. pages must stay "index.md" for hub URL .../index/.
+# docs/src/index.md (gitignored) before makedocs. The capability diagram is @raw html
+# (not a mermaid fence) and must be spliced into index.md here. pages must stay
+# "index.md" for hub URL .../index/.
 _index_template = joinpath(@__DIR__, "src", "index.template.md")
 _index_src = joinpath(@__DIR__, "src", "index.md")
 _index_content = read(_index_template, String)
@@ -24,8 +23,8 @@ write(
     _index_src,
     replace(
         _index_content,
-        "<!--CAPABILITY_DIAGRAM-->" => CapabilityDiagram.capability_diagram_markdown(
-            prettyurls=_prettyurls,
+        "<!--CAPABILITY_DIAGRAM-->" => CapabilityDiagram.capability_diagram_markdown(;
+            prettyurls = _prettyurls,
         ),
     ),
 )
@@ -74,11 +73,12 @@ pages = OrderedDict(
 # First, build the SiennaDocs hub itself with Documenter.jl into docs/build.
 # When SIENNA_DOCS_ROOTPATH is set (e.g. PR preview), use it so redirects/canonicals point to the preview URL.
 const _docs_rootpath = get(ENV, "SIENNA_DOCS_ROOTPATH", "/Sienna/SiennaDocs/docs/build")
-const _docs_rootpath_normalized = endswith(_docs_rootpath, "/") ? _docs_rootpath : _docs_rootpath * "/"
+const _docs_rootpath_normalized =
+    endswith(_docs_rootpath, "/") ? _docs_rootpath : _docs_rootpath * "/"
 # Hub is at path "index", so its canonical base is .../build/index
 hub_canonical = "https://Sienna-Platform.github.io" * rstrip(_docs_rootpath, '/') * "/index"
-makedocs(
-    format = Documenter.HTML(
+makedocs(;
+    format = Documenter.HTML(;
         prettyurls = _prettyurls,
         size_threshold = nothing,
         canonical = hub_canonical,
@@ -126,7 +126,7 @@ const _AGGREGATED_PACKAGES = [
     # (id = :psip, repo = "PowerSystemsInvestmentsPortfolios.jl", path = "PowerSystemsInvestmentsPortfolios"),
 ]
 const _PACKAGE_REF_BY_ID = Dict(
-    pkg.id => MultiDocumenter.MultiDocRef(
+    pkg.id => MultiDocumenter.MultiDocRef(;
         upstream = joinpath(clonedir, pkg.repo),
         path = pkg.path,
         name = pkg.repo,
@@ -139,7 +139,7 @@ _refs(ids) = [_PACKAGE_REF_BY_ID[id] for id in ids]
 # Hub at path "index" so root index.html redirects to ./index/ (one redirect, no loop)
 # and the hub page at .../build/index/ has the MultiDocumenter nav bar.
 docs = Any[
-    MultiDocumenter.MultiDocRef(
+    MultiDocumenter.MultiDocRef(;
         upstream = joinpath(@__DIR__, "build"),
         path = "index",
         name = "Sienna Documentation",
@@ -148,7 +148,10 @@ docs = Any[
 
     # Dropdown composition keeps explicit unique identifiers while refs are built from one source list.
     MultiDocumenter.DropdownNav("Sienna\\Data", _refs([:psy, :pscb])),
-    MultiDocumenter.DropdownNav("Sienna\\Ops", _refs([:psi, :sss, :hps, :pras, :pa, :pg, :psy])),
+    MultiDocumenter.DropdownNav(
+        "Sienna\\Ops",
+        _refs([:psi, :sss, :hps, :pras, :pa, :pg, :psy]),
+    ),
     MultiDocumenter.DropdownNav("Sienna\\Dyn", _refs([:psid, :psy])),
     MultiDocumenter.DropdownNav("Sienna\\Net", _refs([:pf, :pnm, :psy])),
     # MultiDocumenter.DropdownNav("Sienna\\Invest", _refs([:psip, :psinv, :psy])),
@@ -163,13 +166,15 @@ function _validate_aggregated_package_docs(packages, clonedir, required_versions
         end
     end
     isempty(missing) && return
-    error("""
-    Missing aggregated package documentation before MultiDocumenter.make:
-    $(join(missing, "\n"))
+    error(
+        """
+  Missing aggregated package documentation before MultiDocumenter.make:
+  $(join(missing, "\n"))
 
-    Each clone under $(clonedir) must contain gh-pages version directories listed in include_versions.
-    Confirm the package has published docs on GitHub Pages (branch gh-pages) with stable/ and dev/.
-    """)
+  Each clone under $(clonedir) must contain gh-pages version directories listed in include_versions.
+  Confirm the package has published docs on GitHub Pages (branch gh-pages) with stable/ and dev/.
+  """,
+    )
 end
 
 _package_refs = collect(values(_PACKAGE_REF_BY_ID))
@@ -181,7 +186,7 @@ _validate_aggregated_package_docs(_AGGREGATED_PACKAGES, clonedir, _INCLUDE_VERSI
 MultiDocumenter.make(
     outpath,
     docs;
-    search_engine = MultiDocumenter.SearchConfig(
+    search_engine = MultiDocumenter.SearchConfig(;
         index_versions = ["stable"],
         engine = MultiDocumenter.PageFind,
     ),
@@ -194,7 +199,8 @@ MultiDocumenter.make(
 # MultiDocumenter copies pre-built HTML, so those links would leave the aggregate. Rewrite them to point under the aggregate base.
 const _AGGREGATE_BASE = rstrip(_docs_rootpath, '/')
 const _EXTERNAL_TO_AGGREGATE = [
-    "https://Sienna-Platform.github.io/$(pkg.repo)/" => "$_AGGREGATE_BASE/$(pkg.path)/" for
+    "https://Sienna-Platform.github.io/$(pkg.repo)/" => "$_AGGREGATE_BASE/$(pkg.path)/"
+    for
     pkg in _AGGREGATED_PACKAGES
 ]
 const _HOMEPAGE_LINK = """<a href="https://Sienna-Platform.github.io/Sienna/" class="nav-link nav-item">Homepage</a>"""
@@ -223,10 +229,12 @@ const _PAGESHOW_NAV_FIX = """
 # desync option value vs Documenter). Shield the script block, run extref rewrites, then restore.
 const _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER = "__SIENNA_MD_SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER__"
 function _shield_see_all_versions_script(content::String)
-    rgx = r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>|<script id=\"multidoc-see-all-versions-config\" type=\"application/json\">\{[\s\S]*?\}</script>)"
+    rgx =
+        r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>|<script id=\"multidoc-see-all-versions-config\" type=\"application/json\">\{[\s\S]*?\}</script>)"
     m = match(rgx, content)
     m === nothing && return content, nothing
-    return replace(content, m.match => _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER; count = 1), m.match
+    return replace(content, m.match => _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER; count = 1),
+    m.match
 end
 
 @info "Rewriting @extref links and injecting Homepage link in nav"
@@ -245,15 +253,27 @@ for (root, dirs, files) in walkdir(outpath)
             end
         end
         if see_all_block !== nothing
-            content = replace(content, _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER => see_all_block; count = 1)
+            content = replace(
+                content,
+                _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER => see_all_block;
+                count = 1,
+            )
         end
         # Inject "Homepage" as first item in the top bar (MultiDocumenter requires first doc to have path for redirect)
         if !occursin(">Homepage</a>", content)
             if occursin(_NAV_ITEMS_OPEN_CLASS_FIRST, content)
-                content = replace(content, _NAV_ITEMS_OPEN_CLASS_FIRST => _NAV_ITEMS_OPEN_CLASS_FIRST * _HOMEPAGE_LINK)
+                content = replace(
+                    content,
+                    _NAV_ITEMS_OPEN_CLASS_FIRST =>
+                        _NAV_ITEMS_OPEN_CLASS_FIRST * _HOMEPAGE_LINK,
+                )
                 modified = true
             elseif occursin(_NAV_ITEMS_OPEN_ID_FIRST, content)
-                content = replace(content, _NAV_ITEMS_OPEN_ID_FIRST => _NAV_ITEMS_OPEN_ID_FIRST * _HOMEPAGE_LINK)
+                content = replace(
+                    content,
+                    _NAV_ITEMS_OPEN_ID_FIRST =>
+                        _NAV_ITEMS_OPEN_ID_FIRST * _HOMEPAGE_LINK,
+                )
                 modified = true
             end
         end
