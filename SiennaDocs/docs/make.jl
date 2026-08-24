@@ -108,8 +108,12 @@ Building aggregate Sienna documentation site into: $(outpath)
 """
 
 # One MultiDocRef per package; same ref reused in multiple dropdowns.
-# include_versions limits copied version dirs to reduce site size; "All versions" link points to package gh-pages.
+# VersionSelection copies only stable/dev to reduce site size; See All Versions links to package gh-pages.
 const _INCLUDE_VERSIONS = ["stable", "dev"]
+_package_versions(repo) = MultiDocumenter.VersionSelection(
+    _INCLUDE_VERSIONS;
+    all_versions_url = "https://Sienna-Platform.github.io/$(repo)/",
+)
 const _AGGREGATED_PACKAGES = [
     (id = :psy, repo = "PowerSystems.jl", path = "PowerSystems"),
     (id = :pscb, repo = "PowerSystemCaseBuilder.jl", path = "PowerSystemCaseBuilder"),
@@ -131,7 +135,7 @@ const _PACKAGE_REF_BY_ID = Dict(
         path = pkg.path,
         name = pkg.repo,
         giturl = "https://github.com/Sienna-Platform/$(pkg.repo).git",
-        include_versions = _INCLUDE_VERSIONS,
+        versions = _package_versions(pkg.repo),
     ) for pkg in _AGGREGATED_PACKAGES
 )
 _refs(ids) = [_PACKAGE_REF_BY_ID[id] for id in ids]
@@ -171,7 +175,7 @@ function _validate_aggregated_package_docs(packages, clonedir, required_versions
   Missing aggregated package documentation before MultiDocumenter.make:
   $(join(missing, "\n"))
 
-  Each clone under $(clonedir) must contain gh-pages version directories listed in include_versions.
+  Each clone under $(clonedir) must contain gh-pages version directories listed in VersionSelection.
   Confirm the package has published docs on GitHub Pages (branch gh-pages) with stable/ and dev/.
   """,
     )
@@ -224,17 +228,20 @@ const _PAGESHOW_NAV_FIX = """
 </script>
 </body>"""
 
-# Unique placeholder; must not appear in real HTML. MultiDocumenter's "See All Versions" script contains
-# package gh-pages URLs that must not be rewritten to aggregate paths (would break window.open and
-# desync option value vs Documenter). Shield the script block, run extref rewrites, then restore.
-const _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER = "__SIENNA_MD_SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER__"
-function _shield_see_all_versions_script(content::String)
-    rgx =
-        r"(<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>|<script id=\"multidoc-see-all-versions-config\" type=\"application/json\">\{[\s\S]*?\}</script>)"
-    m = match(rgx, content)
-    m === nothing && return content, nothing
-    return replace(content, m.match => _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER; count = 1),
-    m.match
+# Unique placeholder; must not appear in real HTML. MultiDocumenter's "See All Versions"
+# option (v0.8.1) and older script/JSON injects contain package gh-pages URLs that must
+# not be rewritten to aggregate paths. Shield those fragments, run extref rewrites, then restore.
+const _SEE_ALL_VERSIONS_PLACEHOLDER = "__SIENNA_MD_SEE_ALL_VERSIONS_PLACEHOLDER__"
+function _shield_see_all_versions(content::String)
+    rgx = r"(<option\b[^>]*>See All Versions</option>|<script>\(function\(\)\{/\* documenter-see-all-versions-option \*/[\s\S]*?\}\)\(\);\</script\>|<script id=\"multidoc-see-all-versions-config\" type=\"application/json\">\{[\s\S]*?\}</script>)"
+    blocks = String[]
+    while true
+        m = match(rgx, content)
+        m === nothing && break
+        push!(blocks, m.match)
+        content = replace(content, m.match => _SEE_ALL_VERSIONS_PLACEHOLDER; count = 1)
+    end
+    return content, blocks
 end
 
 @info "Rewriting @extref links and injecting Homepage link in nav"
@@ -245,17 +252,17 @@ for (root, dirs, files) in walkdir(outpath)
         isfile(path) || continue
         content = read(path, String)
         modified = false
-        content, see_all_block = _shield_see_all_versions_script(content)
+        content, see_all_blocks = _shield_see_all_versions(content)
         for (from, to) in _EXTERNAL_TO_AGGREGATE
             if occursin(from, content)
                 content = replace(content, from => to)
                 modified = true
             end
         end
-        if see_all_block !== nothing
+        for block in see_all_blocks
             content = replace(
                 content,
-                _SEE_ALL_VERSIONS_SCRIPT_PLACEHOLDER => see_all_block;
+                _SEE_ALL_VERSIONS_PLACEHOLDER => block;
                 count = 1,
             )
         end
