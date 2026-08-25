@@ -209,9 +209,18 @@ function _cross_app_row_cells(
     col_index::Dict{Symbol, Int},
 )::Vector{String}
     ncol = length(apps)
+    haskey(col_index, entry.span_from) && haskey(col_index, entry.span_to) ||
+        error(
+            "cross-app $(entry.node_id): span columns must be enabled apps, " *
+            "got $(entry.span_from) → $(entry.span_to)",
+        )
     from_col = col_index[entry.span_from]
     to_col = col_index[entry.span_to]
-    @assert to_col == from_col + 1 "cross-app span must cover adjacent columns"
+    to_col == from_col + 1 ||
+        error(
+            "cross-app $(entry.node_id): span must cover adjacent columns, " *
+            "got $(entry.span_from) (col $from_col) → $(entry.span_to) (col $to_col)",
+        )
     cells = String[]
     for _ in 1:(from_col - 1)
         push!(cells, _space_cell())
