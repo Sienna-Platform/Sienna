@@ -1,0 +1,17 @@
+[deps]
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+PowerFlows = "94fada2c-fd9a-4e89-8d82-81405f5cb4f6"
+PowerNetworkMatrices = "bed98974-b02a-5e2f-9fe0-a103f5c450dd"
+PowerSimulationsDynamics = "398b2ede-47ed-4edc-b52e-69e4a48b4336"
+PowerSystemCaseBuilder = "f00506e0-b84f-492a-93c2-c0a9afc4364e"
+PowerSystems = "bcd98974-b02a-5e2f-9ee0-a103f5c450dd"
+
+[compat]
+PowerFlows = "=0.16.4"
+PowerNetworkMatrices = "=0.20.0"
+PowerSimulationsDynamics = "=0.16.2"
+PowerSystemCaseBuilder = "=2.6.0"
+PowerSystems = "=5.12.3"
+julia = "^1.10"
