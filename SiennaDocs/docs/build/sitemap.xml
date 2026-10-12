@@ -59,8 +59,6 @@
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/explanation/flowgate_methodology/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/explanation/network_reduction_theory/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/explanation/slack_conventions/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/how_to_guides/choose_linear_solver/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/how_to_guides/compute_network_matrices/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/how_to_guides/generated_build_multiple_matrices/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/how_to_guides/generated_choose_linear_solver/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/how_to_guides/generated_contingencies/</loc></url>
@@ -71,15 +69,6 @@
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/reference/public/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/generated_analysis_at_scale/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/generated_introduction/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/getting_started/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_DFAX/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_DegreeTwoReduction/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_Incidence_BA_ABA_matrices/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_LODF_matrix/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_PTDF_matrix/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_RadialReduction/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_VirtualLODF_matrix/</loc></url>
-<url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerNetworkMatrices/stable/tutorials/tutorial_VirtualPTDF_matrix/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerSimulations/stable/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerSimulations/stable/api/PowerSimulations/</loc></url>
 <url><loc>https://Sienna-Platform.github.io/Sienna/SiennaDocs/docs/build/PowerSimulations/stable/api/developer/</loc></url>
