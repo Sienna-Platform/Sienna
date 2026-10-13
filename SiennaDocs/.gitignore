@@ -126,3 +126,6 @@ $RECYCLE.BIN/
 
 ## Acknowledgements
 # Many thanks to `https://gitignore.io/`, written and maintained by Joe Blau, which contributed much material to this gitignore file.
+# Literate outputs from make_tutorials.jl (only .jl sources are committed)
+docs/src/tutorials/generated_*.md
+docs/src/tutorials/generated_*.ipynb
