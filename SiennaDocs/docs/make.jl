@@ -64,6 +64,7 @@ append!(
 
 showcase_pages = Any[
     "Production Cost Modeling" => "tutorials/generated_pcm_storage.md",
+    "PCM with Power Flow in the Loop" => "tutorials/generated_uc_power_flow_in_the_loop.md",
 ]
 
 pages = OrderedDict(
