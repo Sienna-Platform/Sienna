@@ -21,7 +21,7 @@ StorageSystemsSimulations = "e2f1a126-19d0-4674-9252-42b2384f8e3c"
 
 [compat]
 HydroPowerSimulations = "=0.19.1"
-PowerAnalytics = "=1.5.0"
+PowerAnalytics = "=1.6.0"
 PowerFlows = "=0.25.2"
 PowerGraphics = "=0.22.1"
 PowerNetworkMatrices = "=0.24.4"
