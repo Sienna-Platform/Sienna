@@ -6,6 +6,8 @@ using MultiDocumenter
 include(joinpath(@__DIR__, "capability_diagram.jl"))
 using .CapabilityDiagram
 
+include(joinpath(@__DIR__, "make_tutorials.jl"))
+
 # INCLUDE_INVEST: diagram column + Getting Started nav (see docs/capability_diagram.jl).
 const INCLUDE_INVEST = CapabilityDiagram.INCLUDE_INVEST
 const _prettyurls = true
@@ -35,6 +37,8 @@ links = InterLinks(
     "PowerSystems" => "https://Sienna-Platform.github.io/PowerSystems.jl/stable/",
     "PowerSimulations" => "https://Sienna-Platform.github.io/PowerSimulations.jl/stable/",
     "PowerAnalytics" => "https://Sienna-Platform.github.io/PowerAnalytics.jl/stable/",
+    "StorageSystemsSimulations" => "https://Sienna-Platform.github.io/StorageSystemsSimulations.jl/stable/",
+    "HydroPowerSimulations" => "https://Sienna-Platform.github.io/HydroPowerSimulations.jl/stable/",
     "PowerGraphics" => "https://Sienna-Platform.github.io/PowerGraphics.jl/stable/",
     "PowerSystemCaseBuilder" => "https://Sienna-Platform.github.io/PowerSystemCaseBuilder.jl/stable/",
     "PowerSimulationsDynamics" => "https://Sienna-Platform.github.io/PowerSimulationsDynamics.jl/stable/",
@@ -58,9 +62,15 @@ append!(
     ],
 )
 
+showcase_pages = Any[
+    "Production Cost Modeling" => "tutorials/generated_pcm_storage.md",
+    "PCM with Power Flow in the Loop" => "tutorials/generated_uc_power_flow_in_the_loop.md",
+]
+
 pages = OrderedDict(
     "Sienna Documentation" => "index.md",
     "Getting Started" => getting_started_pages,
+    "Showcases" => showcase_pages,
     "How-to" => Any[
         "Install Sienna" => "how-to/install.md",
         "Use Sienna in VSCode" => "how-to/use_vscode.md",
