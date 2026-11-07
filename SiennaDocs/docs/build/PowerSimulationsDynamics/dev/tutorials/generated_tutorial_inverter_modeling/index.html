@@ -5,7 +5,7 @@ const PSY = PowerSystems
 using PowerFlows
 using Logging
 using Sundials
-using Plots</code></pre><div class="admonition is-info" id="Note-9c7338068042084a"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-9c7338068042084a" title="Permalink"></a></header><div class="admonition-body"><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data instead of calling the function <a href="https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable/reference/public/#PowerSystemCaseBuilder.build_system"><code>PowerSystemCaseBuilder.build_system</code></a>.</p></div></div><p>Create the system using <code>PowerSystemCaseBuilder.jl</code>:</p><pre><code class="language-julia hljs">sys = build_system(PSIDSystems, "14 Bus Base Case")</code></pre><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">System</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Property</th><th style="font-weight: bold; text-align: left;">Value</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">Name</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">Description</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">System Units Base</td><td style="text-align: left;">SYSTEM_BASE</td></tr><tr class="dataRow"><td style="text-align: left;">Base Power</td><td style="text-align: left;">100.0</td></tr><tr class="dataRow"><td style="text-align: left;">Base Frequency</td><td style="text-align: left;">60.0</td></tr><tr class="dataRow"><td style="text-align: left;">Num Components</td><td style="text-align: left;">77</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Static Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">ACBus</td><td style="text-align: left;">14</td></tr><tr class="dataRow"><td style="text-align: left;">Arc</td><td style="text-align: left;">20</td></tr><tr class="dataRow"><td style="text-align: left;">Area</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Line</td><td style="text-align: left;">16</td></tr><tr class="dataRow"><td style="text-align: left;">LoadZone</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">StandardLoad</td><td style="text-align: left;">11</td></tr><tr class="dataRow"><td style="text-align: left;">TapTransformer</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">ThermalStandard</td><td style="text-align: left;">5</td></tr><tr class="dataRow"><td style="text-align: left;">Transformer2W</td><td style="text-align: left;">1</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Dynamic Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{RoundRotorQuadratic, SingleMass, ESAC1A, GasTG, PSSFixed}</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{RoundRotorQuadratic, SingleMass, ESAC1A, TGFixed, PSSFixed}</td><td style="text-align: left;">4</td></tr></tbody></table><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data.</p><p>Define <a href="../../api/public/#PowerSimulationsDynamics.Simulation-Union{Tuple{T}, Tuple{Type{T}, System, String, Tuple{Float64, Float64}}, Tuple{Type{T}, System, String, Tuple{Float64, Float64}, Vector{&lt;:PowerSimulationsDynamics.Perturbation}}} where T&lt;:PowerSimulationsDynamics.SimulationModel"><code>Simulation</code></a> Problem with a 20 second simulation period and the branch trip at t = 1.0:</p><pre><code class="language-julia hljs">sim = Simulation(
+using Plots</code></pre><div class="admonition is-info" id="Note-34972a1314252717"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-34972a1314252717" title="Permalink"></a></header><div class="admonition-body"><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data instead of calling the function <a href="https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable/reference/public/#PowerSystemCaseBuilder.build_system"><code>PowerSystemCaseBuilder.build_system</code></a>.</p></div></div><p>Create the system using <code>PowerSystemCaseBuilder.jl</code>:</p><pre><code class="language-julia hljs">sys = build_system(PSIDSystems, "14 Bus Base Case")</code></pre><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">System</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Property</th><th style="font-weight: bold; text-align: left;">Value</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">Name</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">Description</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">System Units Base</td><td style="text-align: left;">SYSTEM_BASE</td></tr><tr class="dataRow"><td style="text-align: left;">Base Power</td><td style="text-align: left;">100.0</td></tr><tr class="dataRow"><td style="text-align: left;">Base Frequency</td><td style="text-align: left;">60.0</td></tr><tr class="dataRow"><td style="text-align: left;">Num Components</td><td style="text-align: left;">77</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Static Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">ACBus</td><td style="text-align: left;">14</td></tr><tr class="dataRow"><td style="text-align: left;">Arc</td><td style="text-align: left;">20</td></tr><tr class="dataRow"><td style="text-align: left;">Area</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Line</td><td style="text-align: left;">16</td></tr><tr class="dataRow"><td style="text-align: left;">LoadZone</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">StandardLoad</td><td style="text-align: left;">11</td></tr><tr class="dataRow"><td style="text-align: left;">TapTransformer</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">ThermalStandard</td><td style="text-align: left;">5</td></tr><tr class="dataRow"><td style="text-align: left;">Transformer2W</td><td style="text-align: left;">1</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Dynamic Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{RoundRotorQuadratic, SingleMass, ESAC1A, GasTG, PSSFixed}</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{RoundRotorQuadratic, SingleMass, ESAC1A, TGFixed, PSSFixed}</td><td style="text-align: left;">4</td></tr></tbody></table><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data.</p><p>Define <a href="../../api/public/#PowerSimulationsDynamics.Simulation-Union{Tuple{T}, Tuple{Type{T}, System, String, Tuple{Float64, Float64}}, Tuple{Type{T}, System, String, Tuple{Float64, Float64}, Vector{&lt;:PowerSimulationsDynamics.Perturbation}}} where T&lt;:PowerSimulationsDynamics.SimulationModel"><code>Simulation</code></a> Problem with a 20 second simulation period and the branch trip at t = 1.0:</p><pre><code class="language-julia hljs">sim = Simulation(
     ResidualModel, #Type of model used
     sys,         #system
     mktempdir(),       #path for the simulation output
@@ -86,19 +86,19 @@ Vm 1.0126
 ====================
 ====================
 Differential States
-generator-3-1
+generator-6-1
 ====================
-eq_p 1.0649
-ed_p 0.1243
-ψ_kd 0.9872
-ψ_kq 0.2132
-δ 0.034
+eq_p 1.167
+ed_p 0.0955
+ψ_kd 1.08
+ψ_kq 0.3084
+δ 0.1387
 ω 1.0
-Vm 1.01
-Vr1 0.006
-Vr2 2.419
-Ve 1.791
-Vr3 -0.0726
+Vm 1.06
+Vr1 0.0082
+Vr2 3.2875
+Ve 2.4472
+Vr3 -0.0986
 ====================
 Differential States
 generator-8-1
@@ -114,6 +114,21 @@ Vr1 0.0097
 Vr2 3.9162
 Ve 2.8839
 Vr3 -0.1175
+====================
+Differential States
+generator-3-1
+====================
+eq_p 1.0649
+ed_p 0.1243
+ψ_kd 0.9872
+ψ_kq 0.2132
+δ 0.034
+ω 1.0
+Vm 1.01
+Vr1 0.006
+Vr2 2.419
+Ve 1.791
+Vr3 -0.0726
 ====================
 Differential States
 generator-1-1
@@ -147,21 +162,6 @@ Vr1 0.0071
 Vr2 2.8613
 Ve 2.1338
 Vr3 -0.0858
-====================
-Differential States
-generator-6-1
-====================
-eq_p 1.167
-ed_p 0.0955
-ψ_kd 1.08
-ψ_kq 0.3084
-δ 0.1387
-ω 1.0
-Vm 1.06
-Vr1 0.0082
-Vr2 3.2875
-Ve 2.4472
-Vr3 -0.0986
 ====================</code></pre><p>We execute the simulation with an additional tolerance for the solver set at 1e-8:</p><pre><code class="language-julia hljs">execute!(sim, IDA(); abstol = 1e-8)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">SIMULATION_FINALIZED::BUILD_STATUS = 6</code></pre><p>Using <code>PowerSimulationsDynamics</code> tools for exploring the results, we can plot all the voltage results for the buses:</p><pre><code class="language-julia hljs">result = read_results(sim)
 p = plot();
 for b in get_components(ACBus, sys)
@@ -174,7 +174,7 @@ for b in get_components(ACBus, sys)
         label = "Bus - $(get_name(b))",
     )
 end
-p</code></pre><img alt="Example block output" src="e74528e3.svg"/><p>We can also explore the frequency of the different generators</p><pre><code class="language-julia hljs">p2 = plot();
+p</code></pre><img alt="Example block output" src="2eea118a.svg"/><p>We can also explore the frequency of the different generators</p><pre><code class="language-julia hljs">p2 = plot();
 for g in get_components(ThermalStandard, sys)
     state_series = get_state_series(result, (get_name(g), :ω))
     plot!(
@@ -185,27 +185,27 @@ for g in get_components(ThermalStandard, sys)
         label = "$(get_name(g)) - ω",
     )
 end
-p2</code></pre><img alt="Example block output" src="00a8ee98.svg"/><p>It is also possible to explore the small signal stability of this system we created.</p><pre><code class="language-julia hljs">res = small_signal_analysis(sim)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">The system is small signal stable
+p2</code></pre><img alt="Example block output" src="85b90c58.svg"/><p>It is also possible to explore the small signal stability of this system we created.</p><pre><code class="language-julia hljs">res = small_signal_analysis(sim)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">The system is small signal stable
 </code></pre><h2 id="The-eigenvalues-can-be-explored"><a class="docs-heading-anchor" href="#The-eigenvalues-can-be-explored">The eigenvalues can be explored</a><a id="The-eigenvalues-can-be-explored-1"></a><a class="docs-heading-anchor-permalink" href="#The-eigenvalues-can-be-explored" title="Permalink"></a></h2><pre><code class="language-julia hljs">res.eigenvalues</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">58-element Vector{ComplexF64}:
-  -1000.0000000000013 + 0.0im
-  -1000.0000000000008 + 0.0im
-              -1000.0 + 0.0im
+  -1000.0000000000014 + 0.0im
+  -1000.0000000000002 + 0.0im
+  -1000.0000000000002 + 0.0im
+   -999.9999999999998 + 0.0im
    -999.9999999999997 + 0.0im
-   -999.9999999999995 + 0.0im
-  -51.832261462102565 + 0.0im
-   -51.70282865489656 + 0.0im
-   -51.44178338585995 - 0.018280166539830462im
-   -51.44178338585995 + 0.018280166539830462im
-   -51.40803855857809 + 0.0im
+   -51.83226146210262 + 0.0im
+  -51.702828654896976 + 0.0im
+   -51.44178338585994 - 0.018280166539229488im
+   -51.44178338585994 + 0.018280166539229488im
+  -51.408038558577594 + 0.0im
                       ⋮
-  -0.8294145253845819 - 0.04425340347911328im
-  -0.8294145253845819 + 0.04425340347911328im
-   -0.636425614150723 + 0.0im
+  -0.8294145253846059 - 0.04425340347906413im
+  -0.8294145253846059 + 0.04425340347906413im
+  -0.6364256141506942 + 0.0im
                  -0.5 + 0.0im
-  -0.4685011052148826 + 0.0im
- -0.28255694504402484 + 0.0im
- -0.22460226197089506 - 7.678563001298124im
- -0.22460226197089506 + 7.678563001298124im
+ -0.46850110521489857 + 0.0im
+ -0.28255694504399625 + 0.0im
+ -0.22460226197087674 - 7.67856300129814im
+ -0.22460226197087674 + 7.67856300129814im
                   0.0 + 0.0im</code></pre><h2 id="Modifying-the-system-and-adding-storage"><a class="docs-heading-anchor" href="#Modifying-the-system-and-adding-storage">Modifying the system and adding storage</a><a id="Modifying-the-system-and-adding-storage-1"></a><a class="docs-heading-anchor-permalink" href="#Modifying-the-system-and-adding-storage" title="Permalink"></a></h2><p>Reload the system for this example:</p><pre><code class="language-julia hljs">sys = build_system(PSIDSystems, "14 Bus Base Case")
 
 # We want to remove the generator 6 and the dynamic component attached to it.
@@ -235,7 +235,7 @@ storage = EnergyReservoirStorage(;
 )
 
 add_component!(sys, storage)</code></pre><p>A good sanity check it running a power flow on the system to make sure all the components are properly scaled and that the system is properly balanced. We can use <a href="https://sienna-platform.github.io/PowerSystems.jl/stable/"><code>PowerSystems.jl</code></a> to perform this check. We can get the results back and perform a sanity check.</p><pre><code class="language-julia hljs">res = solve_power_flow(ACPowerFlow(), sys)
-res["bus_results"]</code></pre><div><div style="float: right; font-style: italic;"><span>4 rows omitted</span></div><div style="clear: both;"></div></div><table><thead><tr class="columnLabelRow"><th style="font-weight: bold; text-align: right;">bus_number</th><th style="font-weight: bold; text-align: right;">Vm</th><th style="font-weight: bold; text-align: right;">θ</th><th style="font-weight: bold; text-align: right;">P_gen</th><th style="font-weight: bold; text-align: right;">P_load</th><th style="font-weight: bold; text-align: right;">P_net</th><th style="font-weight: bold; text-align: right;">Q_gen</th><th style="font-weight: bold; text-align: right;">Q_load</th><th style="font-weight: bold; text-align: right;">Q_net</th></tr><tr class="columnLabelRow"><th style="text-align: right;">Int64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: right;">1</td><td style="text-align: right;">1.06</td><td style="text-align: right;">0.0</td><td style="text-align: right;">204.63182906121756</td><td style="text-align: right;">0.0</td><td style="text-align: right;">204.63182906121756</td><td style="text-align: right;">-0.6544532581482285</td><td style="text-align: right;">0.0</td><td style="text-align: right;">-0.6544532581482285</td></tr><tr class="dataRow"><td style="text-align: right;">2</td><td style="text-align: right;">1.04</td><td style="text-align: right;">-0.0756785116259242</td><td style="text-align: right;">30.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">30.0</td><td style="text-align: right;">31.355533771378564</td><td style="text-align: right;">0.0</td><td style="text-align: right;">31.355533771378564</td></tr><tr class="dataRow"><td style="text-align: right;">3</td><td style="text-align: right;">1.01</td><td style="text-align: right;">-0.1872016807793526</td><td style="text-align: right;">19.999999999999996</td><td style="text-align: right;">0.0</td><td style="text-align: right;">19.999999999999996</td><td style="text-align: right;">23.524129532810857</td><td style="text-align: right;">0.0</td><td style="text-align: right;">23.524129532810857</td></tr><tr class="dataRow"><td style="text-align: right;">4</td><td style="text-align: right;">1.0116017921881253</td><td style="text-align: right;">-0.1538174488968855</td><td style="text-align: right;">-5.551115123125783e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">-5.551115123125783e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">5</td><td style="text-align: right;">1.0152809910946499</td><td style="text-align: right;">-0.13077903016636822</td><td style="text-align: right;">-1.3877787807814457e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">-1.3877787807814457e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">6</td><td style="text-align: right;">1.06</td><td style="text-align: right;">-0.20881729364765783</td><td style="text-align: right;">15.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">15.0</td><td style="text-align: right;">17.955334814367514</td><td style="text-align: right;">0.0</td><td style="text-align: right;">17.955334814367514</td></tr><tr class="dataRow"><td style="text-align: right;">7</td><td style="text-align: right;">1.0425337653833038</td><td style="text-align: right;">-0.19224293380273696</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">8</td><td style="text-align: right;">1.08</td><td style="text-align: right;">-0.17659754115599705</td><td style="text-align: right;">10.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">10.0</td><td style="text-align: right;">23.049295610470786</td><td style="text-align: right;">0.0</td><td style="text-align: right;">23.049295610470786</td></tr><tr class="dataRow"><td style="text-align: right;">9</td><td style="text-align: right;">1.024403703684157</td><td style="text-align: right;">-0.22295412499156467</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">2.7755575615628914e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">2.7755575615628914e-15</td></tr><tr class="dataRow"><td style="text-align: right;">10</td><td style="text-align: right;">1.0226106582258314</td><td style="text-align: right;">-0.2257490090663724</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td></tr></tbody></table><p>After verifying that the system works, we can define our inverter dynamics and add it to the battery that has already been stored in the system.</p><pre><code class="language-julia hljs">inverter = DynamicInverter(;
+res["bus_results"]</code></pre><div><div style="float: right; font-style: italic;"><span>4 rows omitted</span></div><div style="clear: both;"></div></div><table><thead><tr class="columnLabelRow"><th style="font-weight: bold; text-align: right;">bus_number</th><th style="font-weight: bold; text-align: right;">Vm</th><th style="font-weight: bold; text-align: right;">θ</th><th style="font-weight: bold; text-align: right;">P_gen</th><th style="font-weight: bold; text-align: right;">P_load</th><th style="font-weight: bold; text-align: right;">P_net</th><th style="font-weight: bold; text-align: right;">Q_gen</th><th style="font-weight: bold; text-align: right;">Q_load</th><th style="font-weight: bold; text-align: right;">Q_net</th></tr><tr class="columnLabelRow"><th style="text-align: right;">Int64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th><th style="text-align: right;">Float64</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: right;">1</td><td style="text-align: right;">1.06</td><td style="text-align: right;">0.0</td><td style="text-align: right;">204.63182906121764</td><td style="text-align: right;">0.0</td><td style="text-align: right;">204.63182906121764</td><td style="text-align: right;">-0.6544532581482142</td><td style="text-align: right;">0.0</td><td style="text-align: right;">-0.6544532581482142</td></tr><tr class="dataRow"><td style="text-align: right;">2</td><td style="text-align: right;">1.04</td><td style="text-align: right;">-0.07567851162592423</td><td style="text-align: right;">30.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">30.0</td><td style="text-align: right;">31.355533771378692</td><td style="text-align: right;">0.0</td><td style="text-align: right;">31.355533771378692</td></tr><tr class="dataRow"><td style="text-align: right;">3</td><td style="text-align: right;">1.01</td><td style="text-align: right;">-0.1872016807793527</td><td style="text-align: right;">19.999999999999996</td><td style="text-align: right;">0.0</td><td style="text-align: right;">19.999999999999996</td><td style="text-align: right;">23.524129532810957</td><td style="text-align: right;">0.0</td><td style="text-align: right;">23.524129532810957</td></tr><tr class="dataRow"><td style="text-align: right;">4</td><td style="text-align: right;">1.0116017921881253</td><td style="text-align: right;">-0.15381744889688556</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">5</td><td style="text-align: right;">1.0152809910946499</td><td style="text-align: right;">-0.13077903016636833</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">6</td><td style="text-align: right;">1.06</td><td style="text-align: right;">-0.20881729364765797</td><td style="text-align: right;">15.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">15.0</td><td style="text-align: right;">17.955334814367205</td><td style="text-align: right;">0.0</td><td style="text-align: right;">17.955334814367205</td></tr><tr class="dataRow"><td style="text-align: right;">7</td><td style="text-align: right;">1.042533765383304</td><td style="text-align: right;">-0.19224293380273705</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr class="dataRow"><td style="text-align: right;">8</td><td style="text-align: right;">1.08</td><td style="text-align: right;">-0.17659754115599713</td><td style="text-align: right;">10.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">10.0</td><td style="text-align: right;">23.049295610470555</td><td style="text-align: right;">0.0</td><td style="text-align: right;">23.049295610470555</td></tr><tr class="dataRow"><td style="text-align: right;">9</td><td style="text-align: right;">1.0244037036841573</td><td style="text-align: right;">-0.22295412499156475</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">2.7755575615628914e-15</td><td style="text-align: right;">0.0</td><td style="text-align: right;">2.7755575615628914e-15</td></tr><tr class="dataRow"><td style="text-align: right;">10</td><td style="text-align: right;">1.0226106582258319</td><td style="text-align: right;">-0.22574900906637255</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td><td style="text-align: right;">0.0</td></tr><tr><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td><td style="text-align: right;">⋮</td></tr></tbody></table><p>After verifying that the system works, we can define our inverter dynamics and add it to the battery that has already been stored in the system.</p><pre><code class="language-julia hljs">inverter = DynamicInverter(;
     name = get_name(storage),
     ω_ref = 1.0, # ω_ref,
     converter = AverageConverter(; rated_voltage = 138.0, rated_current = 100.0),
@@ -272,25 +272,25 @@ add_component!(sys, inverter, storage)</code></pre><p>These are the current syst
     console_level = Logging.Info,
 )</code></pre><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Simulation Summary</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Property</th><th style="font-weight: bold; text-align: left;">Value</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">Status</td><td style="text-align: left;">BUILT</td></tr><tr class="dataRow"><td style="text-align: left;">Simulation Type</td><td style="text-align: left;">Residual Model</td></tr><tr class="dataRow"><td style="text-align: left;">Initialized?</td><td style="text-align: left;">Yes</td></tr><tr class="dataRow"><td style="text-align: left;">Multimachine system?</td><td style="text-align: left;">Yes</td></tr><tr class="dataRow"><td style="text-align: left;">Time Span</td><td style="text-align: left;">(0.0, 20.0)</td></tr><tr class="dataRow"><td style="text-align: left;">Number of States</td><td style="text-align: left;">94</td></tr><tr class="dataRow"><td style="text-align: left;">Number of Perturbations</td><td style="text-align: left;">1</td></tr></tbody></table><p>We can verify the small signal stability of the system before running the simulation:</p><pre><code class="language-julia hljs">res = small_signal_analysis(sim)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">The system is small signal stable
 </code></pre><p>Exploring the eigenvalues:</p><pre><code class="language-julia hljs">res.eigenvalues</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">66-element Vector{ComplexF64}:
-   -2268.086782285306 - 6832.6919286783905im
-   -2268.086782285306 + 6832.6919286783905im
-  -2094.4897564675202 - 6527.127108333028im
-  -2094.4897564675202 + 6527.127108333028im
-  -1615.3517316545517 - 290.9591007369998im
-  -1615.3517316545517 + 290.9591007369998im
-  -1000.0000000000002 + 0.0im
-  -1000.0000000000002 + 0.0im
-   -999.9999999999997 + 0.0im
-   -999.9999999999997 + 0.0im
+   -2268.086782285304 - 6832.691928678384im
+   -2268.086782285304 + 6832.691928678384im
+   -2094.489756467525 - 6527.127108333023im
+   -2094.489756467525 + 6527.127108333023im
+    -1615.35173165455 - 290.95910073699997im
+    -1615.35173165455 + 290.95910073699997im
+   -1000.000000000001 + 0.0im
+   -999.9999999999993 + 0.0im
+   -999.9999999999985 + 0.0im
+   -999.9999999999975 + 0.0im
                       ⋮
-  -1.0079673594547338 + 0.0im
-  -0.9363180292979674 + 0.0im
-  -0.7915474210230696 + 0.0im
-  -0.6203962737229496 + 0.0im
+  -1.0079673594548033 + 0.0im
+  -0.9363180292979276 + 0.0im
+  -0.7915474210230107 + 0.0im
+  -0.6203962737228779 + 0.0im
                  -0.5 + 0.0im
- -0.25257135557909405 + 0.0im
- -0.23628203943530024 - 7.65999410496469im
- -0.23628203943530024 + 7.65999410496469im
+ -0.25257135557910976 + 0.0im
+   -0.236282039435305 - 7.659994104964716im
+   -0.236282039435305 + 7.659994104964716im
                   0.0 + 0.0im</code></pre><p>We execute the simulation</p><pre><code class="language-julia hljs">execute!(sim, IDA(); abstol = 1e-6)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">SIMULATION_FINALIZED::BUILD_STATUS = 6</code></pre><p>Using <code>PowerSimulationsDynamics</code> tools for exploring the results, we can plot all the voltage results for the buses</p><pre><code class="language-julia hljs">result = read_results(sim)
 p = plot();
 for b in get_components(ACBus, sys)
@@ -303,7 +303,7 @@ for b in get_components(ACBus, sys)
         label = "Bus - $(get_name(b))",
     )
 end
-p</code></pre><img alt="Example block output" src="80434d0f.svg"/><p>We can also explore the frequency of the different static generators and storage</p><pre><code class="language-julia hljs">p2 = plot();
+p</code></pre><img alt="Example block output" src="d21a5ff0.svg"/><p>We can also explore the frequency of the different static generators and storage</p><pre><code class="language-julia hljs">p2 = plot();
 for g in get_components(ThermalStandard, sys)
     state_series = get_state_series(result, (get_name(g), :ω))
     plot!(
@@ -316,7 +316,7 @@ for g in get_components(ThermalStandard, sys)
 end
 state_series = get_state_series(result, ("Battery", :ω_oc))
 plot!(p2, state_series; xlabel = "Time", ylabel = "Speed [pu]", label = "Battery - ω_vsm");
-p2</code></pre><img alt="Example block output" src="02677772.svg"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_tutorial_dynamic_lines/">« Dynamic Lines Simulation</a><a class="docs-footer-nextpage" href="../generated_tutorial_240bus/">240 WECC solver comparison »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.15.0 on <span class="colophon-date" title="Wednesday 12 August 2026 16:51">Wednesday 12 August 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
+p2</code></pre><img alt="Example block output" src="470d51c4.svg"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_tutorial_dynamic_lines/">« Dynamic Lines Simulation</a><a class="docs-footer-nextpage" href="../generated_tutorial_240bus/">240 WECC solver comparison »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.15.0 on <span class="colophon-date" title="Saturday 7 November 2026 02:30">Saturday 7 November 2026</span>. Using Julia version 1.13.3.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
 (function(){
   window.addEventListener('pageshow', function(ev) {
     if (!ev.persisted) return;

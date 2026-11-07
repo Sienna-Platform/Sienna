@@ -3,7 +3,7 @@ using PowerSystems
 using PowerNetworkMatrices
 using PowerSystemCaseBuilder
 using Sundials
-using Plots</code></pre><div class="admonition is-info" id="Note-9c7338068042084a"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-9c7338068042084a" title="Permalink"></a></header><div class="admonition-body"><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data instead of calling the function <a href="https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable/reference/public/#PowerSystemCaseBuilder.build_system"><code>PowerSystemCaseBuilder.build_system</code></a>.</p></div></div><h3 id="Step-2:-Data-creation"><a class="docs-heading-anchor" href="#Step-2:-Data-creation">Step 2: Data creation</a><a id="Step-2:-Data-creation-1"></a><a class="docs-heading-anchor-permalink" href="#Step-2:-Data-creation" title="Permalink"></a></h3><p>Load the system using <code>PowerSystemCaseBuilder.jl</code>:</p><pre><code class="language-julia hljs">threebus_sys = build_system(PSIDSystems, "Three Bus Dynamic data Example System")</code></pre><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">System</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Property</th><th style="font-weight: bold; text-align: left;">Value</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">Name</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">Description</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">System Units Base</td><td style="text-align: left;">SYSTEM_BASE</td></tr><tr class="dataRow"><td style="text-align: left;">Base Power</td><td style="text-align: left;">100.0</td></tr><tr class="dataRow"><td style="text-align: left;">Base Frequency</td><td style="text-align: left;">60.0</td></tr><tr class="dataRow"><td style="text-align: left;">Num Components</td><td style="text-align: left;">19</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Static Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">ACBus</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">Arc</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">Area</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Line</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">LoadZone</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Source</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">StandardLoad</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">ThermalStandard</td><td style="text-align: left;">2</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Dynamic Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{OneDOneQMachine, SingleMass, AVRTypeI, TGFixed, PSSFixed}</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">DynamicInverter{AverageConverter, OuterControl, VoltageModeControl, FixedDCSource, KauraPLL, LCLFilter, Nothing}</td><td style="text-align: left;">1</td></tr></tbody></table><p>In addition, we will create a new copy of the system on which we will simulate the same case, but will consider dynamic lines:</p><pre><code class="language-julia hljs">threebus_sys_dyn = deepcopy(threebus_sys);</code></pre><h3 id="Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system"><a class="docs-heading-anchor" href="#Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system">Step 3: Create the fault and simulation on the Static Lines system</a><a id="Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system-1"></a><a class="docs-heading-anchor-permalink" href="#Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system" title="Permalink"></a></h3><p>First, we construct the perturbation, by properly computing the new Ybus on the system:</p><pre><code class="language-julia hljs">#Make a copy of the original system
+using Plots</code></pre><div class="admonition is-info" id="Note-34972a1314252717"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-34972a1314252717" title="Permalink"></a></header><div class="admonition-body"><p><code>PowerSystemCaseBuilder.jl</code> is a helper library that makes it easier to reproduce examples in the documentation and tutorials. Normally you would pass your local files to create the system data instead of calling the function <a href="https://sienna-platform.github.io/PowerSystemCaseBuilder.jl/stable/reference/public/#PowerSystemCaseBuilder.build_system"><code>PowerSystemCaseBuilder.build_system</code></a>.</p></div></div><h3 id="Step-2:-Data-creation"><a class="docs-heading-anchor" href="#Step-2:-Data-creation">Step 2: Data creation</a><a id="Step-2:-Data-creation-1"></a><a class="docs-heading-anchor-permalink" href="#Step-2:-Data-creation" title="Permalink"></a></h3><p>Load the system using <code>PowerSystemCaseBuilder.jl</code>:</p><pre><code class="language-julia hljs">threebus_sys = build_system(PSIDSystems, "Three Bus Dynamic data Example System")</code></pre><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">System</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Property</th><th style="font-weight: bold; text-align: left;">Value</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">Name</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">Description</td><td style="text-align: left;"></td></tr><tr class="dataRow"><td style="text-align: left;">System Units Base</td><td style="text-align: left;">SYSTEM_BASE</td></tr><tr class="dataRow"><td style="text-align: left;">Base Power</td><td style="text-align: left;">100.0</td></tr><tr class="dataRow"><td style="text-align: left;">Base Frequency</td><td style="text-align: left;">60.0</td></tr><tr class="dataRow"><td style="text-align: left;">Num Components</td><td style="text-align: left;">19</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Static Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">ACBus</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">Arc</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">Area</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Line</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">LoadZone</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">Source</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">StandardLoad</td><td style="text-align: left;">3</td></tr><tr class="dataRow"><td style="text-align: left;">ThermalStandard</td><td style="text-align: left;">2</td></tr></tbody></table><table><thead><tr class="title"><td colspan="2" style="font-size: x-large; font-weight: bold; text-align: center;">Dynamic Components</td></tr><tr class="columnLabelRow"><th style="font-weight: bold; text-align: left;">Type</th><th style="font-weight: bold; text-align: left;">Count</th></tr></thead><tbody><tr class="dataRow"><td style="text-align: left;">DynamicGenerator{OneDOneQMachine, SingleMass, AVRTypeI, TGFixed, PSSFixed}</td><td style="text-align: left;">1</td></tr><tr class="dataRow"><td style="text-align: left;">DynamicInverter{AverageConverter, OuterControl, VoltageModeControl, FixedDCSource, KauraPLL, LCLFilter, Nothing}</td><td style="text-align: left;">1</td></tr></tbody></table><p>In addition, we will create a new copy of the system on which we will simulate the same case, but will consider dynamic lines:</p><pre><code class="language-julia hljs">threebus_sys_dyn = deepcopy(threebus_sys);</code></pre><h3 id="Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system"><a class="docs-heading-anchor" href="#Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system">Step 3: Create the fault and simulation on the Static Lines system</a><a id="Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system-1"></a><a class="docs-heading-anchor-permalink" href="#Step-3:-Create-the-fault-and-simulation-on-the-Static-Lines-system" title="Permalink"></a></h3><p>First, we construct the perturbation, by properly computing the new Ybus on the system:</p><pre><code class="language-julia hljs">#Make a copy of the original system
 sys2 = deepcopy(threebus_sys)
 #Triplicates the impedance of the line named "BUS 1-BUS 3-i_1"
 fault_branches = get_components(ACBranch, sys2)
@@ -51,18 +51,6 @@ Vm 1.0059
 ====================
 ====================
 Differential States
-generator-102-1
-====================
-eq_p 0.6478
-ed_p 0.6672
-δ 0.9386
-ω 1.0
-Vf 1.0781
-Vr1 0.0333
-Vr2 -0.1941
-Vm 1.0142
-====================
-Differential States
 generator-103-1
 ====================
 θ_oc 0.4573
@@ -84,6 +72,18 @@ vr_filter 0.8738
 vi_filter 0.2095
 ir_filter 0.7617
 ii_filter 0.6923
+====================
+Differential States
+generator-102-1
+====================
+eq_p 0.6478
+ed_p 0.6672
+δ 0.9386
+ω 1.0
+Vf 1.0781
+Vr1 0.0333
+Vr2 -0.1941
+Vm 1.0142
 ====================</code></pre><h3 id="Step-4:-Run-the-simulation-of-the-Static-Lines-System"><a class="docs-heading-anchor" href="#Step-4:-Run-the-simulation-of-the-Static-Lines-System">Step 4: Run the simulation of the Static Lines System</a><a id="Step-4:-Run-the-simulation-of-the-Static-Lines-System-1"></a><a class="docs-heading-anchor-permalink" href="#Step-4:-Run-the-simulation-of-the-Static-Lines-System" title="Permalink"></a></h3><pre><code class="language-julia hljs">#Run the simulation
 execute!(
     sim, #simulation structure
@@ -149,18 +149,6 @@ Vm 0.9479
 ====================
 ====================
 Differential States
-generator-102-1
-====================
-eq_p 0.9517
-ed_p 0.4462
-δ 0.4468
-ω 1.0001
-Vf 1.4757
-Vr1 0.0612
-Vr2 -0.2691
-Vm 1.0161
-====================
-Differential States
 generator-103-1
 ====================
 θ_oc 0.4804
@@ -183,6 +171,18 @@ vi_filter 0.2051
 ir_filter 0.8216
 ii_filter 0.6164
 ====================
+Differential States
+generator-102-1
+====================
+eq_p 0.9517
+ed_p 0.4462
+δ 0.4468
+ω 1.0001
+Vf 1.4757
+Vr1 0.0612
+Vr2 -0.2691
+Vm 1.0161
+====================
 ====================
 Line Current States
 ====================
@@ -195,8 +195,8 @@ zoom_dyn = [
     (series2_dyn[1][ix], series2_dyn[2][ix]) for
     (ix, s) in enumerate(series2_dyn[1]) if (s &gt; 0.90 &amp;&amp; s &lt; 1.6)
 ];</code></pre><h3 id="Step-6.1:-Compare-the-solutions"><a class="docs-heading-anchor" href="#Step-6.1:-Compare-the-solutions">Step 6.1: Compare the solutions</a><a id="Step-6.1:-Compare-the-solutions-1"></a><a class="docs-heading-anchor-permalink" href="#Step-6.1:-Compare-the-solutions" title="Permalink"></a></h3><p>We can observe the effect of Dynamic Lines</p><pre><code class="language-julia hljs">plot(series2_dyn; label = "V_gen_dyn");
-plot!(series2; label = "V_gen_st", xlabel = "Time [s]", ylabel = "Voltage [pu]")</code></pre><img alt="Example block output" src="4ccb2f5c.svg"/><p>that looks quite similar. The differences can be observed in the zoom plot:</p><pre><code class="language-julia hljs">plot(zoom_dyn; label = "V_gen_dyn");
-plot!(zoom; label = "V_gen_st", xlabel = "Time [s]", ylabel = "Voltage [pu]")</code></pre><img alt="Example block output" src="d64d9893.svg"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_tutorial_omib/">« OMIB</a><a class="docs-footer-nextpage" href="../generated_tutorial_inverter_modeling/">Inverter Modeling »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.15.0 on <span class="colophon-date" title="Wednesday 12 August 2026 16:51">Wednesday 12 August 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
+plot!(series2; label = "V_gen_st", xlabel = "Time [s]", ylabel = "Voltage [pu]")</code></pre><img alt="Example block output" src="6aad69b2.svg"/><p>that looks quite similar. The differences can be observed in the zoom plot:</p><pre><code class="language-julia hljs">plot(zoom_dyn; label = "V_gen_dyn");
+plot!(zoom; label = "V_gen_st", xlabel = "Time [s]", ylabel = "Voltage [pu]")</code></pre><img alt="Example block output" src="bd7a6c22.svg"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generated_tutorial_omib/">« OMIB</a><a class="docs-footer-nextpage" href="../generated_tutorial_inverter_modeling/">Inverter Modeling »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.15.0 on <span class="colophon-date" title="Saturday 7 November 2026 02:30">Saturday 7 November 2026</span>. Using Julia version 1.13.3.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
 (function(){
   window.addEventListener('pageshow', function(ev) {
     if (!ev.persisted) return;
