@@ -31,39 +31,180 @@ julia&gt; run_parallel_simulation(
         num_parallel_processes=4,
         exeflags="--project=&lt;path-to-your-julia-environment&gt;",
     )</code></pre><p>The final results will be in <code>./my_simulation_output/my_simulation</code></p><p>Note the log files and results for each partition are located in <code>./my_simulation_output/my_simulation/simulation_partitions</code></p><h3 id="Failed-partitions"><a class="docs-heading-anchor" href="#Failed-partitions">Failed partitions</a><a id="Failed-partitions-1"></a><a class="docs-heading-anchor-permalink" href="#Failed-partitions" title="Permalink"></a></h3><p>If any partition fails, the join step throws an exception and records a failed status in <code>./my_simulation_output/my_simulation/results/status.json</code>. Each failed partition, along with the simulation steps that it covers, is logged in <code>./my_simulation_output/my_simulation/logs/join_partitioned_simulation.log</code>.</p><p>If you want to inspect the results of the successful partitions, join them by skipping the failed partitions, as shown below. The status of the simulation remains a failure and the results of the steps that were covered by the failed partitions are invalid.</p><pre><code class="nohighlight hljs">julia&gt; PowerSimulations.join_simulation("my_simulation_output/my_simulation"; skip_failures=true)
-julia&gt; results = SimulationResults("my_simulation_output/my_simulation"; ignore_status=true)</code></pre><h2 id="Run-a-Simulation-in-Parallel-on-an-HPC"><a class="docs-heading-anchor" href="#Run-a-Simulation-in-Parallel-on-an-HPC">Run a Simulation in Parallel on an HPC</a><a id="Run-a-Simulation-in-Parallel-on-an-HPC-1"></a><a class="docs-heading-anchor-permalink" href="#Run-a-Simulation-in-Parallel-on-an-HPC" title="Permalink"></a></h2><p>This page describes how to split a simulation into partitions, run each partition in parallel on HPC compute nodes, and then join the results.</p><p>These steps can be used on a local computer or any HPC supported by the submission software. Some steps may be specific to NREL's HPC <code>Eagle</code> cluster.</p><p><em>Note</em>: Some instructions are preliminary and will change if functionality is moved to a new Julia package.</p><h3 id="Setup-2"><a class="docs-heading-anchor" href="#Setup-2">Setup</a><a class="docs-heading-anchor-permalink" href="#Setup-2" title="Permalink"></a></h3><ol><li>Create a conda environment and install the Python package <code>NREL-jade</code>: https://nrel.github.io/jade/installation.html. The rest of this page assumes that the environment is called <code>jade</code>.</li><li>Activate the environment with <code>conda activate jade</code>.</li><li>Locate the path to that conda environment. It will likely be <code>~/.conda-envs/jade</code> or <code>~/.conda/envs/jade</code>.</li><li>Load the Julia environment that you use to run simulations. Add the packages <code>Conda</code> and <code>PyCall</code>.</li><li>Setup Conda to use the existing <code>jade</code> environment by running these commands:</li></ol><pre><code class="nohighlight hljs">julia&gt; run(`conda create -n conda_jl python conda`)
-julia&gt; ENV["CONDA_JL_HOME"] = joinpath(ENV["HOME"], ".conda-envs", "jade")  # change this to your path
-pkg&gt; build Conda</code></pre><ol><li>Copy the code below into a Julia file called <code>configure_parallel_simulation.jl</code>. This is an interface to Jade through PyCall. It will be used to create a Jade configuration. (It may eventually be moved to a separate package.)</li></ol><pre><code class="nohighlight hljs">function configure_parallel_simulation(
-    script::AbstractString,
-    num_steps::Integer,
-    num_period_steps::Integer;
-    num_overlap_steps::Integer=0,
-    project_path=nothing,
-    simulation_name="simulation",
-    config_file="config.json",
-    force=false,
-)
-    partitions = SimulationPartitions(num_steps, num_period_steps, num_overlap_steps)
-    jgc = pyimport("jade.extensions.generic_command")
-    julia_cmd = isnothing(project_path) ? "julia" : "julia --project=$project_path"
-    setup_command = "$julia_cmd $script setup --simulation-name=$simulation_name " *
-    "--num-steps=$num_steps --num-period-steps=$num_period_steps " *
-    "--num-overlap-steps=$num_overlap_steps"
-    teardown_command = "$julia_cmd $script join --simulation-name=$simulation_name"
-    config = jgc.GenericCommandConfiguration(
-        setup_command=setup_command,
-        teardown_command=teardown_command,
+julia&gt; results = SimulationResults("my_simulation_output/my_simulation"; ignore_status=true)</code></pre><h2 id="Run-a-Simulation-in-Parallel-on-an-HPC"><a class="docs-heading-anchor" href="#Run-a-Simulation-in-Parallel-on-an-HPC">Run a Simulation in Parallel on an HPC</a><a id="Run-a-Simulation-in-Parallel-on-an-HPC-1"></a><a class="docs-heading-anchor-permalink" href="#Run-a-Simulation-in-Parallel-on-an-HPC" title="Permalink"></a></h2><p>This page describes how to split a simulation into partitions, run each partition in parallel on HPC compute nodes, and then join the results.</p><p>These steps can be used on a local computer or any HPC supported by the submission software. Some steps may be specific to NLR's HPC <code>Kestrel</code> cluster.</p><h3 id="Setup-2"><a class="docs-heading-anchor" href="#Setup-2">Setup</a><a class="docs-heading-anchor-permalink" href="#Setup-2" title="Permalink"></a></h3><ol><li><p>Install torc per these <a href="https://natlabrockies.github.io/torc/latest/getting-started/installation.html">instructions</a> If you are at NLR, follow <a href="https://natlabrockies.github.io/torc/latest/getting-started/installation.html#site-specific-installations">these</a> instead. Connect to the shared torc server.</p></li><li><p>Copy the code below into a Julia file called <code>configure_parallel_simulation.jl</code>. Modify the runtime parameters as needed, especially the CPU and memory resource requirements. Your Julia environment must include <code>JSON</code> and <code>PowerSimulations</code>.</p></li></ol><pre><code class="nohighlight hljs">using JSON
+using PowerSimulations
+
+"""
+    configure_parallel_simulation(;
+        script::AbstractString,
+        num_steps::Integer,
+        num_period_steps::Integer,
+        output_dir::AbstractString,
+        account::AbstractString,
+        num_overlap_steps::Integer = 1,
+        project_path = ".",
+        simulation_name = "simulation",
+        num_work_nodes = nothing,
+        workflow_name::AbstractString = "sienna",
+        workflow_description::AbstractString = "Partitioned simulation",
+        enable_time_series_monitoring = false,
     )
 
-    for i in 1:get_num_partitions(partitions)
-        cmd = "$julia_cmd $script execute --simulation-name=$simulation_name --index=$i"
-        job = jgc.GenericCommandParameters(command=cmd, name="execute-$i")
-        config.add_job(job)
+Write a torc workflow spec to `workflow.json` that runs a partitioned simulation on Slurm.
+
+The workflow has one `build` job, one `job_&lt;i&gt;` job per partition, and a `join` job. It
+schedules two Slurm stages: a single-node allocation on the `debug` partition for the build,
+and many single-node allocations for the partition jobs and the join job. The second stage is
+requested only after the build completes.
+
+# Arguments
+
+  - `script::AbstractString`: Julia script that builds and executes the simulation. It must
+    call `process_simulation_partition_cli_args`.
+  - `num_steps::Integer`: Total number of simulation steps.
+  - `num_period_steps::Integer`: Number of steps in each partition.
+  - `output_dir::AbstractString`: Directory where the simulation writes its outputs.
+  - `account::AbstractString`: Slurm account charged for all allocations.
+  - `num_overlap_steps::Integer`: Number of steps by which adjacent partitions overlap.
+  - `project_path`: Julia project environment passed to `julia --project`. Set to `nothing`
+    to run `julia` without `--project`.
+  - `simulation_name`: Name of the simulation.
+  - `num_work_nodes`: Number of single-node allocations for the partition jobs. Defaults to
+    one per partition.
+  - `workflow_name::AbstractString`: Name of the torc workflow.
+  - `workflow_description::AbstractString`: Description of the torc workflow.
+  - `enable_time_series_monitoring`: If `true`, record time-series resource utilization for
+    each job and for each compute node. View the results with `torc plot-resources`.
+"""
+function configure_parallel_simulation(;
+    script::AbstractString,
+    num_steps::Integer,
+    num_period_steps::Integer,
+    output_dir::AbstractString,
+    account::AbstractString,
+    num_overlap_steps::Integer = 1,
+    project_path = ".",
+    simulation_name = "simulation",
+    num_work_nodes = nothing,
+    workflow_name::AbstractString = "sienna",
+    workflow_description::AbstractString = "Partitioned simulation",
+    enable_time_series_monitoring = false,
+)
+    partitions = SimulationPartitions(num_steps, num_period_steps, num_overlap_steps)
+    num_partitions = get_num_partitions(partitions)
+    # One node per allocation. Defaults to one allocation per partition.
+    num_work_nodes = isnothing(num_work_nodes) ? num_partitions : num_work_nodes
+    julia_cmd = isnothing(project_path) ? "julia" : "julia --project=$project_path"
+    f1 = Dict(
+        "name" =&gt; "run_script",
+        "path" =&gt; script,
+    )
+    rr_small = Dict(
+        "name" =&gt; "small",
+        "num_cpus" =&gt; 1,
+        "memory" =&gt; "50g",
+        "runtime" =&gt; "PT30M",
+    )
+    rr_medium = Dict(
+        "name" =&gt; "medium",
+        "num_cpus" =&gt; 8,
+        "memory" =&gt; "200g",
+        "runtime" =&gt; "PT3H",
+    )
+    build_command =
+        "$julia_cmd $script setup --simulation-name=$simulation_name " *
+        "--num-steps=$num_steps --num-period-steps=$num_period_steps " *
+        "--num-overlap-steps=$num_overlap_steps --output-dir=$output_dir"
+    work_command = "$julia_cmd $script execute --simulation-name=$simulation_name --index={i} --output-dir=$output_dir"
+    join_command = "$julia_cmd $script join --simulation-name=$simulation_name --output-dir=$output_dir"
+    jobs = [
+        Dict(
+            "name" =&gt; "build",
+            "command" =&gt; build_command,
+            "resource_requirements" =&gt; "small",
+            "scheduler" =&gt; "build",
+        ),
+        Dict(
+            "name" =&gt; "job_{i}",
+            "command" =&gt; work_command,
+            "use_parameters" =&gt; ["i"],
+            "depends_on" =&gt; ["build"],
+            "resource_requirements" =&gt; "medium",
+            "scheduler" =&gt; "work",
+        ),
+        Dict(
+            "name" =&gt; "join",
+            "command" =&gt; join_command,
+            "resource_requirements" =&gt; "small",
+            "depends_on_regexes" =&gt; ["job_\\d+"],
+            "scheduler" =&gt; "work",
+        )
+    ]
+    slurm_schedulers = [
+        # The build step is short and serial; the debug partition starts quickly.
+        Dict(
+            "name" =&gt; "build",
+            "account" =&gt; account,
+            "partition" =&gt; "debug",
+            "nodes" =&gt; 1,
+            "walltime" =&gt; "01:00:00",
+        ),
+        # Walltime must cover one "medium" job plus the "small" join job. Torc does not start
+        # a job on an allocation whose remaining walltime is shorter than the job's runtime.
+        # Four hours fits the common "short" partition.
+        Dict(
+            "name" =&gt; "work",
+            "account" =&gt; account,
+            "nodes" =&gt; 1,
+            "walltime" =&gt; "04:00:00",
+        ),
+    ]
+    actions = [
+        # Stage 1: the build allocation is requested as soon as the workflow starts.
+        Dict(
+            "trigger_type" =&gt; "on_jobs_ready",
+            "action_type" =&gt; "schedule_nodes",
+            "jobs" =&gt; ["build"],
+            "scheduler" =&gt; "build",
+            "scheduler_type" =&gt; "slurm",
+            "num_allocations" =&gt; 1,
+        ),
+        # Stage 2: many single-node allocations, requested only after the build completes.
+        # The join job runs on whichever of these allocations is still alive at the end.
+        Dict(
+            "trigger_type" =&gt; "on_jobs_ready",
+            "action_type" =&gt; "schedule_nodes",
+            "job_name_regexes" =&gt; ["job_\\d+"],
+            "scheduler" =&gt; "work",
+            "scheduler_type" =&gt; "slurm",
+            "num_allocations" =&gt; num_work_nodes,
+        ),
+    ]
+    workflow = Dict(
+        "name" =&gt; workflow_name,
+        "description" =&gt; workflow_description,
+        "files" =&gt; [f1],
+        "jobs" =&gt; jobs,
+        "resource_requirements" =&gt; [rr_small, rr_medium],
+        "slurm_schedulers" =&gt; slurm_schedulers,
+        "actions" =&gt; actions,
+        "parameters" =&gt; Dict("i" =&gt; "1:$num_partitions"),
+    )
+    if enable_time_series_monitoring
+        # Records per-job and per-node samples for `torc plot-resources`.
+        workflow["resource_monitor"] = Dict(
+            "jobs" =&gt; Dict("enabled" =&gt; true, "granularity" =&gt; "time_series"),
+            "compute_node" =&gt; Dict("enabled" =&gt; true, "granularity" =&gt; "time_series"),
+        )
     end
 
-    config.dump(config_file, indent=2)
-    println("Created Jade configuration in $config_file. " *
-            "Run 'jade submit-jobs [options] $config_file' to execute them.")
+    # TODO: add a post-processing job that loads results.
+
+    filename = "workflow.json"
+    open(filename, "w") do io
+        JSON.print(io, workflow, 2)
+    end
+    println("Created torc workflow spec in $filename")
 end</code></pre><ol><li>Create a Julia script to build and run simulations. It must meet the requirements below. A full example is in the PowerSimulations repository in <code>test/run_partitioned_simulation.jl</code>.</li></ol><ul><li><p>Call <code>using PowerSimulations</code>.</p></li><li><p>Implement a build function that matches the signature below. It must construct a <code>Simulation</code>, call <code>build!</code>, and then return the <code>Simulation</code> instance. It must throw an exception if the build fails.</p></li></ul><pre><code class="nohighlight hljs">function build_simulation(
     output_dir::AbstractString,
     simulation_name::AbstractString,
@@ -90,19 +231,17 @@ end
 
 if abspath(PROGRAM_FILE) == @__FILE__
     main()
-end</code></pre><h3 id="Execution-2"><a class="docs-heading-anchor" href="#Execution-2">Execution</a><a class="docs-heading-anchor-permalink" href="#Execution-2" title="Permalink"></a></h3><ol><li>Create a Jade configuration that defines the partitioned simulation jobs. Load your Julia environment.This example splits a year-long simulation into weekly partitions for a total of 53 individual jobs.</li></ol><pre><code class="nohighlight hljs">julia&gt; include("configure_parallel_simulation.jl")
-julia&gt; num_steps = 365
-julia&gt; period = 7
-julia&gt; num_overlap_steps = 1
-julia&gt; configure_parallel_simulation(
-    "my_simulation.jl",  # this is your build/execute script
-    num_steps,
-    period,
-    num_overlap_steps=1,
-    project_path=".",  # This optionally specifies the Julia project environment to load.
-)
-Created Jade configuration in config.json. Run 'jade submit-jobs [options] config.json' to execute them.</code></pre><p>Exit Julia.</p><ol><li>View the configuration for accuracy.</li></ol><pre><code class="nohighlight hljs">$ jade config show config.json</code></pre><ol><li>Start an interactive session on a debug node. <em>Do not submit the jobs on a login node!</em> The submission step will run a full build of the simulation and that may consume too many CPU and memory resources for the login node.</li></ol><pre><code class="nohighlight hljs">$ salloc -t 01:00:00 -N1 --account=&lt;your-account&gt; --partition=debug</code></pre><ol><li>Follow the instructions at https://nrel.github.io/jade/tutorial.html to submit the jobs. The example below will configure Jade to run each partition on its own compute node. Depending on the compute and memory constraints of your simulation, you may be able to pack more jobs on each node.Adjust the walltime as necessary.</li></ol><pre><code class="nohighlight hljs">$ jade config hpc -c hpc_config.toml -t slurm  --walltime=04:00:00 -a &lt;your-account&gt;
-$ jade submit-jobs config.json --per-node-batch-size=1 -o output</code></pre><p>If you are unsure about how much memory and CPU resources your simulation consumes, add these options:</p><pre><code class="nohighlight hljs">$ jade submit-jobs config.json --per-node-batch-size=1 -o output --resource-monitor-type periodic --resource-monitor-interval 3</code></pre><p>Jade will create HTML plots of the resource utilization in <code>output/stats</code>. You may be able to customize <code>--per-node-batch-size</code> and <code>--num-processes</code> to finish the simulations more quickly.</p><ol><li>Jade will run a final command to join the simulation partitions into one unified file. You can load the results as you normally would.</li></ol><pre><code class="nohighlight hljs">julia&gt; results = SimulationResults("&lt;output-dir&gt;/job-outputs/&lt;simulation-name&gt;")</code></pre><p>Note the log files and results for each partition are located in <code>&lt;output-dir&gt;/job-outputs/&lt;simulation-name&gt;/simulation_partitions</code></p><p>If any partition fails, the join command fails and records a failed status in <code>&lt;output-dir&gt;/job-outputs/&lt;simulation-name&gt;/results/status.json</code>. Each failed partition, along with the simulation steps that it covers, is logged in <code>&lt;output-dir&gt;/job-outputs/&lt;simulation-name&gt;/logs/join_partitioned_simulation.log</code>. Re-run the command with the <code>--skip-failures</code> option to skip the failed partitions and merge the results of the successful ones. The status of the simulation remains a failure, so the results must be loaded with <code>SimulationResults(path; ignore_status=true)</code>.</p><pre><code class="nohighlight hljs">$ julia --project=&lt;path&gt; my_simulation.jl join --simulation-name=&lt;simulation-name&gt; --output-dir=&lt;output-dir&gt;/job-outputs --skip-failures</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../simulation_recorder/">« ...inspect simulation events using the recorder</a><a class="docs-footer-nextpage" href="../../explanation/psi_structure/">PowerSimulations.jl Modeling Structure »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.20.0 on <span class="colophon-date" title="Monday 9 November 2026 16:53">Monday 9 November 2026</span>. Using Julia version 1.13.3.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
+end</code></pre><h3 id="Execution-2"><a class="docs-heading-anchor" href="#Execution-2">Execution</a><a class="docs-heading-anchor-permalink" href="#Execution-2" title="Permalink"></a></h3><ol><li>Create a torc workflow that defines the partitioned simulation jobs. Load your Julia environment.This example splits a year-long simulation into weekly partitions for a total of 53 individual jobs.</li></ol><pre><code class="nohighlight hljs">julia&gt; include("configure_parallel_simulation.jl")
+julia&gt; configure_parallel_simulation(;
+           script = "my_simulation.jl",  # this is your build/execute script
+           num_steps = 365,
+           num_period_steps = 7,
+           output_dir = "my_simulation_output",
+           account = "&lt;your-hpc-account&gt;",
+           num_overlap_steps = 1,
+           project_path = ".",  # This optionally specifies the Julia project environment to load.
+       )
+Created torc workflow spec in workflow.json.</code></pre><p>Exit Julia.</p><ol><li><p>Open the spec in an editor and check for accuracy.</p></li><li><p>Submit the workflow.</p></li></ol><pre><code class="nohighlight hljs">torc submit workflow.json</code></pre><ol><li>Torc will run a final command to join the simulation partitions into one unified file. You can load the results as you normally would.</li></ol><pre><code class="nohighlight hljs">julia&gt; results = SimulationResults("&lt;output-dir&gt;/&lt;simulation-name&gt;")</code></pre><p>Note the log files and results for each partition are located in <code>&lt;output-dir&gt;/&lt;simulation-name&gt;/simulation_partitions</code></p><p>If any partition fails, the join command fails and records a failed status in <code>&lt;output-dir&gt;/&lt;simulation-name&gt;/results/status.json</code>. Each failed partition, along with the simulation steps that it covers, is logged in <code>&lt;output-dir&gt;/&lt;simulation-name&gt;/logs/join_partitioned_simulation.log</code>. Re-run the command with the <code>--skip-failures</code> option to skip the failed partitions and merge the results of the successful ones. The status of the simulation remains a failure, so the results must be loaded with <code>SimulationResults(path; ignore_status=true)</code>.</p><pre><code class="nohighlight hljs">$ julia --project=&lt;path&gt; my_simulation.jl join --simulation-name=&lt;simulation-name&gt; --output-dir=&lt;output-dir&gt; --skip-failures</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../simulation_recorder/">« ...inspect simulation events using the recorder</a><a class="docs-footer-nextpage" href="../../explanation/psi_structure/">PowerSimulations.jl Modeling Structure »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label></p><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div><p></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.20.0 on <span class="colophon-date" title="Thursday 12 November 2026 23:43">Thursday 12 November 2026</span>. Using Julia version 1.13.3.</p></section><footer class="modal-card-foot"></footer></div></div></div><script>
 (function(){
   window.addEventListener('pageshow', function(ev) {
     if (!ev.persisted) return;
